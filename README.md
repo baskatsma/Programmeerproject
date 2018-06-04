@@ -1,7 +1,5 @@
-# Programmeerproject
-
-## A More \#008000 Europe
-#### Bas Katsma
+## Europe: Life in \#008000
+#### Bas Katsma - Programmeerproject
 This project visualizes the *standard* and *renewable* energy usage and production in Europe.
 
 ## Problem statement
