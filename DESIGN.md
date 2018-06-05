@@ -21,11 +21,6 @@ Ik wil voor elke visualisatie een eigen databestand, om het niet te ingewikkeld 
 #### Primary production of renewable energy by type
 - [EUROSTAT - Primary production of renewable energy by type](http://ec.europa.eu/eurostat/tgm/refreshTableAction.do?tab=table&plugin=1&pcode=ten00081&language=en)
 
-- [d3 v4](https://d3js.org)
-- [Bootstrap 4.1.1](http://getbootstrap.com)
-- [d3-tip compatible with d3.js v4](https://github.com/VACLab/d3-tip)
-- [Google Fonts](https://fonts.google.com)
-
 ## Diagram with an overview of the technical components
 ![Diagram](https://github.com/baskatsma/Programmeerproject/blob/master/doc/diagram_v1.png)
 
