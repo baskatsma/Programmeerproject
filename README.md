@@ -39,6 +39,8 @@ Het gefinishte product laat duidelijk zien hoe het "grijze" en groene energiever
 - [d3 v4](https://d3js.org)
 - [Bootstrap 4.1.1](http://getbootstrap.com)
 - [d3-tip compatible with d3.js v4](https://github.com/VACLab/d3-tip)
+- [topoJSON](https://github.com/topojson/topojson)
+- [d3-queue](https://github.com/d3/d3-queue)
 - [Google Fonts](https://fonts.google.com)
 
 #### Review of similar or related visualizations
