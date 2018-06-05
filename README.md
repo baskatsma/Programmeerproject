@@ -14,9 +14,19 @@ Het gefinishte product laat duidelijk zien hoe het "grijze" en groene energiever
 ![Sketch](https://github.com/baskatsma/Programmeerproject/blob/master/doc/sketches_v2.JPG)
 
 #### Main features
-- Een landkaart van Europa met het totale energieverbruik per land. Dropdown: selectie van jaar. Hover: laat het jaartal, land en verbruik zien. Click: naar de multi-line dual axis graph met het aangeklikte land als gekozen onderwerp.
-- Een radiale genormaliseerde stacked bar graph met het percentage groene/grijze energieverbruik per land. Dropdown: selectie van jaar. Hover: laat het jaartal, land en percentage groene/grijze energieverbruik zien. Click: naar de multi-line dual axis graph met het aangeklikte land als gekozen onderwerp.
-- Een multi-line dual axis graph met de energieprijs en de productie van *renewable* energie per land per jaartal. Dropdown: selectie van land. Hover: laat het jaartal, land, energieprijs en "groene" productie zien.
+- Een landkaart van Europa met het totale energieverbruik per land.
+**Dropdown**: selectie van jaar.
+**Hover**: laat het jaartal, land en verbruik zien.
+**Click**: laadt de radiale genormaliseerde stacked bar graph van dit land en de multi-line dual axis graph met het aangeklikte land als gekozen onderwerp.
+
+- Een radiale genormaliseerde stacked bar graph met het percentage groene/grijze energieverbruik per jaar.
+**Dropdown**: selectie van land.
+**Hover**: laat het jaartal, land en percentage groene/grijze energieverbruik zien.
+
+- Een multi-line dual axis graph met de energieprijs en de productie van *renewable* energie per land per jaartal.
+**Dropdown**: selectie van soort renewable energie (bv. windenergie, zonne-energie).
+**Hover**: laat het jaartal, land, energieprijs en "groene" productie zien.]
+
 - Alles is het MVP, met uitzondering van het dual axis aspect. Als dat niet lukt, valt alleen de energieprijs te zien (1 Y-axis).
 
 ## Prerequisites
