@@ -5,7 +5,7 @@ This project visualizes the *standard* and *renewable* energy usage and producti
 ## Problem statement
 De koolcentrales zijn we massaal aan het sluiten in Nederland. In de Noordzee manifesteren zich grote hoeveelheden windparken, met nog velen op de planning. Maar, hoe zit dit op Europese schaal? Hoe is het energieverbruik en de -productie als we dit onder de loep nemen? En door de jaren heen? Staat ons kleine kikkerlandje er überhaupt wel goed voor?
 
-De *target audience* van dit project zijn de milieu- en/of prijsbewuste individuen. Deze willen bijvoorbeeld weten hoe goed een land presteert op basis van de productie of verbruik van groene energie.
+De *target audience* van dit project zijn de milieubewuste individuen. Deze willen bijvoorbeeld weten hoe goed een land presteert op basis van de productie of verbruik van groene energie.
 
 ## Solution
 Het gefinishte product laat duidelijk zien hoe het "grijze" en groene energieverbruik, de energieprijs en de productie van *renewable* energie per Europees land door de jaren heen zich onderling verhouden. Op dit moment is dat namelijk nog niet te zien.
@@ -20,12 +20,12 @@ Het gefinishte product laat duidelijk zien hoe het "grijze" en groene energiever
 **Click**: laadt de radiale genormaliseerde stacked bar graph van dit land en de multi-line dual axis graph met het aangeklikte land als gekozen onderwerp.
 
 - Een radiale genormaliseerde stacked bar graph met het percentage groene/grijze energieverbruik per jaar.
-**Dropdown**: selectie van land.
+**Dropdown**: selectie van categorie (transport, heating & cooling, etc.) in energieverbruik.
 **Hover**: laat het jaartal, land en percentage groene/grijze energieverbruik zien.
 
-- Een multi-line dual axis graph met de energieprijs en de productie van *renewable* energie per land per jaartal.
-**Dropdown**: selectie van soort renewable energie (bv. windenergie, zonne-energie).
-**Hover**: laat het jaartal, land, energieprijs en "groene" productie zien.]
+- Een multi-line dual axis graph met de elektriciteitsprijs en de productie van *renewable* energie per land per jaartal.
+**Dropdown**: selectie van soort renewable energie (bv. windenergie, zonne-energie, hydro-energie of totaal).
+**Hover**: laat het jaartal, land, energieprijs en "groene" productie zien.
 
 - Alles is het MVP, met uitzondering van het dual axis aspect. Als dat niet lukt, valt alleen de energieprijs te zien (1 Y-axis).
 
