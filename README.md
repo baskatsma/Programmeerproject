@@ -11,10 +11,10 @@ De *target audience* van dit project zijn de milieu- en/of prijsbewuste individu
 Het gefinishte product laat duidelijk zien hoe het "grijze" en groene energieverbruik, de energieprijs en de productie van *renewable* energie per Europees land door de jaren heen zich onderling verhouden. Op dit moment is dat namelijk nog niet te zien.
 
 #### Visual sketch
-![Sketch](https://github.com/baskatsma/Programmeerproject/blob/master/doc/sketches_v2.JPG)
+![Sketch](https://github.com/baskatsma/Programmeerproject/blob/master/doc/sketches_v3.png)
 
 #### Main features
-- Een landkaart van Europa met het totale energieverbruik per land.
+- Een landkaart van Europa met het totale energieverbruik per land (color-coded naarmate van hoeveelheid).
 **Dropdown**: selectie van jaar.
 **Hover**: laat het jaartal, land en verbruik zien.
 **Click**: laadt de radiale genormaliseerde stacked bar graph van dit land en de multi-line dual axis graph met het aangeklikte land als gekozen onderwerp.
