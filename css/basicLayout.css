@@ -1,0 +1,67 @@
+/*
+ *  basicLayout.css
+ *
+ *  Name: Bas Katsma
+ *  Student 10787690
+ *
+ */
+
+body {
+    background: #FFFFFF;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+h1 {
+    padding: 0.6em 0.75em;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    font-weight: 50;
+}
+
+a {
+    color: #aaa;
+}
+
+a:hover {
+    color: #CC9900;
+}
+
+p {
+    color: black;
+    font-size: 12px;
+}
+
+.row {
+    padding-top: 7px;
+    padding-left: 40px;
+}
+
+#card {
+    height: 80vh;
+}
+
+#card img {
+    max-height: 80vh;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.13), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
+    display: inline-block;
+    height: 100%;
+}
+
+#card .back {
+    max-height: 80vh;
+    background: #f9f9f9;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.13), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
+    color: black;
+    text-align: left;
+}
+
+#interactiveButton {
+    padding-right: 100px;
+}
+
+.navbar-light {
+    background-color: #FFFFFF !important;
+}

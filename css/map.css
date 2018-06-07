@@ -1,0 +1,45 @@
+/*
+ *  map.css
+ *
+ *  Name: Bas Katsma
+ *  Student 10787690
+ *
+ */
+
+#mapDiv {
+    text-align: center;
+}
+
+svg text {
+    font: 106px Futura;
+}
+
+.country {
+    fill: #383838;
+    stroke: white;
+    stroke-width: 0.25px;
+}
+
+path:hover {
+    fill-opacity: .8;
+}
+
+.d3-tip {
+    position: absolute;
+    height: auto;
+    padding: 10px;
+    font: 14px Futura;
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+#mapTooltip {
+    width: 240px;
+    text-align: left;
+}
