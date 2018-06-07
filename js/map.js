@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add an event listener for the year selector button
     $('.dropdown-item').on('click', function(event) {
         selectedYear = $(this).text();
-        console.log(selectedYear);
         updateMap(selectedYear);
     });
 
@@ -173,8 +172,6 @@ function appendCountries(map, mapTip) {
     if (selectedYear == "2016") {
         colorSwitch = colorbrewer.YlGnBu[9]
     }
-
-    console.log(selectedYear, colorSwitch);
 
     var colorScale = d3.scaleQuantize()
         .range(colorSwitch)
