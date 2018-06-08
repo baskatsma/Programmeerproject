@@ -7,11 +7,20 @@
  */
 
 #mapDiv {
-    text-align: center;
+    margin-top: 2.5em;
+    text-align: left;
 }
 
-svg text {
+/* svg text {
     font: 106px Futura;
+} */
+
+text.allText {
+    font: 106px Futura;
+}
+
+text.label, text.legendText {
+    font: 15px Futura;
 }
 
 .country {

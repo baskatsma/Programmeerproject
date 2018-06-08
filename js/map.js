@@ -9,17 +9,16 @@
 // Inspired by: http://blog.robertjesionek.com/d3js-geo/
 
 // Define global variables, dimensions and settings
+var formatThousand = d3.format(",")
+
 var europe;
 var energyUsage;
 
 var width = 770;
 var height = 580;
 var center = [16, 71.4];
-var scale = 500;
+var scale = 450;
 var titleMargin = 85;
-
-// Set-up color
-var colorSwitch;
 
 // Creates a projection
 var projection = d3.geoMercator()
@@ -43,16 +42,16 @@ var selectedYear = "2016";
 // Execute main code after loading the DOM
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Add an event listener for the year selector button
-    $('.dropdown-item').on('click', function(event) {
-        selectedYear = $(this).text();
-        updateMap(selectedYear);
-    });
+    // // Add an event listener for the year selector button
+    // $(".dropdown-item").on("click", function(event) {
+    //     selectedYear = $(this).text();
+    //     updateMap(selectedYear);
+    // });
 
     // Load default map
     makeMap(selectedYear);
 
-    $( "#interactiveButton" ).hide();
+    // $( "#interactiveButton" ).hide();
     $( "#mapDiv" ).hide();
 
 });
@@ -60,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
 window.onload = function() {
 
     $( "#mapDiv" ).fadeIn(800);
-    $( "#interactiveButton" ).fadeIn(1300);
+    // $( "#interactiveButton" ).fadeIn(1300);
 }
 
 function makeMap(selectedYear) {
@@ -86,9 +85,8 @@ function makeMap(selectedYear) {
 
             // Update map tooltip
             mapTip.html(function(d) {
-                    var formatThousand = d3.format(",");
-                    return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + formatThousand(data[d.id]);
-                });
+                return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + formatThousand(data[d.id]);
+            });
 
             // Append measurements to the map
             var map = d3.select(".map")
@@ -106,49 +104,74 @@ function makeMap(selectedYear) {
             // Add a title
             addTitle(map);
 
-        });
+            // Set-up color scale for legend
+            var colorScale = d3.scaleQuantize()
+                .range(colorbrewer.YlOrRd[5])
+                .domain([0, 15]);
 
+            var colorLegend = d3.legendColor()
+              .labelFormat(formatThousand)
+              .scale(colorScale)
+              .shapePadding(3)
+              .shapeHeight(6)
+              .shapeWidth(90)
+              .orient("horizontal");
+
+            map.append("g")
+              .attr("transform", "translate(80, 553)")
+              .call(colorLegend);
+
+            // Add a description to the legend
+            var distance = 560;
+            map.append("text")
+                .attr("x", distance - 10)
+                .attr("y", distance)
+                .attr("text-anchor", "left")
+                .attr("class", "legendText")
+                .text("in millions");
+
+        });
 
     });
 
 }
-
-function updateMap(selectedYear) {
-
-    // Select the current map
-    var map = d3.select(".map").select("svg").select("g");
-
-    // Remove all paths
-    d3.select("g")
-        .selectAll("path")
-        .remove();
-
-    // Remove title
-    d3.select("text")
-        .remove();
-
-    // Select new parts of the EUROSTAT data
-    data = {};
-    year = selectedYear;
-    energyUsage.forEach(function(d) {
-        data[d.GEO] = d[year];
-    });
-
-    // Update and call map tooltip
-    mapTip.html(function(d) {
-            var formatThousand = d3.format(",");
-            return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + formatThousand(data[d.id]);
-        });
-
-    map.call(mapTip);
-
-    // Append countries to the map using topoJSON
-    appendCountries(map, mapTip);
-
-    // Add a title
-    addTitle(map);
-
-}
+//
+// function updateMap(selectedYear) {
+//
+//     // Select the current map
+//     var map = d3.select(".map").select("svg").select("g");
+//
+//     // Remove all paths
+//     d3.select("g")
+//         .selectAll("path")
+//         .remove();
+//
+//     // Remove title
+//     d3.select("text")
+//         .remove();
+//
+//     // Select new parts of the EUROSTAT data
+//     data = {};
+//     year = selectedYear;
+//     energyUsage.forEach(function(d) {
+//         data[d.GEO] = d[year];
+//     });
+//
+//     // Update and call map tooltip
+//     mapTip.html(function(d) {
+//             var formatThousand = d3.format(",");
+//             return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + formatThousand(data[d.id]);
+//         });
+//
+//     map.call(mapTip);
+//
+//     // Append countries to the map using topoJSON
+//     appendCountries(map, mapTip);
+//
+//     // Add a title
+//     addTitle(map);
+//
+// }
 
 function addTitle(map) {
 
@@ -157,33 +180,15 @@ function addTitle(map) {
         .attr("x", 0)
         .attr("y", titleMargin)
         .attr("text-anchor", "left")
+        .attr("class","allText")
         .text(year);
 }
 
 function appendCountries(map, mapTip) {
 
-    if (selectedYear == "2008") {
-        colorSwitch = colorbrewer.YlOrRd[9]
-    }
-
-    if (selectedYear == "2010") {
-        colorSwitch = colorbrewer.BuGn[9]
-    }
-
-    if (selectedYear == "2012") {
-        colorSwitch = colorbrewer.PuRd[9]
-    }
-
-    if (selectedYear == "2014") {
-        colorSwitch = colorbrewer.PuBu[9]
-    }
-
-    if (selectedYear == "2016") {
-        colorSwitch = colorbrewer.YlGnBu[9]
-    }
-
+    // Set-up color scale
     var colorScale = d3.scaleQuantize()
-        .range(colorSwitch)
+        .range(colorbrewer.YlOrRd[9])
         .domain([0, 15000000]);
 
     // Append countries to the map using topoJSON
@@ -204,6 +209,9 @@ function appendCountries(map, mapTip) {
 
             return colorScale(value);
         })
+
+        // Add d3-tip functionality
         .on("mouseover", mapTip.show)
         .on("mouseout", mapTip.hide);
+
 }
