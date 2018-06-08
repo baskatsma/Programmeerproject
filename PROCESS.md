@@ -14,7 +14,7 @@ Oant moarn, Bas.
 
 ## day 5 (Fri 8 Jun)
 I received helpful feedback. There's no need for the interactivity (year selection) of the map anymore, because I already have enough elements I want to implement.
-Thus, that part was removed and now I will focus on adding a legend (that one is
-still missing).
+Thus, that part was removed and the previously missing legend is implemented.
+Also, prepared the data for the normalized radial stacked bar graph.
 
 Oant moarn, Bas.

@@ -11,11 +11,11 @@
     text-align: left;
 }
 
-/* svg text {
-    font: 106px Futura;
-} */
+.axis path {
+    display: none;
+}
 
-text.allText {
+text.titleText {
     font: 106px Futura;
 }
 

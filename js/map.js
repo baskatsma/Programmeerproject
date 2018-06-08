@@ -106,13 +106,13 @@ function makeMap(selectedYear) {
 
             // Set-up color scale for legend
             var colorScale = d3.scaleQuantize()
-                .range(colorbrewer.YlOrRd[5])
+                .range(colorbrewer.YlOrRd[6])
                 .domain([0, 15]);
 
             var colorLegend = d3.legendColor()
               .labelFormat(formatThousand)
               .scale(colorScale)
-              .shapePadding(3)
+              .shapePadding(0)
               .shapeHeight(6)
               .shapeWidth(90)
               .orient("horizontal");
@@ -124,11 +124,11 @@ function makeMap(selectedYear) {
             // Add a description to the legend
             var distance = 560;
             map.append("text")
-                .attr("x", distance - 10)
+                .attr("x", 0)
                 .attr("y", distance)
                 .attr("text-anchor", "left")
                 .attr("class", "legendText")
-                .text("in millions");
+                .text("In millions");
 
         });
 
@@ -180,7 +180,7 @@ function addTitle(map) {
         .attr("x", 0)
         .attr("y", titleMargin)
         .attr("text-anchor", "left")
-        .attr("class","allText")
+        .attr("class","titleText")
         .text(year);
 }
 
