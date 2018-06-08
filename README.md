@@ -51,3 +51,7 @@ Het gefinishte product laat duidelijk zien hoe het "grijze" en groene energiever
 #### Hardest parts of implementing the visualizations
 - Correcte datastructuur uitvinden! Dit zal heel ingewikkeld worden. Vereist veel goede beslissingen voorafgaand aan het maken van de visualisaties.
 - Het uitvogelen van de technische structuur en het implementeren van de radiale genormaliseerde stacked bar graph zal zeer zeker een ingewikkeld proces worden/zijn.
+
+
+## Link
+- https://baskatsma.github.io/Programmeerproject/index_ori.html
