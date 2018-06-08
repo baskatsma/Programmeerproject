@@ -52,7 +52,16 @@ document.addEventListener("DOMContentLoaded", function() {
     // Load default map
     makeMap(selectedYear);
 
+    $( "#interactiveButton" ).hide();
+    $( "#mapDiv" ).hide();
+
 });
+
+window.onload = function() {
+
+    $( "#mapDiv" ).fadeIn(800);
+    $( "#interactiveButton" ).fadeIn(1300);
+}
 
 function makeMap(selectedYear) {
 
