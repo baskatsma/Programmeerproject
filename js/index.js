@@ -71,6 +71,13 @@ TxtRotate.prototype.tick = function() {
  };
 
 // Code is optimized!
+document.addEventListener("DOMContentLoaded", function() {
+
+    $( "#continueButtonColumn" ).hide();
+
+});
+
+// Code is optimized!
 window.onload = function() {
 
     var element = document.getElementById("animatedTextRow");
@@ -97,5 +104,7 @@ window.onload = function() {
     } else {
         console.log("Not animating...")
     }
+
+    $( "#continueButtonColumn" ).fadeIn(800);
 
 };
