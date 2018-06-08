@@ -7,23 +7,10 @@
  */
 
 // Code is optimized!
-// https://stackoverflow.com/a/41698614
-function isVisible(element) {
-    if (!(element instanceof Element)) throw Error('DomUtil: element is not an element.');
-    const style = getComputedStyle(element);
-    if (style.display === 'none') return false;
-    if (style.visibility !== 'visible') return false;
-    if (style.opacity < 0.1) return false;
-}
-
-// Code is optimized!
 // Toggle function
 $(function() {
     $( "#continueButton" ).click(function() {
         $( "#animatedText" ).fadeToggle();
-        // var element = document.getElementById("animatedText");
-        // var visibility = isVisible(element);
-        // console.log(visibility);
     });
 });
 
@@ -81,29 +68,21 @@ document.addEventListener("DOMContentLoaded", function() {
 window.onload = function() {
 
     var element = document.getElementById("animatedTextRow");
-    var visibility = isVisible(element)
-    console.log("animatedTextRow visibility:",visibility)
 
-    if (visibility !== false) {
-        console.log("Animating \"animatedTextRow\" @front page...")
-        var elements = document.getElementsByClassName('txt-rotate');
-        for (var i = 0; i < elements.length; i++) {
-            var toRotate = elements[i].getAttribute('data-rotate');
-            var period = elements[i].getAttribute('data-period');
-            if (toRotate) {
-                new TxtRotate(elements[i], JSON.parse(toRotate), period);
-            }
-      }
-
-      // INJECT CSS
-      var css = document.createElement("style");
-      css.type = "text/css";
-      css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
-      document.body.appendChild(css);
-
-    } else {
-        console.log("Not animating...")
+    var elements = document.getElementsByClassName('txt-rotate');
+    for (var i = 0; i < elements.length; i++) {
+        var toRotate = elements[i].getAttribute('data-rotate');
+        var period = elements[i].getAttribute('data-period');
+        if (toRotate) {
+            new TxtRotate(elements[i], JSON.parse(toRotate), period);
+        }
     }
+
+    // INJECT CSS
+    var css = document.createElement("style");
+    css.type = "text/css";
+    css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+    document.body.appendChild(css);
 
     $( "#continueButtonColumn" ).fadeIn(800);
 
