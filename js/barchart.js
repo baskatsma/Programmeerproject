@@ -12,12 +12,25 @@
 var formatThousand = d3.format(",")
 
 // var europe;
-// var energyUsage;
+var finalShare;
+
+var selectedYear = 2016;
 
 var width = 580;
 var height = 580;
 var titleMargin = 85;
 var margin = {top: 20, right: 60, bottom: 30, left: 40};
+
+function mainCode(error, finalShareData, transportShareData, electricityShareData, heatcoolShareData) {
+
+    // Initialize the map with the successfully loaded data
+    if (error) throw error;
+
+    console.log(finalShareData);
+    console.log(transportShareData);
+    console.log(electricityShareData);
+    console.log(heatcoolShareData);
+}
 
 // Execute main code after loading the DOM
 document.addEventListener("DOMContentLoaded", function() {
@@ -51,77 +64,31 @@ document.addEventListener("DOMContentLoaded", function() {
     var stack = d3.stack()
         .offset(d3.stackOffsetExpand);
 
-    d3.json("data/ten00094_Electricity_consumption_by_industry.json", function(error, data) {
+    d3.queue()
+        .defer(d3.json, "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json")
+        .defer(d3.json, "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_TRANSPORT.json")
+        .defer(d3.json, "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_ELECTRICITY.json")
+        .defer(d3.json, "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.json")
+        .await(mainCode);
 
-        // Log any errors, and save results for usage outside of this function
-        if (error) throw error;
-
-        console.log(data);
-
-        // data.forEach(function(d){d.totalEnergy=d.totalHours-d.leftHours});
-        // data.sort(function(a, b) { return b.totalHours-a.totalHours; });
-
-    });
-
-    // d3.csv("data/ten00094_Electricity_consumption_by_industry.csv", type, function(error, data) {
+    // d3.json("data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json", function(error, finalShareData) {
     //
+    //     // Log any errors, and save results for usage outside of this function
     //     if (error) throw error;
     //
-    //     data.sort(function(a, b) { return b[data.columns[1]] / b.total - a[data.columns[1]] / a.total; });
+    //     finalShare = finalShareData;
+    //     console.log(finalShare);
     //
-    //     x.domain(data.map(function(d) { return d.GEO; }));
-    //     z.domain(data.columns.slice(1));
+    //     // Extract the EUROSTAT data
+    //     data = {};
+    //     year = selectedYear;
+    //     finalShareData.forEach(function(d) {
+    //         data[d.GEO] = d[year];
+    //     });
     //
-    //     var serie = barchart.selectAll(".serie")
-    //       .data(stack.keys(data.columns.slice(1))(data))
-    //       .enter().append("g")
-    //         .attr("class", "serie")
-    //         .attr("fill", function(d) { return z(d.key); });
+    //     // data.forEach(function(d){d.totalEnergy=d.totalHours-d.leftHours});
+    //     // data.sort(function(a, b) { return b.totalHours-a.totalHours; });
     //
-    //     serie.selectAll("rect")
-    //       .data(function(d) { return d; })
-    //       .enter().append("rect")
-    //         .attr("x", function(d) { return x(d.data.GEO); })
-    //         .attr("y", function(d) { return y(d[1]); })
-    //         .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-    //         .attr("width", x.bandwidth());
-    //
-    //     barchart.append("g")
-    //         .attr("class", "axis axis--x")
-    //         .attr("transform", "translate(0," + height + ")")
-    //         .call(xAxis);
-    //
-    //     barchart.append("g")
-    //         .attr("class", "axis axis--y")
-    //         .call(yAxis.ticks(10, "%"));
-    //
-    //     var legend = serie.append("g")
-    //         .attr("class", "legend")
-    //         .attr("transform", function(d) { var d = d[d.length - 1]; return "translate(" + (x(d.data.GEO) + x.bandwidth()) + "," + ((y(d[0]) + y(d[1])) / 2) + ")"; });
-    //
-    //     legend.append("line")
-    //         .attr("x1", -6)
-    //         .attr("x2", 6)
-    //         .attr("stroke", "#000");
-    //
-    //     legend.append("text")
-    //         .attr("x", 9)
-    //         .attr("dy", "0.35em")
-    //         .attr("fill", "#000")
-    //         .style("font", "10px sans-serif")
-    //         .text(function(d) { return d.key; });
-    //
-    // });
-
-    // d3.csv("data/ten00094_Electricity_consumption_by_industry.csv", function(d, i, columns) {
-    //     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
-    //     d.total = t;
-    //     console.log(t);
-    //     return d;
-    //   }, function(error, data) {
-    //
-    //         // Log any errors, and save results for usage outside of this function
-    //         if (error) throw error;
     // });
 
 });

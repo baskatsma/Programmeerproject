@@ -13,15 +13,15 @@ import json
 from collections import OrderedDict
 
 if __name__ == "__main__":
-
+    
     # Initialize the keys
-    JSONKeyNames=["GEO", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016"]
+    JSONKeyNames=["GEO", "GEO_TIME", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016"]
 
     # Create blank array to store the new data in
     dataStorage = []
 
     # Read data file
-    with open("ten00094_Electricity_consumption_by_transport.csv", "r") as dataFile:
+    with open("nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.csv", "r") as dataFile:
         dataReader = csv.DictReader(dataFile, JSONKeyNames, delimiter=";")
 
         # Iterate over each line
@@ -36,7 +36,7 @@ if __name__ == "__main__":
             dataStorage.append(data)
 
     # Create new JSON file and use .dump to convert
-    with open("ten00094_Electricity_consumption_by_transport.json", "w+") as JSONFile:
+    with open("nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.json", "w+") as JSONFile:
         json.dump(dataStorage, JSONFile, indent=4)
 
     # Close all files
