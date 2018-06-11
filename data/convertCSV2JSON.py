@@ -13,7 +13,7 @@ import json
 from collections import OrderedDict
 
 if __name__ == "__main__":
-    
+
     # Initialize the keys
     JSONKeyNames=["GEO", "GEO_TIME", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016"]
 

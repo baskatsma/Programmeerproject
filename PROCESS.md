@@ -18,3 +18,14 @@ Thus, that part was removed and the previously missing legend is implemented.
 Also, prepared the data for the normalized radial stacked bar graph.
 
 Oant moarn, Bas.
+
+## day 8 (Mon 11 Jun)
+Today we started with the stand-up, where we discussed our plans for the week.
+- My goal for today was to create visualisation 2; a normalized stacked bar graph (not radial anymore, because radials are "bad" if you want to quickly glance at the visualisation).
+- The datasets for visualisation 2 contained numbers that were not integers (e.g. 5,5; 12,4; 13,5, etc.), which were separated by a comma. For visualisation 1, all numbers were integers.
+- As a result, I got a lot of NaN errors and quickly figured out that I had to replace all comma's with '.''s --> problem solved!
+- I struggled a lot with the way I wanted the stacked bar graph to look like. Ultimately,
+I decided to display all countries on the X-axis, and use a year-slider to control the years. A dropdown menu will still allow one to change the sector.
+- To do: add tooltip for the barchart, add dropdown menu to change sector in which the energy is used, add year slider, add update mechanism, add animations.
+
+Oant moarn, Bas.

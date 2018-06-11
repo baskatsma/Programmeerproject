@@ -14,8 +14,8 @@ var formatThousand = d3.format(",")
 var europe;
 var energyUsage;
 
-var width = 770;
-var height = 580;
+var mapWidth = 770;
+var mapHeight = 580;
 var center = [16, 71.4];
 var scale = 450;
 var titleMargin = 85;
@@ -23,7 +23,7 @@ var titleMargin = 85;
 // Creates a projection
 var projection = d3.geoMercator()
     .scale(scale)
-    .translate([width / 2.1, 0])
+    .translate([mapWidth / 2.1, 0])
     .center(center);
 
 // Initializes the path generator
@@ -37,19 +37,19 @@ var mapTip = d3.tip()
     .offset([-5, 0]);
 
 // Set default map
-var selectedYear = "2016";
+var mapSelectedYear = "2016";
 
 // Execute main code after loading the DOM
 document.addEventListener("DOMContentLoaded", function() {
 
     // // Add an event listener for the year selector button
     // $(".dropdown-item").on("click", function(event) {
-    //     selectedYear = $(this).text();
-    //     updateMap(selectedYear);
+    //     mapSelectedYear = $(this).text();
+    //     updateMap(mapSelectedYear);
     // });
 
     // Load default map
-    makeMap(selectedYear);
+    makeMap(mapSelectedYear);
 
     // $( "#interactiveButton" ).hide();
     $( "#mapDiv" ).hide();
@@ -62,7 +62,7 @@ window.onload = function() {
     // $( "#interactiveButton" ).fadeIn(1300);
 }
 
-function makeMap(selectedYear) {
+function makeMap(mapSelectedYear) {
 
     d3.json("data/nrg_100a_Simplified_energy_balances_TJ.json", function(error, energyUsageData) {
 
@@ -72,7 +72,7 @@ function makeMap(selectedYear) {
 
         // Extract the EUROSTAT data
         data = {};
-        year = selectedYear;
+        year = mapSelectedYear;
         energyUsage.forEach(function(d) {
             data[d.GEO] = d[year];
         });
@@ -91,8 +91,8 @@ function makeMap(selectedYear) {
             // Append measurements to the map
             var map = d3.select(".map")
                 .append("svg")
-                .attr("height", height)
-                .attr("width", width)
+                .attr("height", mapHeight)
+                .attr("width", mapWidth)
                 .append("g");
 
             // Call map tooltip
@@ -136,7 +136,7 @@ function makeMap(selectedYear) {
 
 }
 //
-// function updateMap(selectedYear) {
+// function updateMap(mapSelectedYear) {
 //
 //     // Select the current map
 //     var map = d3.select(".map").select("svg").select("g");
@@ -152,7 +152,7 @@ function makeMap(selectedYear) {
 //
 //     // Select new parts of the EUROSTAT data
 //     data = {};
-//     year = selectedYear;
+//     year = mapSelectedYear;
 //     energyUsage.forEach(function(d) {
 //         data[d.GEO] = d[year];
 //     });
@@ -180,7 +180,7 @@ function addTitle(map) {
         .attr("x", 0)
         .attr("y", titleMargin)
         .attr("text-anchor", "left")
-        .attr("class","titleText")
+        .attr("class", "titleText")
         .text(year);
 }
 
@@ -200,7 +200,7 @@ function appendCountries(map, mapTip) {
         .attr("d", path)
 
         // Color-code countries based on their energy consumption
-        .style("fill",function(d){
+        .style("fill", function(d) {
             var value = data[d.id];
 
             if (isNaN(value)){

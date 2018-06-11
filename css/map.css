@@ -6,6 +6,10 @@
  *
  */
 
+.tick text {
+    font: 12px Futura;
+}
+
 #mapDiv {
     margin-top: 2.5em;
     text-align: left;
