@@ -21,7 +21,7 @@ if __name__ == "__main__":
     dataStorage = []
 
     # Read data file
-    with open("nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.csv", "r") as dataFile:
+    with open("nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.csv", "r", encoding='utf-8-sig') as dataFile:
         dataReader = csv.DictReader(dataFile, JSONKeyNames, delimiter=";")
 
         # Iterate over each line

@@ -29,3 +29,10 @@ I decided to display all countries on the X-axis, and use a year-slider to contr
 - To do: add tooltip for the barchart, add dropdown menu to change sector in which the energy is used, add year slider, add update mechanism, add animations.
 
 Oant moarn, Bas.
+
+## day 9 (Tue 12 Jun)
+Today we started with the stand-up, where we discussed our progress since Monday. I did pretty well (imo), because I got quite far with visualisation 2.
+- My goal for today was to add a tooltip, a dropdown menu, and the update mechanism to change sector for visualisation 2.
+- Result: it took me a lot of time, but in the end I made it.
+
+Oant moarn, Bas.

@@ -42,6 +42,8 @@ var mapSelectedYear = "2016";
 // Execute main code after loading the DOM
 document.addEventListener("DOMContentLoaded", function() {
 
+    console.log("DOMContentLoaded");
+
     // // Add an event listener for the year selector button
     // $(".dropdown-item").on("click", function(event) {
     //     mapSelectedYear = $(this).text();
@@ -52,13 +54,14 @@ document.addEventListener("DOMContentLoaded", function() {
     makeMap(mapSelectedYear);
 
     // $( "#interactiveButton" ).hide();
-    $( "#mapDiv" ).hide();
+    // $( "#mapDiv" ).hide();
 
 });
 
 window.onload = function() {
 
-    $( "#mapDiv" ).fadeIn(800);
+    // $( "#mapDiv" ).fadeIn(800);
+    console.log("window.onload");
     // $( "#interactiveButton" ).fadeIn(1300);
 }
 

@@ -1,36 +1,28 @@
 /*
- *  map.css
+ *  barchart.css
  *
  *  Name: Bas Katsma
  *  Student 10787690
  *
  */
 
-.tick text {
-    font: 12px Futura;
+body {
+    text-align: center;
 }
 
-#mapDiv, #barchartDiv {
-    margin-top: 2.5em;
-}
-
-#interactiveButton {
-    margin-top: 3.8em;
-}
-
-#interactiveButton {
-    text-align: left;
-}
-
-#mapDiv {
-    text-align: right;
+.row {
+    text-align: center !important;
 }
 
 #barchartDiv {
     text-align: center;
 }
 
-#mapDiv text.titleText, #barchartDiv text.titleText {
+.tick text {
+    font: 12px Futura;
+}
+
+#barchartDiv text.titleText {
     font: 106px Futura;
 }
 
@@ -46,16 +38,6 @@ text.label, text.legendText {
     font: 15px Futura;
 }
 
-.country {
-    fill: #383838;
-    stroke: white;
-    stroke-width: 0.25px;
-}
-
-path:hover {
-    fill-opacity: .8;
-}
-
 .d3-tip {
     position: absolute;
     height: auto;
@@ -69,9 +51,4 @@ path:hover {
     -moz-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
     pointer-events: none;
-}
-
-#mapTooltip {
-    width: 240px;
-    text-align: left;
 }
