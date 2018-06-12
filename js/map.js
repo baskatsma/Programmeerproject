@@ -77,6 +77,7 @@ function makeMap(mapSelectedYear) {
         data = {};
         year = mapSelectedYear;
         energyUsage.forEach(function(d) {
+            d[year] = +d[year];
             data[d.GEO] = d[year];
         });
 
@@ -188,6 +189,8 @@ function addTitle(map) {
 }
 
 function appendCountries(map, mapTip) {
+
+    console.log(energyUsage);
 
     // Set-up color scale
     var colorScale = d3.scaleQuantize()

@@ -29,7 +29,7 @@ var margin = {top: 20, right: 40, bottom: 80, left: 40};
 // Is goed!
 var x = d3.scaleBand()
     .rangeRound([0, chartWidth])
-    .paddingInner(0.05)
+    .paddingInner(0.0175)
     .align(0.1);
 
 // Is goed!
@@ -75,8 +75,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (dropdownSelection == "Heating, cooling") {
             chartSelectedSector = heatcoolJSON;
         }
-
-        console.log(chartSelectedSector);
 
         updateChart(chartSelectedSector);
     });
@@ -189,53 +187,7 @@ function makeChart(chartSelectedSector) {
             .attr("class", "yAxis")
             .call(d3.axisLeft(y).ticks(10, "%"));
 
-        var ordinal = d3.scaleOrdinal()
-            .domain(["% non-renewable energy", "% renewable energy"])
-            .range([ "rgb(220, 220, 220)", "rgb(0, 102, 102)" ]);
-
-        barchart.append("g")
-            .attr("class", "legendOrdinal")
-            .attr("transform", "translate(887, 180)");
-
-        var legendOrdinal = d3.legendColor()
-            .shape("path", d3.symbol().type(d3.symbolSquare).size(300)())
-            .shapePadding(10)
-            .scale(ordinal);
-
-        barchart.select(".legendOrdinal")
-            .call(legendOrdinal);
-
-        // Add a year
-        barchart.append("text")
-            .attr("x", chartWidth - 225)
-            .attr("y", titleMargin + 30)
-            .attr("text-anchor", "left")
-            .attr("class", "titleText")
-            .text(chartSelectedYear);
-
-        // Add a sector
-        if (chartSelectedSector == grossFinalJSON) {
-            sectorText = "GROSS FINAL";
-        }
-
-        if (chartSelectedSector == transportJSON) {
-            sectorText = "TRANSPORT";
-        }
-
-        if (chartSelectedSector == electricityJSON) {
-            sectorText = "ELECTRICITY";
-        }
-
-        if (chartSelectedSector == heatcoolJSON) {
-            sectorText = "HEATING, COOLING";
-        }
-
-        barchart.append("text")
-            .attr("x", chartWidth - 224)
-            .attr("y", titleMargin + 70)
-            .attr("text-anchor", "left")
-            .attr("class", "sectorText")
-            .text(sectorText);
+        addLegend(barchart);
 
         });
 }
@@ -247,23 +199,11 @@ function updateChart(chartSelectedSector) {
         // Log any errors, and save results for usage outside of this function
         if (error) throw error;
 
+        var t = d3.transition()
+            .duration(1500);
+
         // Select the current map
         var barchartNew = d3.select(".barchart").select("svg");
-
-        // // Remove titles
-        // d3.select(".titleText")
-        //     .remove();
-        //
-        // d3.select(".sectorText")
-        //     .remove();
-        //
-        // // Remove legend
-        // d3.select(".legendOrdinal")
-        //     .remove();
-
-        // Remove legend - NECESSARY if all("g") are not removed
-        d3.select(".legendOrdinal")
-            .remove();
 
         // Remove 'g' elements
         d3.selectAll("g")
@@ -279,21 +219,8 @@ function updateChart(chartSelectedSector) {
         var g = barchartNew.append("g")
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // d3.selectAll("g")
-        //     .remove();
-
-        // // Append measurements to the chart
-        // var barchart = d3.select(".barchart")
-        //     .append("svg")
-        //     .attr("height", chartHeight + 120)
-        //     .attr("width", chartWidth + 70)
-        //     g = barchart.append("g")
-        //       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        //
-
-        var year = chartSelectedYear;
-
         // Update data
+        var year = chartSelectedYear;
         data.forEach(function(d) {
             d.totalEnergyPercentage = 100;
             d.greenEnergyPercentage = Number(d[year]);
@@ -336,17 +263,6 @@ function updateChart(chartSelectedSector) {
                 d3.select(this).style("opacity", 1);
                 barTip.hide(d); });
 
-        // // Update the bars with the new population values
-        // var bars = barchartNew.selectAll(".rect")
-        //     .data(data);
-        //
-        // // Append new values and animate the bars
-        // bars
-        //     .transition().duration(1000)
-        //     .attr("y", function(d) { return y(d[1]); })
-        //     .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-        //     .style("fill", "teal");
-
         g.append("g")
             .attr("class", "xAxis")
             .attr("transform", "translate(0," + chartHeight + ")")
@@ -359,54 +275,59 @@ function updateChart(chartSelectedSector) {
             .attr("class", "yAxis")
             .call(d3.axisLeft(y).ticks(10, "%"));
 
-        var ordinal = d3.scaleOrdinal()
-            .domain(["% non-renewable energy", "% renewable energy"])
-            .range([ "rgb(220, 220, 220)", "rgb(0, 102, 102)" ]);
-
-        barchartNew.append("g")
-            .attr("class", "legendOrdinal")
-            .attr("transform", "translate(887, 180)");
-
-        var legendOrdinal = d3.legendColor()
-            .shape("path", d3.symbol().type(d3.symbolSquare).size(300)())
-            .shapePadding(10)
-            .scale(ordinal);
-
-        barchartNew.select(".legendOrdinal")
-            .call(legendOrdinal);
-
-        // Add a year
-        barchartNew.append("text")
-            .attr("x", chartWidth - 225)
-            .attr("y", titleMargin + 30)
-            .attr("text-anchor", "left")
-            .attr("class", "titleText")
-            .text(chartSelectedYear);
-
-        // Add a sector
-        if (chartSelectedSector == grossFinalJSON) {
-            sectorText = "GROSS FINAL";
-        }
-
-        if (chartSelectedSector == transportJSON) {
-            sectorText = "TRANSPORT";
-        }
-
-        if (chartSelectedSector == electricityJSON) {
-            sectorText = "ELECTRICITY";
-        }
-
-        if (chartSelectedSector == heatcoolJSON) {
-            sectorText = "HEATING, COOLING";
-        }
-
-        barchartNew.append("text")
-            .attr("x", chartWidth - 224)
-            .attr("y", titleMargin + 70)
-            .attr("text-anchor", "left")
-            .attr("class", "sectorText")
-            .text(sectorText);
+        addLegend(barchartNew);
 
         });
 
+}
+
+function addLegend(barchart) {
+
+    var ordinal = d3.scaleOrdinal()
+        .domain(["% non-renewable energy", "% renewable energy"])
+        .range([ "rgb(220, 220, 220)", "rgb(0, 102, 102)" ]);
+
+    barchart.append("g")
+        .attr("class", "legendOrdinal")
+        .attr("transform", "translate(887, 180)");
+
+    var legendOrdinal = d3.legendColor()
+        .shape("path", d3.symbol().type(d3.symbolSquare).size(300)())
+        .shapePadding(10)
+        .scale(ordinal);
+
+    barchart.select(".legendOrdinal")
+        .call(legendOrdinal);
+
+    // Add a year
+    barchart.append("text")
+        .attr("x", chartWidth - 225)
+        .attr("y", titleMargin + 30)
+        .attr("text-anchor", "left")
+        .attr("class", "titleText")
+        .text(chartSelectedYear);
+
+    // Add a sector
+    if (chartSelectedSector == grossFinalJSON) {
+        sectorText = "GROSS FINAL";
+    }
+
+    if (chartSelectedSector == transportJSON) {
+        sectorText = "TRANSPORT";
+    }
+
+    if (chartSelectedSector == electricityJSON) {
+        sectorText = "ELECTRICITY";
+    }
+
+    if (chartSelectedSector == heatcoolJSON) {
+        sectorText = "HEATING, COOLING";
+    }
+
+    barchart.append("text")
+        .attr("x", chartWidth - 224)
+        .attr("y", titleMargin + 70)
+        .attr("text-anchor", "left")
+        .attr("class", "sectorText")
+        .text(sectorText);
 }
