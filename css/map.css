@@ -10,17 +10,24 @@
     font: 12px Futura;
 }
 
-#mapDiv {
+#mapDiv, #barchartDiv {
     margin-top: 2.5em;
+}
+
+#mapDiv {
     text-align: left;
 }
 
-.axis path {
-    display: none;
+#barchartDiv {
+    text-align: center;
 }
 
-text.titleText {
+#mapDiv text.titleText, #barchartDiv text.titleText {
     font: 106px Futura;
+}
+
+.axis .domain {
+  display: none;
 }
 
 text.label, text.legendText {

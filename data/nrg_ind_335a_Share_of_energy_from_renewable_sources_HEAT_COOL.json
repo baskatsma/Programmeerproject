@@ -57,7 +57,7 @@
     },
     {
         "GEO": "DE",
-        "GEO_TIME": "Germany (until 1990 former territory of the FRG)",
+        "GEO_TIME": "Germany",
         "2007": "8.4",
         "2008": "7.4",
         "2009": "9.2",
@@ -435,7 +435,7 @@
     },
     {
         "GEO": "MK",
-        "GEO_TIME": "Former Yugoslav Republic of Macedonia, the",
+        "GEO_TIME": "Macedonia",
         "2007": "22.5",
         "2008": "24.6",
         "2009": "29.2",
