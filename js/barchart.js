@@ -18,11 +18,11 @@ var electricityJSON = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_
 var heatcoolJSON = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.json";
 
 var chartSelectedSector = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
-var chartSelectedYear = 2016;
+var chartSelectedYear = 2007;
 var sectorText;
 
 var chartWidth = 1100;
-var chartHeight = 500;
+var chartHeight = 480;
 var titleMargin = 85;
 var margin = {top: 20, right: 40, bottom: 80, left: 40};
 
@@ -56,6 +56,8 @@ var barTip = d3.tip()
 // Execute main code after loading the DOM
 document.addEventListener("DOMContentLoaded", function() {
 
+    addSlider();
+
     // Add an event listener for the year selector button
     $(".dropdown-item").on("click", function(event) {
         dropdownSelection = $(this).text();
@@ -76,36 +78,11 @@ document.addEventListener("DOMContentLoaded", function() {
             chartSelectedSector = heatcoolJSON;
         }
 
-        updateChart(chartSelectedSector);
+        updateChart(chartSelectedSector, chartSelectedYear);
     });
 
     // Load default chart
     makeChart(chartSelectedSector);
-
-    // var data3 = d3.range(0, 10).map(function (d) { return new Date(2007 + d, 10, 3); });
-    //
-    // var slider3 = d3.sliderHorizontal()
-    //   .min(d3.min(data3))
-    //   .max(d3.max(data3))
-    //   .step(1000 * 60 * 60 * 24 * 365)
-    //   .width(400)
-    //   .tickFormat(d3.timeFormat('%Y'))
-    //   .tickValues(data3)
-    //   .on('onchange', val => {
-    //     console.log(val);
-    //     d3.select("p#value3").text(d3.timeFormat('%Y')(val));
-    //   });
-    //
-    // var g = d3.select("div#slider3").append("svg")
-    //   .attr("width", 500)
-    //   .attr("height", 65)
-    //   .append("g")
-    //   .attr("transform", "translate(30,30)");
-    //
-    // g.call(slider3);
-    //
-    // d3.select("p#value3").text(d3.timeFormat('%Y')(slider3.value()));
-    // d3.select("a#setValue3").on("click", () => slider3.value(new Date(1997, 11, 17)));
 
 });
 
@@ -192,7 +169,7 @@ function makeChart(chartSelectedSector) {
         });
 }
 
-function updateChart(chartSelectedSector) {
+function updateChart(chartSelectedSector, chartSelectedYear) {
 
     d3.json(chartSelectedSector, function(error, data) {
 
@@ -206,7 +183,7 @@ function updateChart(chartSelectedSector) {
         var barchartNew = d3.select(".barchart").select("svg");
 
         // Remove 'g' elements
-        d3.selectAll("g")
+        d3.select(".barchart").selectAll("g")
             .remove();
 
         // Remove titles - NECESSARY!!!!!
@@ -281,7 +258,30 @@ function updateChart(chartSelectedSector) {
 
 }
 
-function addLegend(barchart) {
+function addSlider() {
+
+    var yearSlider = d3.sliderHorizontal()
+      .min(2007)
+      .max(2016)
+      .step(1)
+      .width(440)
+      .tickFormat(d3.format(""))
+      .on('onchange', val => {
+          chartSelectedYear = val;
+          updateChart(chartSelectedSector, chartSelectedYear);
+      });
+
+    var g = d3.select("#slider").append("svg")
+      .attr("class", "slider")
+      .attr("width", 600)
+      .attr("height", 55)
+      .append("g")
+      .attr("transform", "translate(50,15)");
+
+    g.call(yearSlider);
+}
+
+function addLegend(barchart, mapSelectedYear) {
 
     var ordinal = d3.scaleOrdinal()
         .domain(["% non-renewable energy", "% renewable energy"])
@@ -289,7 +289,7 @@ function addLegend(barchart) {
 
     barchart.append("g")
         .attr("class", "legendOrdinal")
-        .attr("transform", "translate(887, 180)");
+        .attr("transform", "translate(917, 195)");
 
     var legendOrdinal = d3.legendColor()
         .shape("path", d3.symbol().type(d3.symbolSquare).size(300)())
@@ -301,8 +301,8 @@ function addLegend(barchart) {
 
     // Add a year
     barchart.append("text")
-        .attr("x", chartWidth - 225)
-        .attr("y", titleMargin + 30)
+        .attr("x", chartWidth - 195)
+        .attr("y", titleMargin + 45)
         .attr("text-anchor", "left")
         .attr("class", "titleText")
         .text(chartSelectedYear);
@@ -325,8 +325,8 @@ function addLegend(barchart) {
     }
 
     barchart.append("text")
-        .attr("x", chartWidth - 224)
-        .attr("y", titleMargin + 70)
+        .attr("x", chartWidth - 194)
+        .attr("y", titleMargin + 85)
         .attr("text-anchor", "left")
         .attr("class", "sectorText")
         .text(sectorText);

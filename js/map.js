@@ -18,7 +18,7 @@ var mapWidth = 770;
 var mapHeight = 580;
 var center = [16, 71.4];
 var scale = 450;
-var titleMargin = 85;
+var titleMargin = 90;
 
 // Creates a projection
 var projection = d3.geoMercator()
@@ -126,10 +126,10 @@ function makeMap(mapSelectedYear) {
               .call(colorLegend);
 
             // Add a description to the legend
-            var distance = 560;
+            var xDistance = 560;
             map.append("text")
                 .attr("x", 0)
-                .attr("y", distance)
+                .attr("y", xDistance)
                 .attr("text-anchor", "left")
                 .attr("class", "legendText")
                 .text("In millions");

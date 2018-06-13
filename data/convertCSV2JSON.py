@@ -21,7 +21,7 @@ if __name__ == "__main__":
     dataStorage = []
 
     # Read data file
-    with open("nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.csv", "r", encoding='utf-8-sig') as dataFile:
+    with open("ten00081_Primary_production_of_renewable_energy_WIND.csv", "r", encoding='utf-8-sig') as dataFile:
         dataReader = csv.DictReader(dataFile, JSONKeyNames, delimiter=";")
 
         # Iterate over each line
@@ -36,7 +36,7 @@ if __name__ == "__main__":
             dataStorage.append(data)
 
     # Create new JSON file and use .dump to convert
-    with open("nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.json", "w+") as JSONFile:
+    with open("ten00081_Primary_production_of_renewable_energy_WIND.json", "w+") as JSONFile:
         json.dump(dataStorage, JSONFile, indent=4)
 
     # Close all files

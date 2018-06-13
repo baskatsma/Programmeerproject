@@ -10,6 +10,14 @@ body {
     text-align: center;
 }
 
+.xAxis .domain, .yAxis .domain {
+  display: none;
+}
+
+.slider .axis {
+    font-size: 20px;
+}
+
 .row {
     text-align: center !important;
 }
@@ -19,15 +27,17 @@ body {
 }
 
 .tick text {
-    font: 12px Futura;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 12px;
 }
 
 #barchartDiv text.titleText {
-    font: 106px Futura;
+    font: 106px 'Oswald';
 }
 
 #barchartDiv text.sectorText {
-    font: 24px Futura;
+    font: 24px 'Roboto Condensed';
+    font-weight: 500;
 }
 
 .axis .domain {
@@ -35,14 +45,14 @@ body {
 }
 
 text.label, text.legendText {
-    font: 15px Futura;
+    font: 16px 'Roboto Condensed';
 }
 
 .d3-tip {
     position: absolute;
     height: auto;
     padding: 10px;
-    font: 14px Futura;
+    font: 18px 'Roboto Condensed';
     background-color: white;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
