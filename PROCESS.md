@@ -36,3 +36,10 @@ Today we started with the stand-up, where we discussed our progress since Monday
 - Result: it took me a lot of time, but in the end I made it.
 
 Oant moarn, Bas.
+
+## day 10 (Wed 13 Jun)
+Today we started with the stand-up, where we discussed the style guide.
+- My goal for today: year slider for visualisation 2 and preparation of all data sets for visualisation 3.
+- Result: I found it quite hard to find a good-looking (and functioning) slider for d3 v4, so I settled for a decent-looking one and tweaked its appearance a LOT. Data sets were not hard to prepare, because they were from EUROSTAT.
+
+Oant moarn, Bas.
