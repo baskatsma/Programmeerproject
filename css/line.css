@@ -10,6 +10,32 @@ body {
     text-align: center;
 }
 
+svg {
+    font-family: Sans-Serif, Arial;
+}
+
+.line {
+  stroke-width: 3.5;
+  fill: none;
+}
+
+.axis line {
+  stroke-width: 0.5;
+}
+
+.axis path {
+  stroke: none;
+  stroke-width: 0.5;
+}
+
+.text {
+  font-size: 12px;
+}
+
+.title-text {
+  font-size: 12px;
+}
+
 .d3-tip {
     position: absolute;
     height: auto;

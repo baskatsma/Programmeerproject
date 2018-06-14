@@ -27,9 +27,9 @@ var currentGEOData;
 var currentGEOIndex;
 
 var lineWidth = 1100;
-var lineHeight = 480;
+var lineHeight = 600;
 var titleMargin = 85;
-var margin = {top: 20, right: 40, bottom: 80, left: 40};
+var margin = {top: 20, right: 70, bottom: 40, left: 50};
 
 var x = d3.scaleTime()
     .range([0, lineWidth]);
@@ -56,7 +56,12 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         // Loop over all countries
+        var maxProductions = [];
         for (country in data) {
+
+            // Get max values
+            var maxProduction = d3.max(data[country].values, d => d.production)
+            maxProductions.push(maxProduction)
 
             // Find selected country
             if (data[country].GEO == currentGEO) {
@@ -70,11 +75,78 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Update X and Y domain
         x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
-        y.domain([0, d3.max(data[currentGEOIndex].values, d => d.production)]);
+        y.domain([0, d3.max(maxProductions)]);
 
         var color = d3.scaleOrdinal(d3.schemeCategory10);
 
+        var lineOpacity = "0.25";
+        var lineOpacityHover = "0.85";
+        var otherLinesOpacityHover = "0.1";
+        var lineStroke = "1.5px";
+        var lineStrokeHover = "2.5px";
 
+        var circleOpacity = '0.85';
+        var circleOpacityOnLineHover = "0.25"
+        var circleRadius = 3;
+        var circleRadiusHover = 6;
+
+        /* Add SVG */
+        var svg = d3.select("#lineDiv").append("svg")
+          .attr("width", lineWidth + margin.right)
+          .attr("height", lineHeight + margin.bottom)
+          .append('g')
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        /* Add line into SVG */
+        var line = d3.line()
+          .x(d => x(d.year))
+          .y(d => y(d.production));
+
+        var lines = svg.append('g')
+          .attr('class', 'lines');
+
+        lines.selectAll('.line-group')
+          .data(data).enter()
+          .append('g')
+          .attr('class', 'line-group')
+          .append('path')
+          .attr('class', 'line')
+          .attr('d', d => line(d.values))
+          .style('stroke', (d, i) => color(i))
+          .style('opacity', lineOpacity);
+
+        /* Add circles in the line */
+        lines.selectAll("circle-group")
+          .data(data).enter()
+          .append("g")
+          .style("fill", (d, i) => color(i))
+          .selectAll("circle")
+          .data(d => d.values).enter()
+          .append("g")
+          .attr("class", "circle")
+          .append("circle")
+          .attr("cx", d => x(d.year))
+          .attr("cy", d => y(d.production))
+          .attr("r", circleRadius)
+          .style('opacity', circleOpacity);
+
+          /* Add Axis into SVG */
+          var xAxis = d3.axisBottom(x);
+          var yAxis = d3.axisLeft(y).ticks(7);
+
+          svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0,600)")
+            .call(xAxis);
+
+          svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append('text')
+            .attr("y", 15)
+            .attr("transform", "rotate(-90)")
+            .attr("fill", "#000")
+            .text("Total values");
 
     });
 
