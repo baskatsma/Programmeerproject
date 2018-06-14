@@ -21,22 +21,30 @@ if __name__ == "__main__":
     dataStorage = []
 
     # Read data file
-    with open("ten00081_Primary_production_of_renewable_energy_WIND.csv", "r", encoding='utf-8-sig') as dataFile:
+    with open("total.csv", "r", encoding='utf-8-sig') as dataFile:
         dataReader = csv.DictReader(dataFile, JSONKeyNames, delimiter=";")
+        next(dataReader)
 
-        # Iterate over each line
-        for line in dataReader:
+        # Iterate over each row
+        for row in dataReader:
 
             # Match each value with its corresponding key
             data = OrderedDict()
-            for key in JSONKeyNames:
 
-                # Remove whitespace and weird characters
-                data[key] = line[key].strip().replace("\ufeff", "")
+            data["GEO"] = row["GEO"]
+            data["GEO_TIME"] = row["GEO_TIME"]
+
+            values = []
+
+            for year in JSONKeyNames[2:]:
+
+                values.append({"year": int(year), "production": float(row[year])})
+
+            data["values"] = values
             dataStorage.append(data)
 
     # Create new JSON file and use .dump to convert
-    with open("ten00081_Primary_production_of_renewable_energy_WIND.json", "w+") as JSONFile:
+    with open("test.json", "w+") as JSONFile:
         json.dump(dataStorage, JSONFile, indent=4)
 
     # Close all files

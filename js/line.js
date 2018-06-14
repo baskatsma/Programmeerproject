@@ -9,27 +9,76 @@
 // Inspired by: https://bl.ocks.org/mbostock/3886394
 
 // Define global variables, dimensions and settings
+var parseDate = d3.timeParse("%Y");
 var formatThousand = d3.format(",");
 var formatDecimal = d3.format(".1f");
 
-var grossFinalJSON = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
-var transportJSON = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_TRANSPORT.json";
-var electricityJSON = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_ELECTRICITY.json";
-var heatcoolJSON = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.json";
+var totalProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
+var windProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_WIND.json";
+var solarProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_SOLAR_PHOTOVOLTAIC.json";
+var hydroProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_HYDRO.json";
 
-var chartSelectedSector = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
-var chartSelectedYear = 2007;
+var lineSelectedSector = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
+var lineSelectedYear = 2007;
 var sectorText;
 
-var chartWidth = 1100;
-var chartHeight = 480;
+var currentGEO;
+var currentGEOData;
+var currentGEOIndex;
+
+var lineWidth = 1100;
+var lineHeight = 480;
 var titleMargin = 85;
 var margin = {top: 20, right: 40, bottom: 80, left: 40};
 
+var x = d3.scaleTime()
+    .range([0, lineWidth]);
+
+var y = d3.scaleLinear()
+    .range([lineHeight, 0]);
+
 // Execute main code after loading the DOM
-// document.addEventListener("DOMContentLoaded", function() {
-//
-// });
+document.addEventListener("DOMContentLoaded", function() {
+
+    d3.json(lineSelectedSector, function(error, data) {
+
+        // Log any errors, and save results for usage outside of this function
+        if (error) throw error;
+
+        currentGEO = "SE";
+
+        // Format data
+        data.forEach(function(d) {
+            d.values.forEach(function(d) {
+                d.year = parseDate(d.year);
+                d.production = +d.production;
+            });
+        });
+
+        // Loop over all countries
+        for (country in data) {
+
+            // Find selected country
+            if (data[country].GEO == currentGEO) {
+
+                // Save its data and its spot in the data array
+                currentGEOData = data[country];
+                currentGEOIndex = country;
+
+            }
+        }
+
+        // Update X and Y domain
+        x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
+        y.domain([0, d3.max(data[currentGEOIndex].values, d => d.production)]);
+
+        var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+
+
+    });
+
+});
 //
 // function makeChart(chartSelectedSector) {
 //
