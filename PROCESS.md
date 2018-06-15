@@ -10,14 +10,10 @@ though: the ID tags of Greece and some other countries did not match in the
 topoJSON & EUROSTAT file, so I had to manually rename some tags inside the
 europe.json file. Also, it was quite tough to correctly update the map, because initially I was unable to access the svg element outside of the main code.
 
-Oant moarn, Bas.
-
 ## day 5 (Fri 8 Jun)
 I received helpful feedback. There's no need for the interactivity (year selection) of the map anymore, because I already have enough elements I want to implement.
 Thus, that part was removed and the previously missing legend is implemented.
 Also, prepared the data for the normalized radial stacked bar graph.
-
-Oant moarn, Bas.
 
 ## day 8 (Mon 11 Jun)
 Today we started with the stand-up, where we discussed our plans for the week.
@@ -28,18 +24,17 @@ Today we started with the stand-up, where we discussed our plans for the week.
 I decided to display all countries on the X-axis, and use a year-slider to control the years. A dropdown menu will still allow one to change the sector.
 - To do: add tooltip for the barchart, add dropdown menu to change sector in which the energy is used, add year slider, add update mechanism, add animations.
 
-Oant moarn, Bas.
-
 ## day 9 (Tue 12 Jun)
 Today we started with the stand-up, where we discussed our progress since Monday. I did pretty well (imo), because I got quite far with visualisation 2.
 - My goal for today was to add a tooltip, a dropdown menu, and the update mechanism to change sector for visualisation 2.
 - Result: it took me a lot of time, but in the end I made it.
-
-Oant moarn, Bas.
 
 ## day 10 (Wed 13 Jun)
 Today we started with the stand-up, where we discussed the style guide.
 - My goal for today: year slider for visualisation 2 and preparation of all data sets for visualisation 3.
 - Result: I found it quite hard to find a good-looking (and functioning) slider for d3 v4, so I settled for a decent-looking one and tweaked its appearance a LOT. Data sets were not hard to prepare, because they were from EUROSTAT.
 
-Oant moarn, Bas.
+## day 11 (Thu 14 Jun)
+Today we started with the stand-up, where we discussed the style guide (again).
+- Re-did my datasets, because it was not working with the line graph.
+- Plotted all countries on the line graph.
