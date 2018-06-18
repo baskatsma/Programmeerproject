@@ -23,13 +23,38 @@ var lineSelectedYear = 2007;
 var sectorText;
 
 var currentGEO;
+var currentGEOColor;
 var currentGEOData;
 var currentGEOIndex;
+var maxProductions = [];
 
-var lineWidth = 1100;
-var lineHeight = 600;
+var lineWidth = 560;
+var lineHeight = 580;
 var titleMargin = 90;
-var margin = {top: 20, right: 100, bottom: 40, left: 80};
+var margin = {top: 30, right: 85, bottom: 60, left: 55};
+
+var xAxis;
+var yAxis;
+var gX;
+var gY;
+var zoomLevel = 1;
+
+var lineOpacity = "0.3";
+var lineOpacityHover = "1";
+var lineOpacityOthers = "0.1";
+var lineStroke = 3;
+var lineStrokeHover = 5.5;
+var lineStrokeOthers = 1;
+
+var circleOpacity = '0.3';
+var circleOpacityOnLineHover = "1";
+var circleRadiusOthers = 1;
+var circleRadius = 3;
+var circleRadiusHover = 6;
+
+var zoom = d3.zoom()
+    .scaleExtent([1, 4])
+    .on("zoom", zoomed);
 
 var x = d3.scaleTime()
     .range([0, lineWidth]);
@@ -37,15 +62,12 @@ var x = d3.scaleTime()
 var y = d3.scaleLinear()
     .range([lineHeight, 0]);
 
-// Execute main code after loading the DOM
-document.addEventListener("DOMContentLoaded", function() {
+function makeLineGraph(currentGEO) {
 
     d3.json(lineSelectedSector, function(error, data) {
 
         // Log any errors, and save results for usage outside of this function
         if (error) throw error;
-
-        currentGEO = "DE";
 
         // Format data
         data.forEach(function(d) {
@@ -55,47 +77,48 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
-        // Loop over all countries
-        var maxProductions = [];
-        for (country in data) {
+        // Save the data of the country we're interested in
+        extractGEOData(data, currentGEO);
 
-            // Get max values
-            var maxProduction = d3.max(data[country].values, d => d.production)
-            maxProductions.push(maxProduction)
+        try {
 
-            // Find selected country
-            if (data[country].GEO == currentGEO) {
+            // Set the X domain based on the values of the chosen country
+            x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
 
-                // Save its data and its spot in the data array
-                currentGEOData = data[country];
-                currentGEOIndex = country;
+        }
+        catch(error) {
 
-            }
+            // If no data exists for the chosen country (non-EU ones), pick DE
+            x.domain(d3.extent(data[4].values, d => d.year));
+            currentGEO = "DE";
+            extractGEOData(data, currentGEO);
+
         }
 
-        // Update X and Y domain
-        x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
+        // Update Y domain
         y.domain([0, d3.max(maxProductions)]);
 
         var color = d3.scaleOrdinal(d3.schemeCategory20);
 
-        var lineOpacity = "0.3";
-        var lineOpacityHover = "1";
-        var otherLinesOpacityHover = "0.1";
-        var lineStroke = "3.5px";
-        var lineStrokeHover = "5.5px";
-
-        var circleOpacity = '0.3';
-        var circleOpacityOnLineHover = "1";
-        var circleRadius = 3;
-        var circleRadiusHover = 6;
-
-        /* Add SVG */
+        // Add SVG
         var svg = d3.select("#lineDiv").append("svg")
           .attr("width", lineWidth + margin.right)
           .attr("height", lineHeight + margin.bottom)
+          .call(zoom)
           .append('g')
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Initialize X and Y axii
+        xAxis = d3.axisBottom(x);
+        yAxis = d3.axisLeft(y).ticks(7);
+
+        gX = svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + lineHeight + ")")
+            .call(xAxis);
+        gY = svg.append("g")
+             .attr("class", "axis axis--y")
+             .call(yAxis)
 
         /* Add line into SVG */
         var line = d3.line()
@@ -105,53 +128,55 @@ document.addEventListener("DOMContentLoaded", function() {
         var lines = svg.append('g')
           .attr('class', 'lines');
 
-        console.log(currentGEOData);
-        // console.log(data);
-
         lines.selectAll('.line-group')
           .data(data).enter()
           .append('g')
           .attr('class', 'line-group')
           .append('path')
-          .on("mouseover", function(d, i) {
-              svg.append("text")
-                .attr("class", "title-text")
-                .style("fill", color(i))
-                .text(d.GEO_TIME)
-                .attr("text-anchor", "middle")
-                .attr("x", 0)
-                .attr("y", 5);
-            })
-          .on("mouseout", function(d) {
-              svg.select(".title-text").remove();
-            })
           .attr('class', 'line')
           .attr('d', d => line(d.values))
-          .style('stroke', (d, i) => color(i))
-          .style('opacity', lineOpacity)
+          .style('stroke', function(d, i) {
+              if (d.GEO == currentGEO) { currentGEOColor = color(i) }
+              return color(i)
+          })
+          .style('stroke-width', function(d) {
+              if (d.GEO != currentGEO) { return lineStrokeOthers/zoomLevel }
+          })
+          .style('opacity', function(d) {
+              if (d.GEO != currentGEO) { return lineOpacity }
+          })
           .on("mouseover", function(d, i) {
+              d3.selectAll('.title-text').remove();
               console.log(d);
+              d3.selectAll('.line').transition().duration(300)
+                .style('stroke-width', lineStrokeOthers/zoomLevel)
+              d3.selectAll('circle').transition().duration(300)
+                .attr("r", circleRadiusOthers/zoomLevel);
+              d3.select(this).transition().duration(300)
+                .style('opacity', lineOpacityHover)
+                .style("stroke-width", lineStrokeHover/zoomLevel)
+                .style("cursor", "pointer");
               svg.append("text")
                 .attr("class", "title-text")
                 .style("fill", color(i))
                 .text(d.GEO_TIME)
                 .attr("text-anchor", "left")
-                .attr("x", 75)
+                .attr("x", 45)
                 .attr("y", 65)
                 .transition().duration(300)
                 .attr("y", 55);
-              d3.select(this).transition().duration(300)
-                .style('opacity', lineOpacityHover)
-                .style("stroke-width", lineStrokeHover)
-                .style("cursor", "pointer");
-            })
+          })
           .on("mouseout", function(d) {
-              d3.select('.title-text').remove();
-              d3.select(this).transition().duration(300)
+              d3.selectAll('.line').transition().duration(300)
+                .style('stroke-width', lineStroke/zoomLevel)
+              d3.selectAll('circle').transition().duration(300)
+                .attr("r", circleRadius/zoomLevel);
+              d3.select(this)
                 .style('opacity', lineOpacity)
-                .style("stroke-width", lineStroke)
+                .style("stroke-width", lineStroke/zoomLevel)
                 .style("cursor", "none");
-            });
+              d3.selectAll('.title-text').remove();
+          });
 
         /* Add circles in the line */
         lines.selectAll("circle-group")
@@ -168,294 +193,308 @@ document.addEventListener("DOMContentLoaded", function() {
                 .style("cursor", "pointer")
                 .append("text")
                 .attr("class", "popup-text")
-                .text(d.production)
-                .attr("x", d => x(d.year))
-                .attr("y", d => y(d.production) - 8)
+                .text(formatThousand(d.production))
+                .style("font-size", 23/zoomLevel)
+                .attr("x", d => x(d.year) - 35/zoomLevel)
+                .attr("y", d => y(d.production) - 8/zoomLevel)
                 .transition().duration(300)
-                .attr("y", d => y(d.production) - 15);
-            })
+                .attr("y", d => y(d.production) - 15/zoomLevel);
+          })
           .on("mouseout", function(d) {
-              console.log(d);
               d3.select(this)
                 .style("cursor", "none")
                 .selectAll(".popup-text").remove();
-            })
+          })
           .append("circle")
           .attr("cx", d => x(d.year))
           .attr("cy", d => y(d.production))
-          .attr("r", circleRadius)
+          .attr('r', function(d) {
+              if (d.GEO != currentGEO) { return circleRadiusOthers/zoomLevel }
+          })
           .style('opacity', circleOpacity)
           .on("mouseover", function(d) {
               d3.select(this)
                 .transition().duration(300)
-                .attr("r", circleRadiusHover)
+                .attr("r", circleRadiusHover/zoomLevel)
                 .style("opacity", circleOpacityOnLineHover);
-            })
+          })
           .on("mouseout", function(d) {
               d3.select(this)
                 .transition()
                 .duration(300)
-                .attr("r", circleRadius)
+                .attr("r", circleRadius/zoomLevel)
                 .style("opacity", circleOpacity);
-            });
+          });
 
-          /* Add Axis into SVG */
-          var xAxis = d3.axisBottom(x);
-          var yAxis = d3.axisLeft(y).ticks(7);
+        svg.append("text")
+          .attr("class", "title-text")
+          .style("fill", currentGEOColor)
+          .text(currentGEOData.GEO_TIME)
+          .attr("text-anchor", "left")
+          .attr("x", 45)
+          .attr("y", 65)
+          .transition().duration(300)
+          .attr("y", 55);
 
-          svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0,600)")
-            .call(xAxis);
-
-          svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis)
-            .append('text')
-            .attr("y", 15)
-            .attr("transform", "rotate(-90)")
-            .attr("fill", "#000")
-            .text("Total values");
+          // /* Add Axis into SVG */
+          // var xAxis = d3.axisBottom(x);
+          // var yAxis = d3.axisLeft(y).ticks(7);
+          //
+          // svg.append("g")
+          //   .attr("class", "x axis")
+          //   .attr("transform", "translate(0,600)")
+          //   .call(xAxis);
+          //
+          // svg.append("g")
+          //   .attr("class", "y axis")
+          //   .call(yAxis)
+          //   .append('text')
+          //   .attr("y", 15)
+          //   .attr("transform", "rotate(-90)")
+          //   .attr("fill", "#000")
+          //   .text("Total values");
 
     });
 
-});
+}
 //
-// function makeChart(chartSelectedSector) {
+// // Execute main code after loading the DOM
+// document.addEventListener("DOMContentLoaded", function() {
 //
-//     d3.json(chartSelectedSector, function(error, data) {
+//     d3.json(lineSelectedSector, function(error, data) {
 //
 //         // Log any errors, and save results for usage outside of this function
 //         if (error) throw error;
 //
-//         // Append measurements to the chart
-//         var barchart = d3.select(".barchart")
-//             .append("svg")
-//             .attr("height", chartHeight + 120)
-//             .attr("width", chartWidth + 70)
-//             g = barchart.append("g")
+//         currentGEO = "NL";
+//
+//         // Format data
+//         data.forEach(function(d) {
+//             d.values.forEach(function(d) {
+//                 d.year = parseDate(d.year);
+//                 d.production = +d.production;
+//             });
+//         });
+//
+//         // Loop over all countries
+//         var maxProductions = [];
+//         for (country in data) {
+//
+//             // Get max values
+//             var maxProduction = d3.max(data[country].values, d => d.production)
+//             maxProductions.push(maxProduction)
+//
+//             // Find selected country
+//             if (data[country].GEO == currentGEO) {
+//
+//                 // Save its data and its spot in the data array
+//                 currentGEOData = data[country];
+//                 currentGEOIndex = country;
+//
+//             }
+//         }
+//
+//         // Update X and Y domain
+//         x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
+//         y.domain([0, d3.max(maxProductions)]);
+//
+//         var color = d3.scaleOrdinal(d3.schemeCategory20);
+//
+//         /* Add SVG */
+//         var svg = d3.select("#lineDiv").append("svg")
+//           .attr("width", lineWidth + margin.right)
+//           .attr("height", lineHeight + margin.bottom)
+//           .call(zoom)
+//           .append('g')
 //               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 //
-//         var year = chartSelectedYear;
+//         xAxis = d3.axisBottom(x);
+//         yAxis = d3.axisLeft(y).ticks(7);
 //
-//         data.forEach(function(d) {
-//             d.totalEnergyPercentage = 100;
-//             d.greenEnergyPercentage = Number(d[year]);
+//         gX = svg.append("g")
+//             .attr("class", "x axis")
+//             .attr("transform", "translate(0," + lineHeight + ")")
+//             .call(xAxis);
+//         gY = svg.append("g")
+//              .attr("class", "axis axis--y")
+//              .call(yAxis)
 //
-//             // Limit green energy to 100% to avoid problems
-//             if (d.greenEnergyPercentage >= 100) {
-//                 d.greenEnergyPercentage = 100;
-//             }
+//         /* Add line into SVG */
+//         var line = d3.line()
+//           .x(function(d) { return x(d.year) })
+//           .y(function(d) { return y(d.production) });
 //
-//             d.greyEnergyPercentage = d.totalEnergyPercentage - d.greenEnergyPercentage;
-//         });
+//         var lines = svg.append('g')
+//           .attr('class', 'lines');
 //
-//         // Sort from highest green energy to lowest
-//         data.sort(function(a, b) { return b.greenEnergyPercentage-a.greenEnergyPercentage; });
+//         lines.selectAll('.line-group')
+//           .data(data).enter()
+//           .append('g')
+//           .attr('class', 'line-group')
+//           .append('path')
+//           .attr('class', 'line')
+//           .attr('d', d => line(d.values))
+//           .style('stroke', function(d, i) {
+//               if (d.GEO == currentGEO) { currentGEOColor = color(i) }
+//               return color(i)
+//           })
+//           .style('stroke-width', function(d) {
+//               if (d.GEO != currentGEO) { return lineStrokeOthers/zoomLevel }
+//           })
+//           .style('opacity', function(d) {
+//               if (d.GEO != currentGEO) { return lineOpacity }
+//           })
+//           .on("mouseover", function(d, i) {
+//               console.log(d);
+//               d3.selectAll('.line').transition().duration(300)
+//                 .style('stroke-width', lineStrokeOthers/zoomLevel)
+//               d3.selectAll('circle').transition().duration(300)
+//                 .attr("r", circleRadiusOthers/zoomLevel);
+//               d3.select(this).transition().duration(300)
+//                 .style('opacity', lineOpacityHover)
+//                 .style("stroke-width", lineStrokeHover/zoomLevel)
+//                 .style("cursor", "pointer");
+//               svg.append("text")
+//                 .attr("class", "title-text")
+//                 .style("fill", color(i))
+//                 .text(d.GEO_TIME)
+//                 .attr("text-anchor", "left")
+//                 .attr("x", 45)
+//                 .attr("y", 65)
+//                 .transition().duration(300)
+//                 .attr("y", 55);
+//           })
+//           .on("mouseout", function(d) {
+//               d3.selectAll('.line').transition().duration(300)
+//                 .style('stroke-width', lineStroke/zoomLevel)
+//               d3.selectAll('circle').transition().duration(300)
+//                 .attr("r", circleRadius/zoomLevel);
+//               d3.select(this)
+//                 .style('opacity', lineOpacity)
+//                 .style("stroke-width", lineStroke/zoomLevel)
+//                 .style("cursor", "none");
+//               d3.selectAll('.title-text').remove();
+//           });
 //
-//         x.domain(data.map(function(d) { return d.GEO_TIME; }));
-//         z.domain(["greenEnergyPercentage", "greyEnergyPercentage"]);
+//         /* Add circles in the line */
+//         lines.selectAll("circle-group")
+//           .data(data).enter()
+//           .append("g")
+//           .style("fill", (d, i) => color(i))
+//           .selectAll("circle")
+//           .data(d => d.values).enter()
+//           .append("g")
+//           .attr("class", "circle")
+//           .on("mouseover", function(d) {
+//               console.log(d);
+//               d3.select(this)
+//                 .style("cursor", "pointer")
+//                 .append("text")
+//                 .attr("class", "popup-text")
+//                 .text(formatThousand(d.production))
+//                 .style("font-size", 23/zoomLevel)
+//                 .attr("x", d => x(d.year) - 35/zoomLevel)
+//                 .attr("y", d => y(d.production) - 8/zoomLevel)
+//                 .transition().duration(300)
+//                 .attr("y", d => y(d.production) - 15/zoomLevel);
+//           })
+//           .on("mouseout", function(d) {
+//               d3.select(this)
+//                 .style("cursor", "none")
+//                 .selectAll(".popup-text").remove();
+//           })
+//           .append("circle")
+//           .attr("cx", d => x(d.year))
+//           .attr("cy", d => y(d.production))
+//           .attr('r', function(d) {
+//               if (d.GEO != currentGEO) { return circleRadiusOthers/zoomLevel }
+//           })
+//           .style('opacity', circleOpacity)
+//           .on("mouseover", function(d) {
+//               d3.select(this)
+//                 .transition().duration(300)
+//                 .attr("r", circleRadiusHover/zoomLevel)
+//                 .style("opacity", circleOpacityOnLineHover);
+//           })
+//           .on("mouseout", function(d) {
+//               d3.select(this)
+//                 .transition()
+//                 .duration(300)
+//                 .attr("r", circleRadius/zoomLevel)
+//                 .style("opacity", circleOpacity);
+//           });
 //
-//         var serie = g.selectAll(".serie")
-//             .data(stack.keys(["greenEnergyPercentage","greyEnergyPercentage"])(data))
-//             .enter().append("g")
-//                 .attr("class", "serie")
-//                 .attr("fill", function(d) { return z(d.key); });
+//         svg.append("text")
+//           .attr("class", "title-text")
+//           .style("fill", currentGEOColor)
+//           .text(currentGEOData.GEO_TIME)
+//           .attr("text-anchor", "left")
+//           .attr("x", 45)
+//           .attr("y", 65)
+//           .transition().duration(300)
+//           .attr("y", 55);
 //
-//         barchart.call(barTip);
+//           // /* Add Axis into SVG */
+//           // var xAxis = d3.axisBottom(x);
+//           // var yAxis = d3.axisLeft(y).ticks(7);
+//           //
+//           // svg.append("g")
+//           //   .attr("class", "x axis")
+//           //   .attr("transform", "translate(0,600)")
+//           //   .call(xAxis);
+//           //
+//           // svg.append("g")
+//           //   .attr("class", "y axis")
+//           //   .call(yAxis)
+//           //   .append('text')
+//           //   .attr("y", 15)
+//           //   .attr("transform", "rotate(-90)")
+//           //   .attr("fill", "#000")
+//           //   .text("Total values");
 //
-//         serie.selectAll("rect")
-//             .data(function(d) { return d; })
-//             .enter().append("rect")
-//                 .attr("x", function(d) { return x(d.data.GEO_TIME); })
-//                 .attr("y", function(d) { return y(d[1]); })
-//                 .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-//                 .attr("width", x.bandwidth())
+//     });
 //
-//             // Add d3-tip functionality
-//             .on("mouseover", function(d) {
-//                 d3.select(this).style("opacity", 0.7);
-//                 barTip.show(d); })
-//             .on("mouseout", function(d) {
-//                 d3.select(this).style("opacity", 1);
-//                 barTip.hide(d); });
-//
-//         g.append("g")
-//             .attr("class", "xAxis")
-//             .attr("transform", "translate(0," + chartHeight + ")")
-//             .call(d3.axisBottom(x))
-//             .selectAll("text")
-//             .attr("transform", "rotate(45)")
-//             .attr("text-anchor", "start");
-//
-//         g.append("g")
-//             .attr("class", "yAxis")
-//             .call(d3.axisLeft(y).ticks(10, "%"));
-//
-//         addLegend(barchart);
-//
-//         });
-// }
-//
-// function updateChart(chartSelectedSector, chartSelectedYear) {
-//
-//     d3.json(chartSelectedSector, function(error, data) {
-//
-//         // Log any errors, and save results for usage outside of this function
-//         if (error) throw error;
-//
-//         var t = d3.transition()
-//             .duration(1500);
-//
-//         // Select the current map
-//         var barchartNew = d3.select(".barchart").select("svg");
-//
-//         // Remove 'g' elements
-//         d3.select(".barchart").selectAll("g")
-//             .remove();
-//
-//         // Remove titles - NECESSARY!!!!!
-//         d3.select(".titleText")
-//             .remove();
-//
-//         d3.select(".sectorText")
-//             .remove();
-//
-//         var g = barchartNew.append("g")
-//                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-//
-//         // Update data
-//         var year = chartSelectedYear;
-//         data.forEach(function(d) {
-//             d.totalEnergyPercentage = 100;
-//             d.greenEnergyPercentage = Number(d[year]);
-//
-//             // Limit green energy to 100% to avoid problems
-//             if (d.greenEnergyPercentage >= 100) {
-//                 d.greenEnergyPercentage = 100;
-//             }
-//
-//             d.greyEnergyPercentage = d.totalEnergyPercentage - d.greenEnergyPercentage;
-//         });
-//
-//         // Sort from highest green energy to lowest
-//         data.sort(function(a, b) { return b.greenEnergyPercentage-a.greenEnergyPercentage; });
-//
-//         x.domain(data.map(function(d) { return d.GEO_TIME; }));
-//         // z.domain(["greenEnergyPercentage", "greyEnergyPercentage"]);
-//
-//         var serieNew = g.selectAll(".serie")
-//             .data(stack.keys(["greenEnergyPercentage","greyEnergyPercentage"])(data))
-//             .enter().append("g")
-//                 .attr("class", "serie")
-//                 .attr("fill", function(d) { return z(d.key); });
-//
-//         barchartNew.call(barTip);
-//
-//         serieNew.selectAll("rect")
-//             .data(function(d) { return d; })
-//             .enter().append("rect")
-//                 .attr("x", function(d) { return x(d.data.GEO_TIME); })
-//                 .attr("y", function(d) { return y(d[1]); })
-//                 .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-//                 .attr("width", x.bandwidth())
-//
-//             // Add d3-tip functionality
-//             .on("mouseover", function(d) {
-//                 d3.select(this).style("opacity", 0.7);
-//                 barTip.show(d); })
-//             .on("mouseout", function(d) {
-//                 d3.select(this).style("opacity", 1);
-//                 barTip.hide(d); });
-//
-//         g.append("g")
-//             .attr("class", "xAxis")
-//             .attr("transform", "translate(0," + chartHeight + ")")
-//             .call(d3.axisBottom(x))
-//             .selectAll("text")
-//             .attr("transform", "rotate(45)")
-//             .attr("text-anchor", "start");
-//
-//         g.append("g")
-//             .attr("class", "yAxis")
-//             .call(d3.axisLeft(y).ticks(10, "%"));
-//
-//         addLegend(barchartNew);
-//
-//         });
-//
-// }
-//
-// function addSlider() {
-//
-//     var yearSlider = d3.sliderHorizontal()
-//       .min(2007)
-//       .max(2016)
-//       .step(1)
-//       .width(440)
-//       .tickFormat(d3.format(""))
-//       .on('onchange', val => {
-//           chartSelectedYear = val;
-//           updateChart(chartSelectedSector, chartSelectedYear);
-//       });
-//
-//     var g = d3.select("#slider").append("svg")
-//       .attr("class", "slider")
-//       .attr("width", 600)
-//       .attr("height", 55)
-//       .append("g")
-//       .attr("transform", "translate(50,15)");
-//
-//     g.call(yearSlider);
-// }
-//
-// function addLegend(barchart, mapSelectedYear) {
-//
-//     var ordinal = d3.scaleOrdinal()
-//         .domain(["% non-renewable energy", "% renewable energy"])
-//         .range([ "rgb(220, 220, 220)", "rgb(0, 102, 102)" ]);
-//
-//     barchart.append("g")
-//         .attr("class", "legendOrdinal")
-//         .attr("transform", "translate(917, 195)");
-//
-//     var legendOrdinal = d3.legendColor()
-//         .shape("path", d3.symbol().type(d3.symbolSquare).size(300)())
-//         .shapePadding(10)
-//         .scale(ordinal);
-//
-//     barchart.select(".legendOrdinal")
-//         .call(legendOrdinal);
-//
-//     // Add a year
-//     barchart.append("text")
-//         .attr("x", chartWidth - 195)
-//         .attr("y", titleMargin + 45)
-//         .attr("text-anchor", "left")
-//         .attr("class", "titleText")
-//         .text(chartSelectedYear);
-//
-//     // Add a sector
-//     if (chartSelectedSector == grossFinalJSON) {
-//         sectorText = "GROSS FINAL";
-//     }
-//
-//     if (chartSelectedSector == transportJSON) {
-//         sectorText = "TRANSPORT";
-//     }
-//
-//     if (chartSelectedSector == electricityJSON) {
-//         sectorText = "ELECTRICITY";
-//     }
-//
-//     if (chartSelectedSector == heatcoolJSON) {
-//         sectorText = "HEATING, COOLING";
-//     }
-//
-//     barchart.append("text")
-//         .attr("x", chartWidth - 194)
-//         .attr("y", titleMargin + 85)
-//         .attr("text-anchor", "left")
-//         .attr("class", "sectorText")
-//         .text(sectorText);
-// }
+// });
+
+function extractGEOData(data, currentGEO) {
+
+    // Loop over all countries
+    for (country in data) {
+
+        // Get max values
+        var maxProduction = d3.max(data[country].values, d => d.production)
+        maxProductions.push(maxProduction)
+
+        // Find selected country
+        if (data[country].GEO == currentGEO) {
+
+            // Save its data and its spot in the data array
+            currentGEOData = data[country];
+            currentGEOIndex = country;
+        }
+    }
+}
+
+function zoomed() {
+
+    zoomLevel = d3.event.transform.k;
+    svg = d3.select("#lineDiv").select("svg");
+
+    // Allow all lines and circles to scale
+    svg.selectAll(".line-group")
+        .attr("transform", d3.event.transform);
+    svg.selectAll(".circle")
+        .attr("transform", d3.event.transform);
+
+    var scaledStrokeWidth = (lineStroke/zoomLevel);
+    var scaledCircleWidth = (circleRadius/zoomLevel);
+
+    // Calculate new sizes to match the scale
+    d3.selectAll('.line').style("stroke-width", scaledStrokeWidth);
+    d3.selectAll('circle').attr("r", scaledCircleWidth);
+    d3.selectAll('.popup-text').style("font-size", 23/zoomLevel);
+
+    // Rescale axii
+    gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
+    gY.call(yAxis.scale(d3.event.transform.rescaleY(y)));
+}

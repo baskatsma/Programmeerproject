@@ -190,8 +190,6 @@ function addTitle(map) {
 
 function appendCountries(map, mapTip) {
 
-    console.log(energyUsage);
-
     // Set-up color scale
     var colorScale = d3.scaleQuantize()
         .range(colorbrewer.YlOrRd[9])
@@ -218,6 +216,11 @@ function appendCountries(map, mapTip) {
 
         // Add d3-tip functionality
         .on("mouseover", mapTip.show)
-        .on("mouseout", mapTip.hide);
+        .on("mouseout", mapTip.hide)
+        .on("click", function(d) {
+            var selectedCountry = d.id;
+            console.log(d, selectedCountry)
+            makeLineGraph(selectedCountry);
+        });
 
 }
