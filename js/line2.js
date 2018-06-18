@@ -26,10 +26,10 @@ var currentGEO;
 var currentGEOData;
 var currentGEOIndex;
 
-var lineWidth = 1100;
-var lineHeight = 600;
+var lineWidth = 570;
+var lineHeight = 580;
 var titleMargin = 90;
-var margin = {top: 20, right: 100, bottom: 60, left: 80};
+var margin = {top: 20, right: 80, bottom: 60, left: 55};
 
 var xAxis;
 var yAxis;
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 .style("fill", color(i))
                 .text(d.GEO_TIME)
                 .attr("text-anchor", "left")
-                .attr("x", 75)
+                .attr("x", 45)
                 .attr("y", 65)
                 .transition().duration(300)
                 .attr("y", 55);

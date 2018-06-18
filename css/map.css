@@ -26,7 +26,7 @@ text.label, text.legendText {
 }
 
 path:hover {
-    fill-opacity: .8;
+    fill-opacity: .5;
 }
 
 .d3-tip {

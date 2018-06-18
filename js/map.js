@@ -14,7 +14,7 @@ var formatThousand = d3.format(",")
 var europe;
 var energyUsage;
 
-var mapWidth = 770;
+var mapWidth = 625;
 var mapHeight = 580;
 var center = [16, 71.4];
 var scale = 450;
