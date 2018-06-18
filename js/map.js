@@ -15,9 +15,9 @@ var europe;
 var energyUsage;
 
 var mapWidth = 625;
-var mapHeight = 580;
+var mapHeight = 620;
 var center = [16, 71.4];
-var scale = 450;
+var scale = 470;
 var titleMargin = 90;
 
 // Creates a projection
@@ -121,24 +121,23 @@ function makeMap(mapSelectedYear) {
               .shapeWidth(90)
               .orient("horizontal");
 
+            // Position the legend and add it to the map
+            var xDistance = 573;
             map.append("g")
-              .attr("transform", "translate(80, 553)")
+              .attr("transform", "translate(80," + (xDistance - 7) + ")")
               .call(colorLegend);
 
             // Add a description to the legend
-            var xDistance = 560;
             map.append("text")
                 .attr("x", 0)
                 .attr("y", xDistance)
                 .attr("text-anchor", "left")
                 .attr("class", "legendText")
                 .text("In millions");
-
         });
-
     });
-
 }
+
 //
 // function updateMap(mapSelectedYear) {
 //

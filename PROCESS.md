@@ -40,8 +40,12 @@ Today we started with the stand-up, where we discussed the style guide (again).
 - Plotted all countries on the line graph.
 
 ## day 10 (Fri 15 Jun)
-I received helpful feedback.
+I received helpful feedback during the presentation. I might edit the map data and show
+energy usage per capita instead of per whole country, because that could also be interesting!
 
 ## day 11 (Mon 18 Jun)
 - Added a zoom function to visualisation 3 to improve visibility.
-- Decided to NOT add the dual axis thing with another line, because it impairs the visibility too much.
+- Decided to show ALL the countries at once, which makes it way more easy to compare.
+- Decided to NOT add the dual axis thing with another line (electricity prices), because it impairs the visibility way too much.
+- Began to link the map to the line chart.
+- Decided to show the graph of the Netherlands if a country has no valid data (mostly non-EU countries), to really show everyone how bad we are doing :(.

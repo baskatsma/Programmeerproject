@@ -5,14 +5,14 @@
  *  Student 10787690
  *
  */
-
+/*
 body {
     text-align: center;
 }
 
 svg {
     font-family: Sans-Serif, Arial;
-}
+} */
 
 .line {
   stroke-width: 3.5;
@@ -29,7 +29,7 @@ g text {
 
 text.title-text {
     font-family: 'Fira Sans Condensed', sans-serif;
-    font-size: 50px;
+    font-size: 56px;
 }
 
 text.popup-text {

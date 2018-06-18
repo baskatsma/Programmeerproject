@@ -88,9 +88,9 @@ function makeLineGraph(currentGEO) {
         }
         catch(error) {
 
-            // If no data exists for the chosen country (non-EU ones), pick DE
-            x.domain(d3.extent(data[4].values, d => d.year));
-            currentGEO = "DE";
+            // If no data exists for the chosen country, pick NL
+            x.domain(d3.extent(data[18].values, d => d.year));
+            currentGEO = "NL";
             extractGEOData(data, currentGEO);
 
         }
@@ -117,7 +117,7 @@ function makeLineGraph(currentGEO) {
             .attr("transform", "translate(0," + lineHeight + ")")
             .call(xAxis);
         gY = svg.append("g")
-             .attr("class", "axis axis--y")
+             .attr("class", "y axis")
              .call(yAxis)
 
         /* Add line into SVG */
