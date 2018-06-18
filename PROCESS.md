@@ -15,7 +15,7 @@ I received helpful feedback. There's no need for the interactivity (year selecti
 Thus, that part was removed and the previously missing legend is implemented.
 Also, prepared the data for the normalized radial stacked bar graph.
 
-## day 8 (Mon 11 Jun)
+## day 6 (Mon 11 Jun)
 Today we started with the stand-up, where we discussed our plans for the week.
 - My goal for today was to create visualisation 2; a normalized stacked bar graph (not radial anymore, because radials are "bad" if you want to quickly glance at the visualisation).
 - The datasets for visualisation 2 contained numbers that were not integers (e.g. 5,5; 12,4; 13,5, etc.), which were separated by a comma. For visualisation 1, all numbers were integers.
@@ -24,17 +24,24 @@ Today we started with the stand-up, where we discussed our plans for the week.
 I decided to display all countries on the X-axis, and use a year-slider to control the years. A dropdown menu will still allow one to change the sector.
 - To do: add tooltip for the barchart, add dropdown menu to change sector in which the energy is used, add year slider, add update mechanism, add animations.
 
-## day 9 (Tue 12 Jun)
+## day 7 (Tue 12 Jun)
 Today we started with the stand-up, where we discussed our progress since Monday. I did pretty well (imo), because I got quite far with visualisation 2.
 - My goal for today was to add a tooltip, a dropdown menu, and the update mechanism to change sector for visualisation 2.
 - Result: it took me a lot of time, but in the end I made it.
 
-## day 10 (Wed 13 Jun)
+## day 8 (Wed 13 Jun)
 Today we started with the stand-up, where we discussed the style guide.
 - My goal for today: year slider for visualisation 2 and preparation of all data sets for visualisation 3.
 - Result: I found it quite hard to find a good-looking (and functioning) slider for d3 v4, so I settled for a decent-looking one and tweaked its appearance a LOT. Data sets were not hard to prepare, because they were from EUROSTAT.
 
-## day 11 (Thu 14 Jun)
+## day 9 (Thu 14 Jun)
 Today we started with the stand-up, where we discussed the style guide (again).
 - Re-did my datasets, because it was not working with the line graph.
 - Plotted all countries on the line graph.
+
+## day 10 (Fri 15 Jun)
+I received helpful feedback.
+
+## day 11 (Mon 18 Jun)
+- Added a zoom function to visualisation 3 to improve visibility.
+- Decided to NOT add the dual axis thing with another line, because it impairs the visibility too much.

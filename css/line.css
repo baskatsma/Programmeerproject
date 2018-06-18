@@ -19,13 +19,29 @@ svg {
   fill: none;
 }
 
+text {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+g text {
+    font-size: 15px;
+}
+
+text.title-text {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 50px;
+}
+
+text.popup-text {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
 .axis line {
   stroke-width: 0.5;
 }
 
 .axis path {
-  stroke: none;
-  stroke-width: 0.5;
+  stroke-width: 0.75;
 }
 
 .text {

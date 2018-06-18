@@ -28,8 +28,8 @@ var currentGEOIndex;
 
 var lineWidth = 1100;
 var lineHeight = 600;
-var titleMargin = 85;
-var margin = {top: 20, right: 70, bottom: 40, left: 50};
+var titleMargin = 90;
+var margin = {top: 20, right: 100, bottom: 40, left: 80};
 
 var x = d3.scaleTime()
     .range([0, lineWidth]);
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Log any errors, and save results for usage outside of this function
         if (error) throw error;
 
-        currentGEO = "SE";
+        currentGEO = "DE";
 
         // Format data
         data.forEach(function(d) {
@@ -77,16 +77,16 @@ document.addEventListener("DOMContentLoaded", function() {
         x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
         y.domain([0, d3.max(maxProductions)]);
 
-        var color = d3.scaleOrdinal(d3.schemeCategory10);
+        var color = d3.scaleOrdinal(d3.schemeCategory20);
 
-        var lineOpacity = "0.25";
-        var lineOpacityHover = "0.85";
+        var lineOpacity = "0.3";
+        var lineOpacityHover = "1";
         var otherLinesOpacityHover = "0.1";
-        var lineStroke = "2.5px";
-        var lineStrokeHover = "2.5px";
+        var lineStroke = "3.5px";
+        var lineStrokeHover = "5.5px";
 
-        var circleOpacity = '0.85';
-        var circleOpacityOnLineHover = "0.25"
+        var circleOpacity = '0.3';
+        var circleOpacityOnLineHover = "1";
         var circleRadius = 3;
         var circleRadiusHover = 6;
 
@@ -99,15 +99,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         /* Add line into SVG */
         var line = d3.line()
-          .x(function(d) { console.log(d); return x(d.year) })
-          .y(function(d) { console.log(d); return y(d.production) });
-          // .x(d => x(d.year))
-          // .y(d => y(d.production));
+          .x(function(d) { return x(d.year) })
+          .y(function(d) { return y(d.production) });
 
         var lines = svg.append('g')
           .attr('class', 'lines');
 
-        // console.log(currentGEOData);
+        console.log(currentGEOData);
         // console.log(data);
 
         lines.selectAll('.line-group')
@@ -121,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 .style("fill", color(i))
                 .text(d.GEO_TIME)
                 .attr("text-anchor", "middle")
-                .attr("x", lineWidth/2)
+                .attr("x", 0)
                 .attr("y", 5);
             })
           .on("mouseout", function(d) {
@@ -131,26 +129,28 @@ document.addEventListener("DOMContentLoaded", function() {
           .attr('d', d => line(d.values))
           .style('stroke', (d, i) => color(i))
           .style('opacity', lineOpacity)
-          .on("mouseover", function(d) {
+          .on("mouseover", function(d, i) {
               console.log(d);
-              // d3.selectAll('.line')
-        			// 		.style('opacity', otherLinesOpacityHover);
-              // d3.selectAll('.circle')
-        			// 		.style('opacity', circleOpacityOnLineHover);
-              // d3.select(this)
-              //   .style('opacity', lineOpacityHover)
-              //   .style("stroke-width", lineStrokeHover)
-              //   .style("cursor", "pointer");
+              svg.append("text")
+                .attr("class", "title-text")
+                .style("fill", color(i))
+                .text(d.GEO_TIME)
+                .attr("text-anchor", "left")
+                .attr("x", 75)
+                .attr("y", 65)
+                .transition().duration(300)
+                .attr("y", 55);
+              d3.select(this).transition().duration(300)
+                .style('opacity', lineOpacityHover)
+                .style("stroke-width", lineStrokeHover)
+                .style("cursor", "pointer");
             })
           .on("mouseout", function(d) {
-              console.log(d);
-              // d3.selectAll(".line")
-        			// 		.style('opacity', lineOpacity);
-              // d3.selectAll('.circle')
-        			// 		.style('opacity', circleOpacity);
-              // d3.select(this)
-              //   .style("stroke-width", lineStroke)
-              //   .style("cursor", "none");
+              d3.select('.title-text').remove();
+              d3.select(this).transition().duration(300)
+                .style('opacity', lineOpacity)
+                .style("stroke-width", lineStroke)
+                .style("cursor", "none");
             });
 
         /* Add circles in the line */
@@ -164,27 +164,40 @@ document.addEventListener("DOMContentLoaded", function() {
           .attr("class", "circle")
           .on("mouseover", function(d) {
               console.log(d);
-              // d3.select(this)
-              //   .style("cursor", "pointer")
-              //   .append("text")
-              //   .attr("class", "text")
-              //   .text(d.production)
-              //   .attr("x", d => x(d.year) + 5)
-              //   .attr("y", d => y(d.production) - 10);
+              d3.select(this)
+                .style("cursor", "pointer")
+                .append("text")
+                .attr("class", "popup-text")
+                .text(d.production)
+                .attr("x", d => x(d.year))
+                .attr("y", d => y(d.production) - 8)
+                .transition().duration(300)
+                .attr("y", d => y(d.production) - 15);
             })
           .on("mouseout", function(d) {
               console.log(d);
-              // d3.select(this)
-              //   .style("cursor", "none")
-              //   .transition()
-              //   .duration(duration)
-              //   .selectAll(".text").remove();
+              d3.select(this)
+                .style("cursor", "none")
+                .selectAll(".popup-text").remove();
             })
           .append("circle")
           .attr("cx", d => x(d.year))
           .attr("cy", d => y(d.production))
           .attr("r", circleRadius)
-          .style('opacity', circleOpacity);
+          .style('opacity', circleOpacity)
+          .on("mouseover", function(d) {
+              d3.select(this)
+                .transition().duration(300)
+                .attr("r", circleRadiusHover)
+                .style("opacity", circleOpacityOnLineHover);
+            })
+          .on("mouseout", function(d) {
+              d3.select(this)
+                .transition()
+                .duration(300)
+                .attr("r", circleRadius)
+                .style("opacity", circleOpacity);
+            });
 
           /* Add Axis into SVG */
           var xAxis = d3.axisBottom(x);

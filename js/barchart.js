@@ -21,6 +21,9 @@ var chartSelectedSector = "data/nrg_ind_335a_Share_of_energy_from_renewable_sour
 var chartSelectedYear = 2007;
 var sectorText;
 
+var windowWidth = window.innerWidth;
+var windowHeight = window.innerHeight;
+
 var chartWidth = 1100;
 var chartHeight = 480;
 var titleMargin = 85;
@@ -115,7 +118,7 @@ function makeChart(chartSelectedSector) {
             d.greenEnergyPercentage = Number(d[year]);
 
             // Limit green energy to 100% to avoid problems
-            if (d.greenEnergyPercentage >= 100) {
+            if (d.greenEnergyPercentage > 100) {
                 d.greenEnergyPercentage = 100;
             }
 
@@ -234,10 +237,12 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
 
             // Add d3-tip functionality
             .on("mouseover", function(d) {
-                d3.select(this).style("opacity", 0.7);
+                d3.select(this)
+                .style("opacity", 0.7);
                 barTip.show(d); })
             .on("mouseout", function(d) {
-                d3.select(this).style("opacity", 1);
+                d3.select(this)
+                .style("opacity", 1);
                 barTip.hide(d); });
 
         g.append("g")
