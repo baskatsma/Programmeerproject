@@ -42,7 +42,7 @@ var mapSelectedYear = "2016";
 // Execute main code after loading the DOM
 document.addEventListener("DOMContentLoaded", function() {
 
-    console.log("DOMContentLoaded");
+    // console.log("DOMContentLoaded");
 
     // // Add an event listener for the year selector button
     // $(".dropdown-item").on("click", function(event) {
@@ -58,12 +58,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-window.onload = function() {
-
-    // $( "#mapDiv" ).fadeIn(800);
-    console.log("window.onload");
-    // $( "#interactiveButton" ).fadeIn(1300);
-}
+// window.onload = function() {
+//
+//     // $( "#mapDiv" ).fadeIn(800);
+//     console.log("window.onload");
+//     // $( "#interactiveButton" ).fadeIn(1300);
+// }
 
 function makeMap(mapSelectedYear) {
 
@@ -75,11 +75,11 @@ function makeMap(mapSelectedYear) {
         energyUsage = energyUsageData;
 
         // Extract the EUROSTAT data
-        data = {};
+        storeData = {};
         year = mapSelectedYear;
         energyUsage.forEach(function(d) {
             d[year] = +d[year];
-            data[d.GEO] = d[year];
+            storeData[d.GEO] = d[year];
         });
 
         d3.json("../data/europe.json", function(error, europeData) {
@@ -90,7 +90,7 @@ function makeMap(mapSelectedYear) {
 
             // Update map tooltip
             mapTip.html(function(d) {
-                return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + formatThousand(data[d.id]);
+                return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + formatThousand(storeData[d.id]);
             });
 
             // Append measurements to the map
@@ -205,7 +205,7 @@ function appendCountries(map, mapTip) {
 
         // Color-code countries based on their energy consumption
         .style("fill", function(d) {
-            var value = data[d.id];
+            var value = storeData[d.id];
 
             if (isNaN(value)){
               return "slategrey";
@@ -220,7 +220,9 @@ function appendCountries(map, mapTip) {
         .on("click", function(d) {
             var selectedCountry = d.id;
             console.log(d, selectedCountry)
-            makeLineGraph(selectedCountry);
+            updateLines(selectedCountry);
         });
+
+    makeLineGraph("NL");
 
 }
