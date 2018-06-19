@@ -13,12 +13,12 @@ var parseDate = d3.timeParse("%Y");
 var formatThousand = d3.format(",");
 var formatDecimal = d3.format(".1f");
 
-var totalProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
-var windProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_WIND.json";
-var solarProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_SOLAR_PHOTOVOLTAIC.json";
-var hydroProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_HYDRO.json";
+var totalProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
+var windProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_WIND.json";
+var solarProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_SOLAR_PHOTOVOLTAIC.json";
+var hydroProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_HYDRO.json";
 
-var lineSelectedSector = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
+var lineSelectedSector = "../data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
 var lineSelectedYear = 2007;
 var sectorText;
 

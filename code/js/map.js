@@ -67,10 +67,11 @@ window.onload = function() {
 
 function makeMap(mapSelectedYear) {
 
-    d3.json("data/nrg_100a_Simplified_energy_balances_TJ.json", function(error, energyUsageData) {
+    d3.json("../data/nrg_100a_Simplified_energy_balances_TJ.json", function(error, energyUsageData) {
 
         // Log any errors, and save results for usage outside of this function
         if (error) throw error;
+
         energyUsage = energyUsageData;
 
         // Extract the EUROSTAT data
@@ -81,7 +82,7 @@ function makeMap(mapSelectedYear) {
             data[d.GEO] = d[year];
         });
 
-        d3.json("data/europe.json", function(error, europeData) {
+        d3.json("../data/europe.json", function(error, europeData) {
 
             // Log any errors, and save file for usage outside of this function
             if (error) throw error;
