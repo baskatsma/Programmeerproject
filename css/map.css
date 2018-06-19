@@ -6,6 +6,8 @@
  *
  */
 
+@import url(//fonts.googleapis.com/css?family=Fira+Sans+Condensed|Oswald&text=0123456789|Roboto+Condensed);
+
 #mapDiv {
     margin-top: 2.5em;
     text-align: right;
