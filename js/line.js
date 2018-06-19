@@ -39,15 +39,15 @@ var gX;
 var gY;
 var zoomLevel = 1;
 
-var lineOpacity = "0.3";
-var lineOpacityHover = "1";
-var lineOpacityOthers = "0.1";
+var lineOpacity = 0.3;
+var lineOpacityHover = 1;
+var lineOpacityOthers = 0.1;
 var lineStroke = 3;
 var lineStrokeHover = 5.5;
 var lineStrokeOthers = 1;
 
-var circleOpacity = '0.3';
-var circleOpacityOnLineHover = "1";
+var circleOpacity = 0.3;
+var circleOpacityOnLineHover = 1;
 var circleRadiusOthers = 1;
 var circleRadius = 3;
 var circleRadiusHover = 6;
@@ -62,6 +62,8 @@ var x = d3.scaleTime()
 var y = d3.scaleLinear()
     .range([lineHeight, 0]);
 
+var lineColor = d3.scaleOrdinal(d3.schemeCategory20);
+
 function makeLineGraph(currentGEO) {
 
     d3.json(lineSelectedSector, function(error, data) {
@@ -69,16 +71,9 @@ function makeLineGraph(currentGEO) {
         // Log any errors, and save results for usage outside of this function
         if (error) throw error;
 
-        // Format data
-        data.forEach(function(d) {
-            d.values.forEach(function(d) {
-                d.year = parseDate(d.year);
-                d.production = +d.production;
-            });
-        });
-
         // Save the data of the country we're interested in
-        extractGEOData(data, currentGEO);
+        modifyData(data, currentGEO);
+
 
         try {
 
@@ -91,14 +86,12 @@ function makeLineGraph(currentGEO) {
             // If no data exists for the chosen country, pick NL
             x.domain(d3.extent(data[18].values, d => d.year));
             currentGEO = "NL";
-            extractGEOData(data, currentGEO);
+            modifyData(data, currentGEO);
 
         }
 
         // Update Y domain
         y.domain([0, d3.max(maxProductions)]);
-
-        var color = d3.scaleOrdinal(d3.schemeCategory20);
 
         // Add SVG
         var svg = d3.select("#lineDiv").append("svg")
@@ -136,8 +129,8 @@ function makeLineGraph(currentGEO) {
           .attr('class', 'line')
           .attr('d', d => line(d.values))
           .style('stroke', function(d, i) {
-              if (d.GEO == currentGEO) { currentGEOColor = color(i) }
-              return color(i)
+              if (d.GEO == currentGEO) { currentGEOColor = lineColor(i) }
+              return lineColor(i)
           })
           .style('stroke-width', function(d) {
               if (d.GEO != currentGEO) { return lineStrokeOthers/zoomLevel }
@@ -158,7 +151,7 @@ function makeLineGraph(currentGEO) {
                 .style("cursor", "pointer");
               svg.append("text")
                 .attr("class", "title-text")
-                .style("fill", color(i))
+                .style("fill", lineColor(i))
                 .text(d.GEO_TIME)
                 .attr("text-anchor", "left")
                 .attr("x", 45)
@@ -182,7 +175,7 @@ function makeLineGraph(currentGEO) {
         lines.selectAll("circle-group")
           .data(data).enter()
           .append("g")
-          .style("fill", (d, i) => color(i))
+          .style("fill", (d, i) => lineColor(i))
           .selectAll("circle")
           .data(d => d.values).enter()
           .append("g")
@@ -298,7 +291,7 @@ function makeLineGraph(currentGEO) {
 //         x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
 //         y.domain([0, d3.max(maxProductions)]);
 //
-//         var color = d3.scaleOrdinal(d3.schemeCategory20);
+//         var lineColor = d3.scaleOrdinal(d3.schemeCategory20);
 //
 //         /* Add SVG */
 //         var svg = d3.select("#lineDiv").append("svg")
@@ -335,8 +328,8 @@ function makeLineGraph(currentGEO) {
 //           .attr('class', 'line')
 //           .attr('d', d => line(d.values))
 //           .style('stroke', function(d, i) {
-//               if (d.GEO == currentGEO) { currentGEOColor = color(i) }
-//               return color(i)
+//               if (d.GEO == currentGEO) { currentGEOColor = lineColor(i) }
+//               return lineColor(i)
 //           })
 //           .style('stroke-width', function(d) {
 //               if (d.GEO != currentGEO) { return lineStrokeOthers/zoomLevel }
@@ -356,7 +349,7 @@ function makeLineGraph(currentGEO) {
 //                 .style("cursor", "pointer");
 //               svg.append("text")
 //                 .attr("class", "title-text")
-//                 .style("fill", color(i))
+//                 .style("fill", lineColor(i))
 //                 .text(d.GEO_TIME)
 //                 .attr("text-anchor", "left")
 //                 .attr("x", 45)
@@ -380,7 +373,7 @@ function makeLineGraph(currentGEO) {
 //         lines.selectAll("circle-group")
 //           .data(data).enter()
 //           .append("g")
-//           .style("fill", (d, i) => color(i))
+//           .style("fill", (d, i) => lineColor(i))
 //           .selectAll("circle")
 //           .data(d => d.values).enter()
 //           .append("g")
@@ -456,7 +449,15 @@ function makeLineGraph(currentGEO) {
 //
 // });
 
-function extractGEOData(data, currentGEO) {
+function modifyData(data, currentGEO) {
+
+    // Format data
+    data.forEach(function(d) {
+        d.values.forEach(function(d) {
+            d.year = parseDate(d.year);
+            d.production = +d.production;
+        });
+    });
 
     // Loop over all countries
     for (country in data) {
