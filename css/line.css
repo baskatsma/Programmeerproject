@@ -14,7 +14,7 @@ svg {
     font-family: Sans-Serif, Arial;
 } */
 
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed|Oswald&text=0123456789|Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed|Oswald|Roboto+Condensed');
 
 .line {
   stroke-width: 3.5;
