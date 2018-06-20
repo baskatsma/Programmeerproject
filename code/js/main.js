@@ -10,6 +10,7 @@
 var parseDate = d3.timeParse("%Y");
 var formatThousand = d3.format(",");
 var formatDecimal = d3.format(".1f");
+var formatThousandDecimal = d3.format(",.1f");
 
 // Set default map
 var mapSelectedYear = "2016";

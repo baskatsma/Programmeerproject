@@ -130,11 +130,13 @@ function makeChart(chartSelectedSector) {
         });
 
         // Sort from highest green energy to lowest
-        data.sort(function(a, b) { return b.greenEnergyPercentage-a.greenEnergyPercentage; });
+        data.sort((a, b) => b.greenEnergyPercentage-a.greenEnergyPercentage);
 
-        x.domain(data.map(function(d) { return d.GEO_TIME; }));
+        // Define domains
+        x.domain(data.map(d => d.GEO_TIME));
         z.domain(["greenEnergyPercentage", "greyEnergyPercentage"]);
 
+        // Create series for grey and green energy
         var serie = g.selectAll(".serie")
             .data(stack.keys(["greenEnergyPercentage","greyEnergyPercentage"])(data))
             .enter().append("g")
@@ -144,11 +146,11 @@ function makeChart(chartSelectedSector) {
         barchart.call(barTip);
 
         serie.selectAll("rect")
-            .data(function(d) { return d; })
+            .data(d => d)
             .enter().append("rect")
-                .attr("x", function(d) { return x(d.data.GEO_TIME); })
-                .attr("y", function(d) { return y(d[1]); })
-                .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+                .attr("x", d => x(d.data.GEO_TIME))
+                .attr("y", d => y(d[1]))
+                .attr("height", d => y(d[0]) - y(d[1]))
                 .attr("width", x.bandwidth())
 
             // Add d3-tip functionality
@@ -198,10 +200,10 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
         });
 
         // Sort from highest green energy to lowest
-        data.sort(function(a, b) { return b.greenEnergyPercentage-a.greenEnergyPercentage; });
+        data.sort((a, b) => b.greenEnergyPercentage-a.greenEnergyPercentage);
 
         // Update X domain
-        x.domain(data.map(function(d) { return d.GEO_TIME; }));
+        x.domain(data.map(d => d.GEO_TIME));
 
         // Update X axis
         d3.select(".xAxis")
@@ -216,14 +218,14 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
         // Update serie data
         serie2 = d3.selectAll(".serie")
           .data(stack.keys(["greenEnergyPercentage","greyEnergyPercentage"])(data))
-          .attr("fill", function(d) { return z(d.key); });
+          .attr("fill", d => z(d.key));
 
         // Update rect data and size
         serie2.selectAll("rect")
             .data(d => d)
             .transition().duration(450)
-            .attr("y", function(d) { return y(d[1]); })
-            .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+            .attr("y", d => y(d[1]))
+            .attr("height", d => y(d[0]) - y(d[1]));
 
         // Add new legend text
         addLegend(barchart);

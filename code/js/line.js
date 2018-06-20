@@ -49,7 +49,7 @@ var circleRadiusHover = 6;
 var circleRadiusOthers = 1;
 
 var zoom = d3.zoom()
-    .scaleExtent([1, 4])
+    .scaleExtent([1, 10])
     .on("zoom", zoomed);
 
 // Initialize X and Y
@@ -74,8 +74,9 @@ var circleTip = d3.tip()
     .offset([-15, 0])
     .html(function(d) {
         let yearOnly = d.year.toISOString().substring(0, 4);
-        return energySelection.bold() + " (" + yearOnly.bold() + ")" +
-        " — " + formatThousand(d.production) + " KTOE";
+        let yearOnlyCorrected = String(Number(yearOnly) + 1);
+        return energySelection.bold() + " (" + yearOnlyCorrected.bold() + ")" +
+        ": " + formatThousandDecimal(d.production) + " KTOE";
     });
 
 function makeLineGraph(chosenGEO) {
@@ -251,8 +252,8 @@ function updateLines(lineSelectedSector, chosenGEO) {
             .call(yAxis)
 
         line = d3.line()
-          .x(function(d) { return x(d.year) })
-          .y(function(d) { return y(d.production) });
+          .x(d => x(d.year))
+          .y(d => y(d.production));
 
         lines2 = svg.selectAll(".line")
 
@@ -431,6 +432,7 @@ function containsCountry(list, currentGEO) {
 
 function zoomed() {
 
+    // Save the current zoom level to correctly scale items
     zoomLevel = d3.event.transform.k;
 
     // Allow all lines and circles to scale
