@@ -7,7 +7,7 @@
  */
 
 body {
-    background: #000000 url("../img/front.jpg");
+    background: #000000 url("../../img/front.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     overflow-y: scroll;
