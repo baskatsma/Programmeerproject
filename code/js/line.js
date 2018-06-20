@@ -27,7 +27,7 @@ var maxProductions = [];
 var lineWidth = 560;
 var lineHeight = 570;
 var titleMargin = 90;
-var margin = {top: 10, right: 85, bottom: 60, left: 55};
+var margin = {top: 15, right: 85, bottom: 60, left: 55};
 
 var xAxis;
 var yAxis;
