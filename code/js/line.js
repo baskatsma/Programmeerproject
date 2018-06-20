@@ -9,10 +9,6 @@
 // Inspired by: https://bl.ocks.org/mbostock/3886394
 
 // Define global variables, dimensions and settings
-var parseDate = d3.timeParse("%Y");
-var formatThousand = d3.format(",");
-var formatDecimal = d3.format(".1f");
-
 var totalProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
 var hydroProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_HYDRO.json";
 var windProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_WIND.json";
@@ -42,9 +38,9 @@ var zoomLevel = 1;
 var lineOpacity = 0.3;
 var lineOpacityHover = 1;
 var lineOpacityOthers = 0.1;
-var lineStroke = 3;
+var lineStroke = 2;
 var lineStrokeHover = 5.5;
-var lineStrokeOthers = 1;
+var lineStrokeOthers = 0.75;
 
 var circleOpacity = 0.3;
 var circleOpacityOnLineHover = 1;
@@ -68,22 +64,21 @@ var yAxis = d3.axisLeft(y).ticks(7);
 
 var svg;
 
+// Define color scale
 var lineColor = d3.scaleOrdinal(d3.schemeCategory20);
 
 // Initialize barchart tooltip
 var circleTip = d3.tip()
     .attr("class", "d3-tip")
     .attr("id", "circleTooltip")
-    .offset([-10, 0])
+    .offset([-15, 0])
     .html(function(d) {
-        console.log(d);
-        return formatThousand(d.production);
+        return energySelection.bold() + ": " + formatThousand(d.production) + " KTOE";
     });
 
 function makeLineGraph(chosenGEO) {
 
     currentGEO = chosenGEO;
-    console.log("chosenGEO", chosenGEO);
 
     d3.json(lineSelectedSector, function(error, data) {
 
@@ -224,6 +219,7 @@ function makeLineGraph(chosenGEO) {
               circleTip.hide(d);
           });
 
+        // Add title
         addCountryTitle(300);
 
     });
@@ -259,8 +255,8 @@ function updateLines(lineSelectedSector, chosenGEO) {
         lines2 = svg.selectAll(".line")
 
             // Reset style to base values
-            .style("stroke-width", d => lineStrokeOthers/zoomLevel)
-            .style("opacity-width", d => lineOpacity)
+            .style("stroke-width", lineStrokeOthers/zoomLevel)
+            .style("opacity", lineOpacity)
 
             // Add new data and transition it
             .data(data)
@@ -281,29 +277,14 @@ function updateLines(lineSelectedSector, chosenGEO) {
 
         // Add circles in the line
         var circles2 = svg.selectAll(".circle-group")
-          .data(data)
-          .selectAll("circle")
-          .attr("r", circleRadiusOthers/zoomLevel)
-          .style('opacity', circleOpacity)
-          .data(d => d.values)
-          .transition().duration(800)
-          .attr("cx", d => x(d.year))
-          .attr("cy", d => y(d.production));
-
-        // circles2 = svg.selectAll(".circle-group").selectAll("g")
-        //     .on("mouseover", function(d) {
-        //         console.log(d.production);
-        //         d3.select(this)
-        //           .style("cursor", "pointer")
-        //           .append("text")
-        //           .attr("class", "popup-text")
-        //           .text(formatThousand(d.production))
-        //           .style("font-size", 23/zoomLevel)
-        //           .attr("x", d => x(d.year) - 35/zoomLevel)
-        //           .attr("y", d => y(d.production) - 8/zoomLevel)
-        //           .transition().duration(300)
-        //           .attr("y", d => y(d.production) - 15/zoomLevel);
-        //     });
+            .data(data)
+            .selectAll("circle")
+            .attr("r", circleRadiusOthers/zoomLevel)
+            .style('opacity', circleOpacity)
+            .data(d => d.values)
+            .transition().duration(800)
+            .attr("cx", d => x(d.year))
+            .attr("cy", d => y(d.production));
 
         // Update country title
         d3.selectAll('.title-text').remove();
@@ -316,7 +297,7 @@ function updateLines(lineSelectedSector, chosenGEO) {
 
 function inputListener() {
 
-    // Add an event listener for the year selector button
+    // Add an event listener for the sector buttons
     $("button").on("click", function(event) {
         energySelection = $(this).text();
 
@@ -362,9 +343,7 @@ function formatData(data, currentGEO) {
     } else {
         currentGEO = "NL";
         return currentGEO
-
     }
-
 }
 
 function processData(data, currentGEO) {

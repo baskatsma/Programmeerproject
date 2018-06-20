@@ -9,8 +9,6 @@
 // Inspired by: http://blog.robertjesionek.com/d3js-geo/
 
 // Define global variables, dimensions and settings
-var formatThousand = d3.format(",")
-
 var europe;
 var energyUsage;
 
@@ -35,26 +33,6 @@ var mapTip = d3.tip()
     .attr("class", "d3-tip")
     .attr("id", "mapTooltip")
     .offset([-5, 0]);
-
-// Set default map
-var mapSelectedYear = "2016";
-
-// Execute main code after loading the DOM
-document.addEventListener("DOMContentLoaded", function() {
-
-    // Load default map
-    makeMap(mapSelectedYear);
-    inputListener();
-
-
-});
-
-// window.onload = function() {
-//
-//     // $( "#mapDiv" ).fadeIn(800);
-//     console.log("window.onload");
-//     // $( "#interactiveButton" ).fadeIn(1300);
-// }
 
 function makeMap(mapSelectedYear) {
 
@@ -210,10 +188,7 @@ function appendCountries(map, mapTip) {
         .on("mouseout", mapTip.hide)
         .on("click", function(d) {
             var selectedCountry = d.id;
-            console.log(d, selectedCountry)
             updateLines(lineSelectedSector, selectedCountry);
         });
-
-    makeLineGraph("NL");
 
 }
