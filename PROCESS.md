@@ -49,3 +49,7 @@ energy usage per capita instead of per whole country, because that could also be
 - Decided to NOT add the dual axis thing with another line (electricity prices), because it impairs the visibility way too much.
 - Began to link the map to the line chart.
 - Decided to show the graph of the Netherlands if a country has no valid data (mostly non-EU countries), to really show everyone how bad we are doing :(.
+
+## day 12 (Tue 19 Jun)
+- Struggled a lot with interactivity between map & line chart, primarily with updating the data and transitioning. Worked out in the end after a few hours.
+- Plan for tomorrow: finish all interactivity
