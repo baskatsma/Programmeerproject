@@ -6,7 +6,7 @@
  *
  */
 
-// Inspired by: https://bl.ocks.org/mbostock/3886394
+// Inspired by: https://codepen.io/zakariachowdhury/pen/JEmjwq
 
 // Define global variables, dimensions and settings
 var totalProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
@@ -99,7 +99,7 @@ function makeLineGraph(chosenGEO) {
           .attr("width", lineWidth + margin.right)
           .attr("height", lineHeight + margin.bottom)
           .call(zoom)
-          .append('g')
+          .append("g")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         svg.call(circleTip);
@@ -116,40 +116,40 @@ function makeLineGraph(chosenGEO) {
           .y(function(d) { return y(d.production) });
 
         // Initialize lines
-        var lines = svg.append('g')
-          .attr('class', 'lines');
+        var lines = svg.append("g")
+          .attr("class", "lines");
 
         // Enter data and append a line for each country
-        lines.selectAll('.line-group')
+        lines.selectAll(".line-group")
           .data(data).enter()
-          .append('g')
-          .attr('class', 'line-group')
-          .append('path')
-          .attr('class', 'line')
-          .attr('d', d => line(d.values))
+          .append("g")
+          .attr("class", "line-group")
+          .append("path")
+          .attr("class", "line")
+          .attr("d", d => line(d.values))
 
           // Style line color, width and opacity based on the country we want
-          .style('stroke', function(d, i) {
+          .style("stroke", function(d, i) {
               if (d.GEO == currentGEO) { currentGEOColor = lineColor(i) }
               return lineColor(i)
           })
-          .style('stroke-width', function(d) {
+          .style("stroke-width", function(d) {
               if (d.GEO != currentGEO) { return lineStrokeOthers/zoomLevel }
           })
-          .style('opacity', function(d) {
+          .style("opacity", function(d) {
               if (d.GEO != currentGEO) { return lineOpacity }
           })
 
           // Add mouseover and mouseout functions
           .on("mouseover", function(d, i) {
-              d3.selectAll('.title-text').remove();
-              d3.selectAll('.title-extra-text').remove();
-              d3.selectAll('.line').transition().duration(300)
-                .style('stroke-width', lineStrokeOthers/zoomLevel)
-              d3.selectAll('circle').transition().duration(300)
+              d3.selectAll(".title-text").remove();
+              d3.selectAll(".title-extra-text").remove();
+              d3.selectAll(".line").transition().duration(300)
+                .style("stroke-width", lineStrokeOthers/zoomLevel)
+              d3.selectAll("circle").transition().duration(300)
                 .attr("r", circleRadiusOthers/zoomLevel);
               d3.select(this).transition().duration(300)
-                .style('opacity', lineOpacityHover)
+                .style("opacity", lineOpacityHover)
                 .style("stroke-width", lineStrokeHover/zoomLevel)
                 .style("cursor", "pointer");
               svg.append("text")
@@ -172,16 +172,16 @@ function makeLineGraph(chosenGEO) {
                 .attr("y", 85);
           })
           .on("mouseout", function(d) {
-              d3.selectAll('.line').transition().duration(300)
-                .style('stroke-width', lineStroke/zoomLevel)
-              d3.selectAll('circle').transition().duration(300)
+              d3.selectAll(".line").transition().duration(300)
+                .style("stroke-width", lineStroke/zoomLevel)
+              d3.selectAll("circle").transition().duration(300)
                 .attr("r", circleRadius/zoomLevel);
               d3.select(this)
-                .style('opacity', lineOpacity)
+                .style("opacity", lineOpacity)
                 .style("stroke-width", lineStroke/zoomLevel)
                 .style("cursor", "none");
-              d3.selectAll('.title-text').remove();
-              d3.selectAll('.title-extra-text').remove();
+              d3.selectAll(".title-text").remove();
+              d3.selectAll(".title-extra-text").remove();
           });
 
         // Add circles in the line
@@ -199,10 +199,10 @@ function makeLineGraph(chosenGEO) {
           .attr("cy", d => y(d.production))
 
           // Style circle width and opacity based on the country we want
-          .attr('r', function(d) {
+          .attr("r", function(d) {
               if (d.GEO != currentGEO) { return circleRadiusOthers/zoomLevel }
           })
-          .style('opacity', circleOpacity)
+          .style("opacity", circleOpacity)
 
           // Change opacity and radius when the circle is being hovered over
           .on("mouseover", function(d) {
@@ -263,17 +263,17 @@ function updateLines(lineSelectedSector, chosenGEO) {
             // Add new data and transition it
             .data(data)
             .transition().duration(800)
-            .attr('d', d => line(d.values))
+            .attr("d", d => line(d.values))
 
             // Style line color, width and opacity based on the country we want
-            .style('stroke', function(d, i) {
+            .style("stroke", function(d, i) {
                 if (d.GEO == currentGEO) { currentGEOColor = lineColor(i) }
                 return lineColor(i)
             })
-            .style('stroke-width', function(d) {
+            .style("stroke-width", function(d) {
                 if (d.GEO != currentGEO) { return lineStrokeOthers/zoomLevel }
             })
-            .style('opacity', function(d) {
+            .style("opacity", function(d) {
                 if (d.GEO != currentGEO) { return lineOpacity }
             });
 
@@ -282,15 +282,15 @@ function updateLines(lineSelectedSector, chosenGEO) {
             .data(data)
             .selectAll("circle")
             .attr("r", circleRadiusOthers/zoomLevel)
-            .style('opacity', circleOpacity)
+            .style("opacity", circleOpacity)
             .data(d => d.values)
             .transition().duration(800)
             .attr("cx", d => x(d.year))
             .attr("cy", d => y(d.production));
 
         // Update country title
-        d3.selectAll('.title-text').remove();
-        d3.selectAll('.title-extra-text').remove();
+        d3.selectAll(".title-text").remove();
+        d3.selectAll(".title-extra-text").remove();
         addCountryTitle(800);
 
     });
@@ -432,7 +432,6 @@ function containsCountry(list, currentGEO) {
 function zoomed() {
 
     zoomLevel = d3.event.transform.k;
-    // svg = d3.select("#lineDiv").select("svg");
 
     // Allow all lines and circles to scale
     svg.selectAll(".line-group")
@@ -444,9 +443,9 @@ function zoomed() {
     var scaledCircleWidth = (circleRadius/zoomLevel);
 
     // Calculate new sizes to match the scale
-    d3.selectAll('.line').style("stroke-width", scaledStrokeWidth);
-    d3.selectAll('circle').attr("r", scaledCircleWidth);
-    d3.selectAll('.popup-text').style("font-size", 23/zoomLevel);
+    d3.selectAll(".line").style("stroke-width", scaledStrokeWidth);
+    d3.selectAll("circle").attr("r", scaledCircleWidth);
+    d3.selectAll(".popup-text").style("font-size", 23/zoomLevel);
 
     // Rescale axii
     gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));

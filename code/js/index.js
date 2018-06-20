@@ -69,10 +69,10 @@ window.onload = function() {
 
     var element = document.getElementById("animatedTextRow");
 
-    var elements = document.getElementsByClassName('txt-rotate');
+    var elements = document.getElementsByClassName("txt-rotate");
     for (var i = 0; i < elements.length; i++) {
-        var toRotate = elements[i].getAttribute('data-rotate');
-        var period = elements[i].getAttribute('data-period');
+        var toRotate = elements[i].getAttribute("data-rotate");
+        var period = elements[i].getAttribute("data-period");
         if (toRotate) {
             new TxtRotate(elements[i], JSON.parse(toRotate), period);
         }

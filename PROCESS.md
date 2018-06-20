@@ -53,3 +53,10 @@ energy usage per capita instead of per whole country, because that could also be
 ## day 12 (Tue 19 Jun)
 - Struggled a lot with interactivity between map & line chart, primarily with updating the data and transitioning. Worked out in the end after a few hours.
 - Plan for tomorrow: finish all interactivity
+
+## day 13 (Wed 20 Jun)
+- Continued to struggle with the interactivity, but everything is finished now! Re-based
+a lot of update code and that seemed to work out in the end. Every visualisation is finished
+as far as I know, so now I will work on the website and make that pretty.
+- Fixed a lot of mouseover/mouseout bugs in the line chart.
+- To do: add information about the visualisations,

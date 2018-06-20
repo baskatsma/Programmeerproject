@@ -240,7 +240,7 @@ function addSlider() {
       .step(1)
       .width(440)
       .tickFormat(d3.format(""))
-      .on('onchange', val => {
+      .on("onchange", val => {
           chartSelectedYear = val;
           updateChart(chartSelectedSector, chartSelectedYear);
       });
