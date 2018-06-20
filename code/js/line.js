@@ -13,12 +13,12 @@ var parseDate = d3.timeParse("%Y");
 var formatThousand = d3.format(",");
 var formatDecimal = d3.format(".1f");
 
-var totalProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
-var windProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_WIND.json";
-var solarProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_SOLAR_PHOTOVOLTAIC.json";
-var hydroProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_HYDRO.json";
+var totalProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
+var windProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_WIND.json";
+var solarProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_SOLAR_PHOTOVOLTAIC.json";
+var hydroProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_HYDRO.json";
 
-var lineSelectedSector = "../data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
+var lineSelectedSector = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
 var sectorText;
 
 var currentGEO;
@@ -281,7 +281,11 @@ function updateLines(currentGEO) {
         var circles2 = svg.selectAll(".circle-group")
           .data(data)
           .selectAll("circle")
-          .data(d => d.values)
+          // .data(d => d.values)
+          .data(function(d) {
+              console.log(d);
+              return d.values
+          })
           // Add mouseover and mouseout functions to show the production
           .on("mouseover", function(d) {
               console.log(d);
@@ -292,6 +296,17 @@ function updateLines(currentGEO) {
 
     });
 
+}
+
+function formatData(data) {
+
+    // Format data
+    data.forEach(function(d) {
+        d.values.forEach(function(d) {
+            d.year = parseDate(d.year);
+            d.production = +d.production;
+        });
+    });
 }
 
 function checkIfValidData(data, currentGEO) {
@@ -316,17 +331,6 @@ function checkIfValidData(data, currentGEO) {
 
     }
 
-}
-
-function formatData(data) {
-
-    // Format data
-    data.forEach(function(d) {
-        d.values.forEach(function(d) {
-            d.year = parseDate(d.year);
-            d.production = +d.production;
-        });
-    });
 }
 
 function saveGEOData(data, currentGEO) {

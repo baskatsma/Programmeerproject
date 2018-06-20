@@ -12,12 +12,12 @@
 var formatThousand = d3.format(",");
 var formatDecimal = d3.format(".1f");
 
-var grossFinalJSON = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
-var transportJSON = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_TRANSPORT.json";
-var electricityJSON = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_ELECTRICITY.json";
-var heatcoolJSON = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.json";
+var grossFinalJSON = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
+var transportJSON = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_TRANSPORT.json";
+var electricityJSON = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_ELECTRICITY.json";
+var heatcoolJSON = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_HEAT_COOL.json";
 
-var chartSelectedSector = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
+var chartSelectedSector = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
 var chartSelectedYear = 2007;
 var sectorText;
 
