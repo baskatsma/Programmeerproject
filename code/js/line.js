@@ -73,7 +73,9 @@ var circleTip = d3.tip()
     .attr("id", "circleTooltip")
     .offset([-15, 0])
     .html(function(d) {
-        return energySelection.bold() + ": " + formatThousand(d.production) + " KTOE";
+        let yearOnly = d.year.toISOString().substring(0, 4);
+        return energySelection.bold() + " (" + yearOnly.bold() + ")" +
+        " — " + formatThousand(d.production) + " KTOE";
     });
 
 function makeLineGraph(chosenGEO) {
