@@ -32,6 +32,11 @@ text.title-text {
     font-size: 56px;
 }
 
+text.title-extra-text {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 26px;
+}
+
 text.popup-text {
     font-family: 'Fira Sans Condensed', sans-serif;
 }
@@ -56,7 +61,7 @@ text.popup-text {
     position: absolute;
     height: auto;
     padding: 10px;
-    font: 18px 'Roboto Condensed';
+    font: 15px 'Fira Sans Condensed';
     background-color: white;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;

@@ -14,9 +14,10 @@ var formatThousand = d3.format(",");
 var formatDecimal = d3.format(".1f");
 
 var totalProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
+var hydroProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_HYDRO.json";
 var windProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_WIND.json";
 var solarProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_SOLAR_PHOTOVOLTAIC.json";
-var hydroProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_HYDRO.json";
+var energySelection = "Total";
 
 var lineSelectedSector = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
 var sectorText;
@@ -28,9 +29,9 @@ var currentGEOIndex;
 var maxProductions = [];
 
 var lineWidth = 560;
-var lineHeight = 580;
+var lineHeight = 570;
 var titleMargin = 90;
-var margin = {top: 30, right: 85, bottom: 60, left: 55};
+var margin = {top: 10, right: 85, bottom: 60, left: 55};
 
 var xAxis;
 var yAxis;
@@ -69,7 +70,20 @@ var svg;
 
 var lineColor = d3.scaleOrdinal(d3.schemeCategory20);
 
-function makeLineGraph(currentGEO) {
+// Initialize barchart tooltip
+var circleTip = d3.tip()
+    .attr("class", "d3-tip")
+    .attr("id", "circleTooltip")
+    .offset([-10, 0])
+    .html(function(d) {
+        console.log(d);
+        return formatThousand(d.production);
+    });
+
+function makeLineGraph(chosenGEO) {
+
+    currentGEO = chosenGEO;
+    console.log("chosenGEO", chosenGEO);
 
     d3.json(lineSelectedSector, function(error, data) {
 
@@ -90,6 +104,8 @@ function makeLineGraph(currentGEO) {
           .call(zoom)
           .append('g')
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        svg.call(circleTip);
 
         // Add scalable X and Y axii
         appendgXY();
@@ -130,7 +146,7 @@ function makeLineGraph(currentGEO) {
           // Add mouseover and mouseout functions
           .on("mouseover", function(d, i) {
               d3.selectAll('.title-text').remove();
-              console.log(d);
+              d3.selectAll('.title-extra-text').remove();
               d3.selectAll('.line').transition().duration(300)
                 .style('stroke-width', lineStrokeOthers/zoomLevel)
               d3.selectAll('circle').transition().duration(300)
@@ -148,6 +164,15 @@ function makeLineGraph(currentGEO) {
                 .attr("y", 65)
                 .transition().duration(300)
                 .attr("y", 55);
+              svg.append("text")
+                .attr("class", "title-extra-text")
+                .style("fill", lineColor(i))
+                .text(energySelection)
+                .attr("text-anchor", "left")
+                .attr("x", 46)
+                .attr("y", 95)
+                .transition().duration(300)
+                .attr("y", 85);
           })
           .on("mouseout", function(d) {
               d3.selectAll('.line').transition().duration(300)
@@ -159,6 +184,7 @@ function makeLineGraph(currentGEO) {
                 .style("stroke-width", lineStroke/zoomLevel)
                 .style("cursor", "none");
               d3.selectAll('.title-text').remove();
+              d3.selectAll('.title-extra-text').remove();
           });
 
         // Add circles in the line
@@ -171,26 +197,6 @@ function makeLineGraph(currentGEO) {
           .data(d => d.values).enter()
           .append("g")
           .attr("class", "circle")
-
-          // Add mouseover and mouseout functions to show the production
-          .on("mouseover", function(d) {
-              console.log(d);
-              d3.select(this)
-                .style("cursor", "pointer")
-                .append("text")
-                .attr("class", "popup-text")
-                .text(formatThousand(d.production))
-                .style("font-size", 23/zoomLevel)
-                .attr("x", d => x(d.year) - 35/zoomLevel)
-                .attr("y", d => y(d.production) - 8/zoomLevel)
-                .transition().duration(300)
-                .attr("y", d => y(d.production) - 15/zoomLevel);
-          })
-          .on("mouseout", function(d) {
-              d3.select(this)
-                .style("cursor", "none")
-                .selectAll(".popup-text").remove();
-          })
           .append("circle")
           .attr("cx", d => x(d.year))
           .attr("cy", d => y(d.production))
@@ -207,6 +213,7 @@ function makeLineGraph(currentGEO) {
                 .transition().duration(300)
                 .attr("r", circleRadiusHover/zoomLevel)
                 .style("opacity", circleOpacityOnLineHover);
+              circleTip.show(d);
           })
           .on("mouseout", function(d) {
               d3.select(this)
@@ -214,6 +221,7 @@ function makeLineGraph(currentGEO) {
                 .duration(300)
                 .attr("r", circleRadius/zoomLevel)
                 .style("opacity", circleOpacity);
+              circleTip.hide(d);
           });
 
         addCountryTitle(300);
@@ -222,9 +230,9 @@ function makeLineGraph(currentGEO) {
 
 }
 
-function updateLines(currentGEO) {
+function updateLines(lineSelectedSector, chosenGEO) {
 
-    lineSelectedSector = windProductionJSON;
+    currentGEO = chosenGEO;
 
     d3.json(lineSelectedSector, function(error, data) {
 
@@ -275,21 +283,60 @@ function updateLines(currentGEO) {
         var circles2 = svg.selectAll(".circle-group")
           .data(data)
           .selectAll("circle")
-          // .data(d => d.values)
-          .data(function(d) {
-              return d.values
-          })
-          // Add mouseover and mouseout functions to show the production
-          .on("mouseover", function(d) {
-              console.log(d);
-          })
+          .attr("r", circleRadiusOthers/zoomLevel)
+          .style('opacity', circleOpacity)
+          .data(d => d.values)
           .transition().duration(800)
           .attr("cx", d => x(d.year))
           .attr("cy", d => y(d.production));
 
+        // circles2 = svg.selectAll(".circle-group").selectAll("g")
+        //     .on("mouseover", function(d) {
+        //         console.log(d.production);
+        //         d3.select(this)
+        //           .style("cursor", "pointer")
+        //           .append("text")
+        //           .attr("class", "popup-text")
+        //           .text(formatThousand(d.production))
+        //           .style("font-size", 23/zoomLevel)
+        //           .attr("x", d => x(d.year) - 35/zoomLevel)
+        //           .attr("y", d => y(d.production) - 8/zoomLevel)
+        //           .transition().duration(300)
+        //           .attr("y", d => y(d.production) - 15/zoomLevel);
+        //     });
+
         // Update country title
         d3.selectAll('.title-text').remove();
+        d3.selectAll('.title-extra-text').remove();
         addCountryTitle(800);
+
+    });
+
+}
+
+function inputListener() {
+
+    // Add an event listener for the year selector button
+    $("button").on("click", function(event) {
+        energySelection = $(this).text();
+
+        if (energySelection == "Total") {
+            lineSelectedSector = totalProductionJSON;
+        }
+
+        if (energySelection == "Hydro") {
+            lineSelectedSector = hydroProductionJSON;
+        }
+
+        if (energySelection == "Wind") {
+            lineSelectedSector = windProductionJSON;
+        }
+
+        if (energySelection == "Solar") {
+            lineSelectedSector = solarProductionJSON;
+        }
+
+        updateLines(lineSelectedSector, currentGEO);
 
     });
 
@@ -310,11 +357,11 @@ function formatData(data, currentGEO) {
 
     // If the country is not in the data list file, use NL
     if (containsCountry(allCountries, currentGEO)) {
-      return currentGEO
+        return currentGEO
 
     } else {
-      currentGEO = "NL";
-      return currentGEO
+        currentGEO = "NL";
+        return currentGEO
 
     }
 
@@ -323,15 +370,6 @@ function formatData(data, currentGEO) {
 function processData(data, currentGEO) {
 
     // Save the data of the country we're interested in
-    saveGEOData(data, currentGEO);
-
-    // Set the X domain based on the values of the chosen country
-    x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
-
-}
-
-function saveGEOData(data, currentGEO) {
-
     maxProductions = [];
 
     // Loop over all countries
@@ -349,6 +387,10 @@ function saveGEOData(data, currentGEO) {
             currentGEOIndex = country;
         }
     }
+
+    // Set the X domain based on the values of the chosen country
+    x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
+
 }
 
 function appendgXY() {
@@ -386,6 +428,17 @@ function addCountryTitle(durationTime) {
       .attr("y", 65)
       .transition().duration(durationTime)
       .attr("y", 55);
+
+    // Add selected country text
+    svg.append("text")
+      .attr("class", "title-extra-text")
+      .style("fill", currentGEOColor)
+      .text(energySelection)
+      .attr("text-anchor", "left")
+      .attr("x", 46)
+      .attr("y", 95)
+      .transition().duration(durationTime)
+      .attr("y", 85);
 
 }
 

@@ -15,9 +15,9 @@ var europe;
 var energyUsage;
 
 var mapWidth = 625;
-var mapHeight = 620;
+var mapHeight = 565;
 var center = [16, 71.4];
-var scale = 470;
+var scale = 455;
 var titleMargin = 90;
 
 // Creates a projection
@@ -42,19 +42,10 @@ var mapSelectedYear = "2016";
 // Execute main code after loading the DOM
 document.addEventListener("DOMContentLoaded", function() {
 
-    // console.log("DOMContentLoaded");
-
-    // // Add an event listener for the year selector button
-    // $(".dropdown-item").on("click", function(event) {
-    //     mapSelectedYear = $(this).text();
-    //     updateMap(mapSelectedYear);
-    // });
-
     // Load default map
     makeMap(mapSelectedYear);
+    inputListener();
 
-    // $( "#interactiveButton" ).hide();
-    // $( "#mapDiv" ).hide();
 
 });
 
@@ -123,7 +114,7 @@ function makeMap(mapSelectedYear) {
               .orient("horizontal");
 
             // Position the legend and add it to the map
-            var xDistance = 573;
+            var xDistance = 548;
             map.append("g")
               .attr("transform", "translate(80," + (xDistance - 7) + ")")
               .call(colorLegend);
@@ -220,7 +211,7 @@ function appendCountries(map, mapTip) {
         .on("click", function(d) {
             var selectedCountry = d.id;
             console.log(d, selectedCountry)
-            updateLines(selectedCountry);
+            updateLines(lineSelectedSector, selectedCountry);
         });
 
     makeLineGraph("NL");
