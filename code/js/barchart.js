@@ -200,163 +200,33 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
         // Sort from highest green energy to lowest
         data.sort(function(a, b) { return b.greenEnergyPercentage-a.greenEnergyPercentage; });
 
+        // Update X domain
         x.domain(data.map(function(d) { return d.GEO_TIME; }));
 
         // Update X axis
         d3.select(".xAxis")
             .transition()
-            .duration(100)
+            .duration(225)
             .call(xAxisBar)
 
-        // // Select the current map
-        // var barchartNew = d3.select(".barchart").select("svg");
-        //
-        // // Remove 'g' elements
-        // d3.select(".barchart").selectAll("g")
-        //     .remove();
+        // Remove legend text
+        d3.select(".titleText").remove();
+        d3.select(".sectorText").remove();
 
-        // Remove titles
-        d3.select(".titleText")
-            .remove();
-
-        d3.select(".sectorText")
-            .remove();
-
-        let serieNew = g.selectAll(".serie")
+        // Update serie data
+        serie2 = d3.selectAll(".serie")
           .data(stack.keys(["greenEnergyPercentage","greyEnergyPercentage"])(data))
-          .append("g")
-          .attr("class", "serie")
           .attr("fill", function(d) { return z(d.key); });
 
-        console.log("serieNew",serieNew);
-
-        let barchartNew = d3.selectAll("rect")
-            .data(data)
-            .transition().duration(100)
+        // Update rect data and size
+        serie2.selectAll("rect")
+            .data(d => d)
+            .transition().duration(450)
             .attr("y", function(d) { return y(d[1]); })
             .attr("height", function(d) { return y(d[0]) - y(d[1]); })
 
-        console.log("rects | barchartNew", barchartNew);
-
-        // var g = barchartNew.append("g")
-        //           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        //
-        // var serieNew = g.selectAll(".serie")
-        //     .data(stack.keys(["greenEnergyPercentage","greyEnergyPercentage"])(data))
-        //     .enter().append("g")
-        //         .attr("class", "serie")
-        //         .attr("fill", function(d) { return z(d.key); });
-        //
-        // barchartNew.call(barTip);
-        //
-        // serieNew.selectAll("rect")
-        //     .data(function(d) { return d; })
-        //     .enter().append("rect")
-        //         .attr("x", function(d) { return x(d.data.GEO_TIME); })
-        //         .attr("y", function(d) { return y(d[1]); })
-        //         .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-        //         .attr("width", x.bandwidth())
-        //
-        //     // Add d3-tip functionality
-        //     .on("mouseover", function(d) {
-        //         d3.select(this)
-        //         .style("opacity", 0.7);
-        //         barTip.show(d); })
-        //     .on("mouseout", function(d) {
-        //         d3.select(this)
-        //         .style("opacity", 1);
-        //         barTip.hide(d); });
-        //
-        // g.append("g")
-        //     .attr("class", "xAxis")
-        //     .attr("transform", "translate(0," + chartHeight + ")")
-        //     .call(d3.axisBottom(x))
-        //     .selectAll("text")
-        //     .attr("transform", "rotate(45)")
-        //     .attr("text-anchor", "start");
-        //
-        // g.append("g")
-        //     .attr("class", "yAxis")
-        //     .call(d3.axisLeft(y).ticks(10, "%"));
-        //
+        // Add new legend text
         addLegend(barchart);
-
-        // // Select the current map
-        // var barchartNew = d3.select(".barchart").select("svg");
-        //
-        // // Remove 'g' elements
-        // d3.select(".barchart").selectAll("g")
-        //     .remove();
-        //
-        // // Remove titles - NECESSARY!!!!!
-        // d3.select(".titleText")
-        //     .remove();
-        //
-        // d3.select(".sectorText")
-        //     .remove();
-        //
-        // var g = barchartNew.append("g")
-        //           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        //
-        // // Update data
-        // var year = chartSelectedYear;
-        // data.forEach(function(d) {
-        //     d.totalEnergyPercentage = 100;
-        //     d.greenEnergyPercentage = Number(d[year]);
-        //
-        //     // Limit green energy to 100% to avoid problems
-        //     if (d.greenEnergyPercentage >= 100) {
-        //         d.greenEnergyPercentage = 100;
-        //     }
-        //
-        //     d.greyEnergyPercentage = d.totalEnergyPercentage - d.greenEnergyPercentage;
-        // });
-        //
-        // // Sort from highest green energy to lowest
-        // data.sort(function(a, b) { return b.greenEnergyPercentage-a.greenEnergyPercentage; });
-        //
-        // x.domain(data.map(function(d) { return d.GEO_TIME; }));
-        // // z.domain(["greenEnergyPercentage", "greyEnergyPercentage"]);
-        //
-        // var serieNew = g.selectAll(".serie")
-        //     .data(stack.keys(["greenEnergyPercentage","greyEnergyPercentage"])(data))
-        //     .enter().append("g")
-        //         .attr("class", "serie")
-        //         .attr("fill", function(d) { return z(d.key); });
-        //
-        // barchartNew.call(barTip);
-        //
-        // serieNew.selectAll("rect")
-        //     .data(function(d) { return d; })
-        //     .enter().append("rect")
-        //         .attr("x", function(d) { return x(d.data.GEO_TIME); })
-        //         .attr("y", function(d) { return y(d[1]); })
-        //         .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-        //         .attr("width", x.bandwidth())
-        //
-        //     // Add d3-tip functionality
-        //     .on("mouseover", function(d) {
-        //         d3.select(this)
-        //         .style("opacity", 0.7);
-        //         barTip.show(d); })
-        //     .on("mouseout", function(d) {
-        //         d3.select(this)
-        //         .style("opacity", 1);
-        //         barTip.hide(d); });
-        //
-        // g.append("g")
-        //     .attr("class", "xAxis")
-        //     .attr("transform", "translate(0," + chartHeight + ")")
-        //     .call(d3.axisBottom(x))
-        //     .selectAll("text")
-        //     .attr("transform", "rotate(45)")
-        //     .attr("text-anchor", "start");
-        //
-        // g.append("g")
-        //     .attr("class", "yAxis")
-        //     .call(d3.axisLeft(y).ticks(10, "%"));
-        //
-        // addLegend(barchartNew);
 
         });
 
