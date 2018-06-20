@@ -77,8 +77,8 @@ function makeLineGraph(currentGEO) {
         if (error) throw error;
 
         // Correctly parse the imported data and use it
-        formatData(data);
-        checkIfValidData(data, currentGEO);
+        formatData(data, currentGEO);
+        processData(data, currentGEO);
 
         // Update Y domain
         y.domain([0, d3.max(maxProductions)]);
@@ -216,16 +216,7 @@ function makeLineGraph(currentGEO) {
                 .style("opacity", circleOpacity);
           });
 
-        // Add selected country text
-        svg.append("text")
-          .attr("class", "title-text")
-          .style("fill", currentGEOColor)
-          .text(currentGEOData.GEO_TIME)
-          .attr("text-anchor", "left")
-          .attr("x", 45)
-          .attr("y", 65)
-          .transition().duration(300)
-          .attr("y", 55);
+        addCountryTitle(300);
 
     });
 
@@ -241,8 +232,8 @@ function updateLines(currentGEO) {
         if (error) throw error;
 
         // Correctly parse the imported data and use it
-        formatData(data);
-        checkIfValidData(data, currentGEO);
+        currentGEO = formatData(data, currentGEO);
+        processData(data, currentGEO);
 
         // Update Y domain
         y.domain([0, d3.max(maxProductions)]);
@@ -250,16 +241,22 @@ function updateLines(currentGEO) {
         // Append and animate the Y-axis
         d3.select(".y")
             .transition()
-            .duration(1200)
+            .duration(800)
             .call(yAxis)
 
         line = d3.line()
           .x(function(d) { return x(d.year) })
           .y(function(d) { return y(d.production) });
 
-        var lines2 = svg.selectAll(".line")
+        lines2 = svg.selectAll(".line")
+
+            // Reset style to base values
+            .style("stroke-width", d => lineStrokeOthers/zoomLevel)
+            .style("opacity-width", d => lineOpacity)
+
+            // Add new data and transition it
             .data(data)
-            .transition().duration(1200)
+            .transition().duration(800)
             .attr('d', d => line(d.values))
 
             // Style line color, width and opacity based on the country we want
@@ -274,62 +271,62 @@ function updateLines(currentGEO) {
                 if (d.GEO != currentGEO) { return lineOpacity }
             });
 
-        var testSelect = svg.select(".lines").selectAll(".circle");
-        console.log(data);
-
         // Add circles in the line
         var circles2 = svg.selectAll(".circle-group")
           .data(data)
           .selectAll("circle")
           // .data(d => d.values)
           .data(function(d) {
-              console.log(d);
               return d.values
           })
           // Add mouseover and mouseout functions to show the production
           .on("mouseover", function(d) {
               console.log(d);
           })
-          .transition().duration(1200)
+          .transition().duration(800)
           .attr("cx", d => x(d.year))
           .attr("cy", d => y(d.production));
+
+        // Update country title
+        d3.selectAll('.title-text').remove();
+        addCountryTitle(800);
 
     });
 
 }
 
-function formatData(data) {
+function formatData(data, currentGEO) {
+
+    let allCountries = [];
 
     // Format data
     data.forEach(function(d) {
+        allCountries.push(d.GEO);
         d.values.forEach(function(d) {
             d.year = parseDate(d.year);
             d.production = +d.production;
         });
     });
+
+    // If the country is not in the data list file, use NL
+    if (containsCountry(allCountries, currentGEO)) {
+      return currentGEO
+
+    } else {
+      currentGEO = "NL";
+      return currentGEO
+
+    }
+
 }
 
-function checkIfValidData(data, currentGEO) {
+function processData(data, currentGEO) {
 
-    try {
+    // Save the data of the country we're interested in
+    saveGEOData(data, currentGEO);
 
-        // Save the data of the country we're interested in
-        saveGEOData(data, currentGEO);
-
-        // Set the X domain based on the values of the chosen country
-        x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
-
-    }
-    catch(error) {
-
-        // If no data exists for the chosen country, pick NL
-        currentGEO = "NL";
-        saveGEOData(data, currentGEO);
-
-        // Set the X domain based on the values of NL
-        x.domain(d3.extent(data[18].values, d => d.year));
-
-    }
+    // Set the X domain based on the values of the chosen country
+    x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
 
 }
 
@@ -375,6 +372,27 @@ function addYDescription() {
         .attr("fill", "#000")
         .text("Production (KTOE)");
 
+}
+
+function addCountryTitle(durationTime) {
+
+    // Add selected country text
+    svg.append("text")
+      .attr("class", "title-text")
+      .style("fill", currentGEOColor)
+      .text(currentGEOData.GEO_TIME)
+      .attr("text-anchor", "left")
+      .attr("x", 45)
+      .attr("y", 65)
+      .transition().duration(durationTime)
+      .attr("y", 55);
+
+}
+
+function containsCountry(list, currentGEO) {
+    return list.some(function (el) {
+        return el === currentGEO;
+    });
 }
 
 function zoomed() {
