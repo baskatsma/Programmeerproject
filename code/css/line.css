@@ -5,69 +5,20 @@
  *  Student 10787690
  *
  */
-/*
-body {
-    text-align: center;
-}
-
-svg {
-    font-family: Sans-Serif, Arial;
-} */
-
-.line {
-  stroke-width: 3.5;
-  fill: none;
-}
-
-text {
-    font-family: 'Roboto Condensed', sans-serif;
-}
-
-g text {
-    font-size: 15px;
-}
 
 text.title-text {
-    font-family: 'Fira Sans Condensed', sans-serif;
     font-size: 56px;
 }
 
 text.title-extra-text {
-    font-family: 'Fira Sans Condensed', sans-serif;
     font-size: 26px;
 }
 
-text.popup-text {
-    font-family: 'Fira Sans Condensed', sans-serif;
+.line {
+    stroke-width: 3.5;
+    fill: none;
 }
 
-.axis line {
-  stroke-width: 0.5;
-}
-
-.axis path {
-  stroke-width: 0.75;
-}
-
-.text {
-  font-size: 12px;
-}
-
-.title-text {
-  font-size: 12px;
-}
-
-.d3-tip {
-    position: absolute;
-    height: auto;
-    padding: 10px;
-    font: 15px 'Fira Sans Condensed';
-    background-color: white;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-    pointer-events: none;
+.axis {
+    stroke-width: 0.75;
 }

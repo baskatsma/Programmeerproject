@@ -1,0 +1,35 @@
+/*
+ *  generic.css
+ *
+ *  Name: Bas Katsma
+ *  Student 10787690
+ *
+ */
+
+body {
+    text-align: center;
+}
+
+text {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+g text {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px;
+}
+
+.d3-tip {
+    position: absolute;
+    height: auto;
+    padding: 10px;
+    font: 17px 'Fira Sans Condensed';
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}

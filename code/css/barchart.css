@@ -6,29 +6,12 @@
  *
  */
 
-body {
-    text-align: center;
-}
-
-.xAxis .domain, .yAxis .domain {
-  display: none;
-}
-
-.slider .axis {
-    font-size: 20px;
-}
-
-.row {
-    text-align: center !important;
-}
-
 #barchartDiv {
     text-align: center;
 }
 
-.tick text {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    font-size: 12px;
+text.label, text.legendText {
+    font: 16px 'Fira Sans Condensed';
 }
 
 #barchartDiv text.titleText {
@@ -36,29 +19,13 @@ body {
 }
 
 #barchartDiv text.sectorText {
-    font: 24px 'Roboto Condensed';
-    font-weight: 500;
+    font: 24px 'Fira Sans Condensed';
 }
 
-.axis .domain {
-  display: none;
+.slider .axis {
+    font-size: 20px;
 }
 
-text.label, text.legendText {
-    font: 16px 'Roboto Condensed';
-}
-
-.d3-tip {
-    position: absolute;
-    height: auto;
-    padding: 10px;
-    font: 18px 'Roboto Condensed';
-    background-color: white;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-    pointer-events: none;
+.axis {
+    stroke-width: 0.75;
 }

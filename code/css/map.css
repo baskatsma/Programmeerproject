@@ -11,12 +11,12 @@
     text-align: right;
 }
 
-#mapDiv text.titleText {
-    font: 106px 'Oswald';
+text.label, text.legendText {
+    font: 16px 'Roboto Condensed';
 }
 
-text.label, text.legendText {
-    font: 17px 'Roboto Condensed';
+#mapDiv text.titleText {
+    font: 106px 'Oswald';
 }
 
 .country {
@@ -27,21 +27,6 @@ text.label, text.legendText {
 
 path:hover {
     fill-opacity: .5;
-}
-
-.d3-tip {
-    position: absolute;
-    height: auto;
-    padding: 10px;
-    font: 17px 'Fira Sans Condensed';
-    background-color: white;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-    pointer-events: none;
 }
 
 #mapTooltip {
