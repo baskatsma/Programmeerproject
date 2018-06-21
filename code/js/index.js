@@ -6,14 +6,6 @@
  *
  */
 
-// Code is optimized!
-// Toggle function
-$(function() {
-    $( "#continueButton" ).click(function() {
-        $( "#animatedText" ).fadeToggle();
-    });
-});
-
 // https://speckyboy.com/css-javascript-text-animation-snippets/
 var TxtRotate = function(element, toRotate, period) {
     this.toRotate = toRotate;
@@ -56,13 +48,6 @@ TxtRotate.prototype.tick = function() {
      that.tick();
    }, delta);
  };
-
-// Code is optimized!
-document.addEventListener("DOMContentLoaded", function() {
-
-    $( "#continueButtonColumn" ).hide();
-
-});
 
 // Code is optimized!
 window.onload = function() {

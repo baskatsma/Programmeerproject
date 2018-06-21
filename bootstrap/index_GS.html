@@ -59,10 +59,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Story</a>
+              <a class="nav-link js-scroll-trigger" href="#about">Part One</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Download</a>
+              <a class="nav-link js-scroll-trigger" href="#download">Part Two</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
@@ -79,7 +79,14 @@
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <h1 class="brand-heading">Europe: Life in #008000</h1>
-              <p class="intro-text">Dive in.</p>
+              <h1 class="intro-text" id="animatedTextRow">
+                <span
+                   class="txt-rotate"
+                   id="animatedText"
+                   data-period="1650"
+                   data-rotate='[ "The story.", "Proceed.", "Discover.", "Learn." ]'>
+                </span>
+              </h1>
               <a href="#about" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
               </a>
@@ -113,17 +120,32 @@
           <div class="col-10">
             <div class="barchart" id="barchartDiv">
             </div>
+            <!-- <a href="#download" class="btn btn-circle js-scroll-trigger">
+            <i class="fa fa-angle-double-down animated"></i></a> -->
         </div>
       </div>
     </section>
 
     <!-- Download Section -->
     <section id="download" class="download-section content-section text-center">
-      <div class="container">
-        <div class="col-lg-8 mx-auto">
-          <h2>Download Grayscale</h2>
-          <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
-          <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+      <div class="container-fluid">
+        <div class="row" id="row1">
+          <div class="col-md-10 text-right">
+            <button class="btn btn-secondary btn-sm" type="submit">Total</button>
+            <button class="btn btn-light btn-sm" type="submit">Hydro</button>
+            <button class="btn btn-light btn-sm" type="submit">Wind</button>
+            <button class="btn btn-light btn-sm" type="submit">Solar</button>
+          </div>
+        </div>
+        <div class="row" id="row2">
+          <div class="col-6">
+            <div class="map" id="mapDiv">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="line" id="lineDiv">
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -137,26 +159,6 @@
             <p>Feel free to leave us a comment on the
               <a href="http://startbootstrap.com/template-overviews/grayscale/">Grayscale template overview page</a>
               on Start Bootstrap to give some feedback about this theme!</p>
-            <ul class="list-inline banner-social-buttons">
-              <li class="list-inline-item">
-                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg">
-                  <i class="fa fa-twitter fa-fw"></i>
-                  <span class="network-name">Twitter</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/BlackrockDigital/startbootstrap" class="btn btn-default btn-lg">
-                  <i class="fa fa-github fa-fw"></i>
-                  <span class="network-name">Github</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg">
-                  <i class="fa fa-google-plus fa-fw"></i>
-                  <span class="network-name">Google+</span>
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>

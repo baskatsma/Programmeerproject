@@ -192,9 +192,15 @@ g.text {
   padding-bottom: 150px;
 }
 
+#animatedTextRow {
+    font-family: 'Raleway', sans-serif !important;
+    /* color: #aaa !important; */
+    font-size: 28px !important;
+}
+
 .download-section {
   color: white;
-  background: url("../img/downloads-bg.jpg") no-repeat center center scroll;
+  /* background: url("../img/downloads-bg.jpg") no-repeat center center scroll; */
   background-color: white;
   -webkit-background-size: cover;
   -moz-background-size: cover;
