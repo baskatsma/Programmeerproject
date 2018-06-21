@@ -18,8 +18,8 @@ text.label, text.legendText {
     font: 106px 'Oswald';
 }
 
-#barchartDiv text.sectorText {
-    font: 24px 'Fira Sans Condensed';
+#barchartDiv text.chartSectorText {
+    font: 26px 'Fira Sans Condensed' !important;
 }
 
 .slider .axis {

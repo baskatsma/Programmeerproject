@@ -24,6 +24,7 @@ g text {
     height: auto;
     padding: 10px;
     font: 17px 'Fira Sans Condensed';
+    color: black;
     background-color: white;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;

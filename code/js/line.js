@@ -9,13 +9,13 @@
 // Inspired by: https://codepen.io/zakariachowdhury/pen/JEmjwq
 
 // Define global variables, dimensions and settings
-var totalProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
-var hydroProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_HYDRO.json";
-var windProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_WIND.json";
-var solarProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_SOLAR_PHOTOVOLTAIC.json";
+var totalProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
+var hydroProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_HYDRO.json";
+var windProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_WIND.json";
+var solarProductionJSON = "../data/ten00081_Primary_production_of_renewable_energy_SOLAR_PHOTOVOLTAIC.json";
 var energySelection = "Total";
 
-var lineSelectedSector = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
+var lineSelectedSector = "../data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
 var sectorText;
 
 var currentGEO;
@@ -302,6 +302,10 @@ function inputListener() {
 
     // Add an event listener for the sector buttons
     $("button").on("click", function(event) {
+
+        // Don't follow href
+        event.preventDefault();
+        
         energySelection = $(this).text();
 
         if (energySelection == "Total") {

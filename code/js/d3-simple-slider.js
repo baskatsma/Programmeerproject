@@ -96,7 +96,7 @@
        .attr("x1", 0)
        .attr("y1", 0)
        .attr("y2", 0)
-       .attr("stroke", "teal")
+       .attr("stroke", "#006600")
        .attr("stroke-width", 6)
        .attr("stroke-linecap", "round");
 
@@ -121,7 +121,7 @@
      handleEnter
        .append("path")
        .attr("d", handle)
-       .attr("fill", "teal")
+       .attr("fill", "#006600")
        .attr("stroke", "white");
 
      if (displayValue) {
