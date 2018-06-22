@@ -9,9 +9,6 @@
 // Inspired by: https://bl.ocks.org/mbostock/3886394
 
 // Define global variables, dimensions and settings
-var formatThousand = d3.format(",");
-var formatDecimal = d3.format(".1f");
-
 var grossFinalJSON = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
 var transportJSON = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_TRANSPORT.json";
 var electricityJSON = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_ELECTRICITY.json";
@@ -26,23 +23,23 @@ var chartHeight = 550;
 var chartTitleMargin = 85;
 var chartMargin = {top: 20, right: 300, bottom: 120, left: 40};
 
-// Is goed!
+// Define X axis properties
 var chartX = d3.scaleBand()
     .rangeRound([0, chartWidth])
     .paddingInner(0.0175)
     .align(0.1);
 
-// Is goed!
+// Define Y axis properties
 var chartY = d3.scaleLinear()
     .rangeRound([chartHeight, 0]);
 
+// Call X axis
 var xAxisBar = d3.axisBottom(chartX);
 
-// Is goed!
+// Define Z axis (series)
 var chartZ = d3.scaleOrdinal()
     // .range(["#006666", "rgb(240,240,240)"]);
     .range(["#006600", "#cccccc"]);
-
 
 var stack = d3.stack()
     .order(d3.stackOrderNone)

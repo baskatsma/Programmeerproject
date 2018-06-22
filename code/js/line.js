@@ -48,15 +48,17 @@ var circleRadius = 3;
 var circleRadiusHover = 6;
 var circleRadiusOthers = 1;
 
-var zoom = d3.zoom()
-    .scaleExtent([1, 10])
-    .on("zoom", zoomed);
-
 // Initialize X and Y
 var x = d3.scaleTime()
     .range([0, lineWidth]);
 var y = d3.scaleLinear()
     .range([lineHeight, 0]);
+
+var zoom = d3.zoom()
+    .scaleExtent([1, 10])
+    .translateExtent([[0, 0], [lineWidth, lineHeight]])
+    .extent([[0, 0], [lineWidth, lineHeight]])
+    .on("zoom", zoomed);
 
 // Initialize X and Y axii
 var xAxis = d3.axisBottom(x);
