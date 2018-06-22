@@ -17,6 +17,7 @@ var heatcoolJSON = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_
 var chartSelectedSector = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
 var chartSelectedYear = 2007;
 var chartSectorText;
+var sortSelectionValue = "percentage";
 
 var chartWidth = 1100;
 var chartHeight = 550;
@@ -93,6 +94,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Load default chart
     makeChart(chartSelectedSector);
+
+    radioButtonListener();
 
 });
 
@@ -172,7 +175,7 @@ function makeChart(chartSelectedSector) {
         // Create new SVG for the title and description
         barchartTextField = d3.select("#barchartTextDiv")
             .append("svg")
-            .attr("height", 200 + chartMargin.bottom)
+            .attr("height", 135 + chartMargin.bottom)
             .attr("width", 100 + chartMargin.right)
             g = barchartTextField.append("g")
               .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
@@ -204,8 +207,17 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
             d.greyEnergyPercentage = d.totalEnergyPercentage - d.greenEnergyPercentage;
         });
 
-        // Sort from highest green energy to lowest
-        data.sort((a, b) => b.greenEnergyPercentage-a.greenEnergyPercentage);
+        // Define sort
+        if (sortSelectionValue == "percentage") {
+
+            // Sort from highest green energy to lowest
+            data.sort((a, b) => b.greenEnergyPercentage-a.greenEnergyPercentage);
+
+        } else {
+
+            // Sort alphabetically
+            data.sort((a, b) => d3.ascending(a.GEO_TIME, b.GEO_TIME));
+        }
 
         // Update X domain
         chartX.domain(data.map(d => d.GEO_TIME));
@@ -288,7 +300,7 @@ function addLegend(year) {
 
     // Add a year
     barchartTextField.append("text")
-        .attr("x", xPos - 25)
+        .attr("x", xPos - 28)
         .attr("y", yPos - 70)
         .attr("text-anchor", "left")
         .attr("class", "titleText")
@@ -296,7 +308,7 @@ function addLegend(year) {
 
     // Add the sector name that we selected
     barchartTextField.append("text")
-        .attr("x", xPos - 23)
+        .attr("x", xPos - 26)
         .attr("y", yPos - 35)
         .attr("text-anchor", "left")
         .attr("class", "chartSectorText")
@@ -308,7 +320,7 @@ function addLegend(year) {
 
     barchartTextField.append("g")
         .attr("class", "legendOrdinal")
-        .attr("transform", "translate(" + (xPos - 13) + "," + yPos + ")");
+        .attr("transform", "translate(" + (xPos - 16) + "," + yPos + ")");
 
     var legendOrdinal = d3.legendColor()
         .shape("path", d3.symbol().type(d3.symbolSquare).size(300)())
@@ -328,5 +340,14 @@ function updateLegend() {
 
     barchartTextField.selectAll(".chartSectorText")
       .text(chartSectorText)
+
+}
+
+function radioButtonListener() {
+
+  $('input[name=sortSelection]').change(function(){
+      sortSelectionValue = $( this ).val();
+      updateChart(chartSelectedSector, chartSelectedYear);
+  });
 
 }
