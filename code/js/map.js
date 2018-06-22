@@ -80,7 +80,7 @@ function makeMap(mapSelectedYear) {
             map.call(mapTip);
 
             // Append countries to the map using topoJSON
-            appendCountries(map, mapTip);
+            appendCountries();
 
             // Add a title
             addTitle(mapYear);
@@ -121,16 +121,13 @@ function updateMap(mapSelectedYear) {
     let newMapData = {};
     let newMapYear = mapSelectedYear;
     energyUsage.forEach(function(d) {
-       newMapData[d.GEO] = +d[newMapYear];
+        newMapData[d.GEO] = +d[newMapYear];
     });
 
     // Update scale
     colorScaleMap
         .range(colorbrewer.PuBuGn[9])
         .domain([0, 15000000]);
-
-    // Remove title
-    map.select(".titleText").remove();
 
     // Update map tooltip using the new data
     mapTip.html(function(d) {
@@ -152,8 +149,8 @@ function updateMap(mapSelectedYear) {
             };
     })
 
-    // Add new updated title
-    addTitle(newMapYear);
+    // Update title
+    updateTitle(newMapYear);
 
 }
 
@@ -168,7 +165,14 @@ function addTitle(year) {
         .text(year);
 }
 
-function appendCountries(map, mapTip) {
+function updateTitle(year) {
+
+    map.select(".titleText")
+      .text(year);
+
+}
+
+function appendCountries() {
 
     // Set-up color scale
     colorScaleMap
@@ -207,6 +211,9 @@ function appendCountries(map, mapTip) {
         })
         .on("click", function(d) {
             var mapSelectedCountry = d.id;
+
+            console.log("country selected from map", mapSelectedCountry, lineSelectedSector);
+
             updateLines(lineSelectedSector, mapSelectedCountry);
         });
 

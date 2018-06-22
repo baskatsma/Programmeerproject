@@ -58,48 +58,9 @@ var barTip = d3.tip()
         return "Energy usage: " + "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>";
     });
 
-// Execute main code after loading the DOM
-document.addEventListener("DOMContentLoaded", function() {
+function makeChart(chartSelectedSector) {
 
     addSlider();
-
-    // Add an event listener for the year selector button
-    $(".dropdown-item").on("click", function(event) {
-
-        // Don't follow href
-        event.preventDefault();
-
-        dropdownSelection = $(this).text();
-
-        if (dropdownSelection == "Gross final") {
-            chartSelectedSector = grossFinalJSON;
-        }
-
-        if (dropdownSelection == "Transport") {
-            chartSelectedSector = transportJSON;
-        }
-
-        if (dropdownSelection == "Electricity") {
-            chartSelectedSector = electricityJSON;
-        }
-
-        if (dropdownSelection == "Heating, cooling") {
-            chartSelectedSector = heatcoolJSON;
-        }
-
-        console.log()
-
-        updateChart(chartSelectedSector, chartSelectedYear);
-    });
-
-    // Load default chart
-    makeChart(chartSelectedSector);
-
-    radioButtonListener();
-
-});
-
-function makeChart(chartSelectedSector) {
 
     d3.json(chartSelectedSector, function(error, data) {
 
@@ -257,6 +218,9 @@ function addSlider() {
       .tickFormat(d3.format(""))
       .on("onchange", val => {
           chartSelectedYear = val;
+
+          console.log("slider value changed", chartSelectedYear, chartSelectedSector);
+
           updateChart(chartSelectedSector, chartSelectedYear);
           updateMap(chartSelectedYear);
       });
@@ -335,19 +299,10 @@ function updateLegend() {
 
     getSectorText();
 
-    barchartTextField.selectAll(".titleText")
+    barchartTextField.select(".titleText")
       .text(chartSelectedYear)
 
-    barchartTextField.selectAll(".chartSectorText")
+    barchartTextField.select(".chartSectorText")
       .text(chartSectorText)
-
-}
-
-function radioButtonListener() {
-
-  $('input[name=sortSelection]').change(function(){
-      sortSelectionValue = $( this ).val();
-      updateChart(chartSelectedSector, chartSelectedYear);
-  });
 
 }

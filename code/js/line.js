@@ -311,38 +311,6 @@ function updateLines(lineSelectedSector, chosenGEO) {
 
 }
 
-function inputListener() {
-
-    // Add an event listener for the sector buttons
-    $("button").on("click", function(event) {
-
-        // Don't follow href
-        event.preventDefault();
-
-        energySelection = $(this).text();
-
-        if (energySelection == "Total") {
-            lineSelectedSector = totalProductionJSON;
-        }
-
-        if (energySelection == "Hydro") {
-            lineSelectedSector = hydroProductionJSON;
-        }
-
-        if (energySelection == "Wind") {
-            lineSelectedSector = windProductionJSON;
-        }
-
-        if (energySelection == "Solar") {
-            lineSelectedSector = solarProductionJSON;
-        }
-
-        updateLines(lineSelectedSector, currentGEO);
-
-    });
-
-}
-
 function formatData(data, currentGEO) {
 
     let allCountries = [];

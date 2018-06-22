@@ -24,7 +24,7 @@ text.label, text.legendText {
     stroke-width: 0.25px;
 }
 
-path:hover {
+#mapDiv path:hover {
     fill-opacity: .5;
 }
 

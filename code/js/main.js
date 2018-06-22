@@ -12,20 +12,24 @@ var formatThousand = d3.format(",");
 var formatDecimal = d3.format(".1f");
 var formatThousandDecimal = d3.format(",.1f");
 
-// Set default map and line graph
-var mapSelectedYear = "2016";
-var lineSelectedCountry = "NL";
+// Set default values for visualisations
+var defaultSector = "../data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
+var defaultYear = "2007";
+var defaultCountry = "NL";
 
 // Execute main code after loading the DOM
 document.addEventListener("DOMContentLoaded", function() {
 
+    // Load default chart
+    makeChart(defaultSector);
+
     // Load map of Europe
-    makeMap(mapSelectedYear);
+    makeMap(defaultYear);
 
     // Load default line chart
-    makeLineGraph(lineSelectedCountry);
+    makeLineGraph(defaultCountry);
 
     // Listen to button changes
-    inputListener();
+    interactivityListeners();
 
 });
