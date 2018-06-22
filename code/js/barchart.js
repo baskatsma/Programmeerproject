@@ -220,14 +220,14 @@ function updateBarTooltip(barColor) {
     if (barColor.r == 204) {
 
         barTip.html(function(d) {
-            return "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>" + " of the used energy in this sector" + "<br>" + "comes from non-renewable energy sources :(";
+            return "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>" + " of the used energy in this sector" + "<br>" + "comes from non-renewable resources :(";
         });
 
     // It must be green (renewable energy)
     } else {
 
         barTip.html(function(d) {
-            return "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>" + " of the used energy in this sector" + "<br>" + "comes from renewable energy sources :)";
+            return "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>" + " of the used energy in this sector" + "<br>" + "comes from renewable resources :)";
         });
     }
 }
