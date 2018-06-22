@@ -1,12 +1,13 @@
 /*
- *  index.js
+ *  textAnimation.js
  *
  *  Name: Bas Katsma
  *  Student 10787690
  *
  */
 
-// https://speckyboy.com/css-javascript-text-animation-snippets/
+// Inspired by: https://speckyboy.com/css-javascript-text-animation-snippets/
+
 var TxtRotate = function(element, toRotate, period) {
     this.toRotate = toRotate;
     this.element = element;
@@ -18,41 +19,39 @@ var TxtRotate = function(element, toRotate, period) {
 };
 
 TxtRotate.prototype.tick = function() {
-   var i = this.loopNum % this.toRotate.length;
-   var fullTxt = this.toRotate[i];
+    var i = this.loopNum % this.toRotate.length;
+    var fullTxt = this.toRotate[i];
 
-   if (this.isDeleting) {
-     this.txt = fullTxt.substring(0, this.txt.length - 1);
-   } else {
-     this.txt = fullTxt.substring(0, this.txt.length + 1);
-   }
+    if (this.isDeleting) {
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+    } else {
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+    }
 
-   this.element.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+    this.element.innerHTML = '<span class="wrap">'+this.txt+'</span>';
 
-   var that = this;
-   var delta = 225 - Math.random() * 100;
+    var that = this;
+    var delta = 225 - Math.random() * 100;
 
-   if (this.isDeleting) { delta /= 2; }
+    if (this.isDeleting) { delta /= 2; }
 
-   if (!this.isDeleting && this.txt === fullTxt) {
-     delta = this.period;
-     this.isDeleting = true;
-   } else if (this.isDeleting && this.txt === '') {
-     this.isDeleting = false;
-     this.loopNum++;
-     delta = 500;
-   }
+    if (!this.isDeleting && this.txt === fullTxt) {
+        delta = this.period;
+        this.isDeleting = true;
+    } else if (this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        this.loopNum++;
+        delta = 500;
+    }
 
-   setTimeout(function() {
-     that.tick();
-   }, delta);
- };
+    setTimeout(function() {
+        that.tick();
+    }, delta);
+};
 
-// Code is optimized!
 window.onload = function() {
 
     var element = document.getElementById("animatedTextRow");
-
     var elements = document.getElementsByClassName("txt-rotate");
     for (var i = 0; i < elements.length; i++) {
         var toRotate = elements[i].getAttribute("data-rotate");
@@ -68,4 +67,4 @@ window.onload = function() {
     css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
     document.body.appendChild(css);
 
-};
+}

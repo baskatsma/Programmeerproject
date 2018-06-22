@@ -59,7 +59,11 @@ function makeMap(mapSelectedYear) {
 
             // Update map tooltip
             mapTip.html(function(d) {
-                return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + formatThousand(storeData[d.id]);
+                let mapTooltipText = formatThousand(storeData[d.id]);
+                if (typeof storeData[d.id] != "number") {
+                    mapTooltipText = "unknown";
+                }
+                return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + mapTooltipText;
             });
 
             // Append measurements to the map

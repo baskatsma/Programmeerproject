@@ -193,7 +193,8 @@ g.text {
 }
 
 #animatedTextRow {
-    font-family: 'Raleway', sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: bold !important;
     /* color: #aaa !important; */
     font-size: 28px !important;
 }

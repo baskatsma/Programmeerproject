@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Don't follow href
         event.preventDefault();
-        
+
         dropdownSelection = $(this).text();
 
         if (dropdownSelection == "Gross final") {
@@ -226,7 +226,7 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
         // Update rect data and size
         serie2.selectAll("rect")
             .data(d => d)
-            .transition().duration(450)
+            .transition().duration(400)
             .attr("y", d => chartY(d[1]))
             .attr("height", d => chartY(d[0]) - chartY(d[1]));
 

@@ -93,7 +93,7 @@ function makeLineGraph(chosenGEO) {
         processData(data, currentGEO);
 
         // Update Y domain
-        y.domain([0, d3.max(maxProductions)]);
+        y.domain([0, d3.max(maxProductions)]).nice();
 
         // Add SVG
         svg = d3.select("#lineDiv").append("svg")
@@ -290,8 +290,19 @@ function updateLines(lineSelectedSector, chosenGEO) {
             .attr("cy", d => y(d.production));
 
         // Update country title
-        d3.selectAll(".title-text").remove();
-        d3.selectAll(".title-extra-text").remove();
+        d3.selectAll(".title-text")
+          // .attr("x", 45)
+          // .attr("y", 65)
+          // .transition().duration(300)
+          // .attr("y", 0)
+          .remove();
+        d3.selectAll(".title-extra-text")
+          // .attr("x", 46)
+          // .attr("y", 95)
+          // .transition().duration(300)
+          // .attr("y", 0)
+          .remove();
+
         addCountryTitle(800);
 
     });
