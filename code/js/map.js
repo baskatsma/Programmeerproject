@@ -14,8 +14,8 @@ var energyUsage;
 
 var mapWidth = 625;
 var mapHeight = 565;
-var mapCenter = [16, 71.4];
-var mapScale = 455;
+var mapCenter = [11, 71.4];
+var mapScale = 460;
 var mapTitleMargin = 90;
 
 // Creates a projection
@@ -28,11 +28,15 @@ var projection = d3.geoMercator()
 var path = d3.geoPath()
     .projection(projection);
 
+var map;
+
 // Initialize map tooltip
 var mapTip = d3.tip()
     .attr("class", "d3-tip")
     .attr("id", "mapTooltip")
     .offset([-5, 0]);
+
+var colorScaleMap = d3.scaleQuantize();
 
 function makeMap(mapSelectedYear) {
 
@@ -47,8 +51,7 @@ function makeMap(mapSelectedYear) {
         storeData = {};
         mapYear = mapSelectedYear;
         energyUsage.forEach(function(d) {
-            d[mapYear] = +d[mapYear];
-            storeData[d.GEO] = d[mapYear];
+            storeData[d.GEO] = +d[mapYear];
         });
 
         d3.json("../data/europe.json", function(error, europeData) {
@@ -67,7 +70,7 @@ function makeMap(mapSelectedYear) {
             });
 
             // Append measurements to the map
-            var map = d3.select(".map")
+            map = d3.select(".map")
                 .append("svg")
                 .attr("height", mapHeight)
                 .attr("width", mapWidth)
@@ -80,11 +83,11 @@ function makeMap(mapSelectedYear) {
             appendCountries(map, mapTip);
 
             // Add a title
-            addTitle(map);
+            addTitle(mapYear);
 
             // Set-up color scale for legend
-            var colorScaleMap = d3.scaleQuantize()
-                .range(colorbrewer.YlOrRd[6])
+            colorScaleMap
+                .range(colorbrewer.PuBuGn[6])
                 .domain([0, 15]);
 
             var colorLegend = d3.legendColor()
@@ -112,7 +115,49 @@ function makeMap(mapSelectedYear) {
     });
 }
 
-function addTitle(map) {
+function updateMap(mapSelectedYear) {
+
+    // Select new parts of the EUROSTAT data
+    let newMapData = {};
+    let newMapYear = mapSelectedYear;
+    energyUsage.forEach(function(d) {
+       newMapData[d.GEO] = +d[newMapYear];
+    });
+
+    // Update scale
+    colorScaleMap
+        .range(colorbrewer.PuBuGn[9])
+        .domain([0, 15000000]);
+
+    // Remove title
+    map.select(".titleText").remove();
+
+    // Update map tooltip using the new data
+    mapTip.html(function(d) {
+        let mapTooltipText = formatThousand(newMapData[d.id]);
+        if (typeof newMapData[d.id] != "number") {
+            mapTooltipText = "unknown";
+        }
+        return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + mapTooltipText;
+    });
+
+    // Update map data and color
+    map.selectAll(".country")
+        .transition().duration(400)
+        .style("fill", function(d) {
+            if (isNaN(newMapData[d.id])) {
+                return "slategrey";
+            } else {
+                return colorScaleMap(newMapData[d.id])
+            };
+    })
+
+    // Add new updated title
+    addTitle(newMapYear);
+
+}
+
+function addTitle(year) {
 
     // Add a title
     map.append("text")
@@ -120,14 +165,14 @@ function addTitle(map) {
         .attr("y", mapTitleMargin)
         .attr("text-anchor", "left")
         .attr("class", "titleText")
-        .text(mapYear);
+        .text(year);
 }
 
 function appendCountries(map, mapTip) {
 
     // Set-up color scale
-    var colorScaleMap = d3.scaleQuantize()
-        .range(colorbrewer.YlOrRd[9])
+    colorScaleMap
+        .range(colorbrewer.PuBuGn[9])
         .domain([0, 15000000]);
 
     // Append countries to the map using topoJSON
@@ -140,18 +185,26 @@ function appendCountries(map, mapTip) {
 
         // Color-code countries based on their energy consumption
         .style("fill", function(d) {
-            var value = storeData[d.id];
-
-            if (isNaN(value)){
-              return "slategrey";
-            }
-
-            return colorScaleMap(value);
+            if (isNaN(storeData[d.id])) {
+                return "slategrey";
+            } else {
+                return colorScaleMap(storeData[d.id])
+            };
         })
 
         // Add d3-tip functionality
-        .on("mouseover", mapTip.show)
-        .on("mouseout", mapTip.hide)
+        .on("mouseover", function(d) {
+            d3.select(this)
+              .style("stroke", "teal")
+              .style("stroke-width", 0.25)
+            mapTip.show(d);
+        })
+        .on("mouseout", function(d) {
+            d3.select(this)
+              .style("stroke", "lightgrey")
+              .style("stroke-width", 0.25)
+            mapTip.hide(d);
+        })
         .on("click", function(d) {
             var mapSelectedCountry = d.id;
             updateLines(lineSelectedSector, mapSelectedCountry);

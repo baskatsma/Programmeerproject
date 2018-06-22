@@ -6,7 +6,7 @@
  *
  */
 
-#barchartDiv {
+#barchartDiv, #barchartTextDiv {
     text-align: center;
 }
 
@@ -14,11 +14,11 @@ text.label, text.legendText {
     font: 16px 'Fira Sans Condensed';
 }
 
-#barchartDiv text.titleText {
+#barchartDiv text.titleText, #barchartTextDiv text.titleText {
     font: 106px 'Oswald';
 }
 
-#barchartDiv text.chartSectorText {
+#barchartDiv text.chartSectorText, #barchartTextDiv text.chartSectorText {
     font: 26px 'Fira Sans Condensed' !important;
 }
 
