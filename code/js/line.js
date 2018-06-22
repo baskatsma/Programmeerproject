@@ -305,7 +305,7 @@ function inputListener() {
 
         // Don't follow href
         event.preventDefault();
-        
+
         energySelection = $(this).text();
 
         if (energySelection == "Total") {

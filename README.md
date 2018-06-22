@@ -54,4 +54,4 @@ Het gefinishte product laat duidelijk zien hoe het "grijze" en groene energiever
 
 
 ## Link
-- https://baskatsma.github.io/Programmeerproject/index.html
+- https://baskatsma.github.io/Programmeerproject/bootstrap/index_GS.html
