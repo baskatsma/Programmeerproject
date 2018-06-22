@@ -63,9 +63,12 @@ function makeMap(mapSelectedYear) {
             // Update map tooltip
             mapTip.html(function(d) {
                 let mapTooltipText = formatThousand(storeData[d.id]);
-                if (typeof storeData[d.id] != "number") {
+
+                // If the country has no valid values, report unknown
+                if (!isNumber(storeData[d.id])) {
                     mapTooltipText = "unknown";
                 }
+                
                 return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + mapTooltipText;
             });
 
@@ -121,8 +124,10 @@ function updateMap(mapSelectedYear) {
     let newMapData = {};
     let newMapYear = mapSelectedYear;
     energyUsage.forEach(function(d) {
-        newMapData[d.GEO] = +d[newMapYear];
+        newMapData[d.GEO] = parseFloat(d[newMapYear]);
     });
+
+      console.log(newMapData);
 
     // Update scale
     colorScaleMap
@@ -180,6 +185,7 @@ function appendCountries() {
 
         // Add d3-tip functionality
         .on("mouseover", function(d) {
+            console.log(storeData[d.id], typeof storeData[d.id], d);
             d3.select(this)
               .style("stroke", "teal")
               .style("stroke-width", 0.25)
@@ -217,4 +223,9 @@ function updateTitle(year) {
     map.select(".titleText")
       .text(year);
 
+}
+
+var isNumber = function isNumber(value) {
+   return typeof value === 'number' &&
+   isFinite(value);
 }
