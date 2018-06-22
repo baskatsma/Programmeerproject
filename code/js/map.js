@@ -154,24 +154,6 @@ function updateMap(mapSelectedYear) {
 
 }
 
-function addTitle(year) {
-
-    // Add a title
-    map.append("text")
-        .attr("x", 0)
-        .attr("y", mapTitleMargin)
-        .attr("text-anchor", "left")
-        .attr("class", "titleText")
-        .text(year);
-}
-
-function updateTitle(year) {
-
-    map.select(".titleText")
-      .text(year);
-
-}
-
 function appendCountries() {
 
     // Set-up color scale
@@ -216,5 +198,23 @@ function appendCountries() {
 
             updateLines(lineSelectedSector, mapSelectedCountry);
         });
+
+}
+
+function addTitle(year) {
+
+    // Add a title
+    map.append("text")
+        .attr("x", 0)
+        .attr("y", mapTitleMargin)
+        .attr("text-anchor", "left")
+        .attr("class", "titleText")
+        .text(year);
+}
+
+function updateTitle(year) {
+
+    map.select(".titleText")
+      .text(year);
 
 }

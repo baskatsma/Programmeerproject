@@ -115,8 +115,8 @@ function makeLineGraph(chosenGEO) {
 
         // Add line into SVG and use year/production for X/Y
         var line = d3.line()
-          .x(function(d) { return x(d.year) })
-          .y(function(d) { return y(d.production) });
+          .x(d => x(d.year))
+          .y(d => y(d.production));
 
         // Initialize lines
         var lines = svg.append("g")

@@ -27,6 +27,10 @@ input[type="radio"] {
     vertical-align: middle;
 }
 
+div.form-check {
+    margin-left: -16px;
+}
+
 label.radio-label {
     font: 16px 'Roboto Condensed' !important;
     color: black;

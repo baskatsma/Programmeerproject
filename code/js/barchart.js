@@ -19,10 +19,10 @@ var chartSelectedYear = 2007;
 var chartSectorText;
 var sortSelectionValue = "percentage";
 
-var chartWidth = 1100;
+var chartWidth = 1120;
 var chartHeight = 550;
 var chartTitleMargin = 85;
-var chartMargin = {top: 20, right: 300, bottom: 120, left: 40};
+var chartMargin = {top: 20, right: 300, bottom: 120, left: 75};
 
 // Define X axis properties
 var chartX = d3.scaleBand()
@@ -53,7 +53,7 @@ var barchartTextField;
 var barTip = d3.tip()
     .attr("class", "d3-tip")
     .attr("id", "barTooltip")
-    .offset([-10, 0])
+    .offset([-10, 115])
     .html(function(d) {
         return "Energy usage: " + "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>";
     });
@@ -101,7 +101,7 @@ function makeChart(chartSelectedSector) {
             .data(stack.keys(["greenEnergyPercentage","greyEnergyPercentage"])(data))
             .enter().append("g")
                 .attr("class", "serie")
-                .attr("fill", function(d) { return chartZ(d.key); });
+                .attr("fill", d => chartZ(d.key));
 
         barchart.call(barTip);
 
@@ -115,6 +115,12 @@ function makeChart(chartSelectedSector) {
 
             // Add d3-tip functionality
             .on("mouseover", function(d) {
+
+                // Update tooltip based on the green/grey bar
+                let selectedBar = d3.select(this);
+                let barColor = d3.rgb(selectedBar.style("fill"));
+                updateBarTooltip(barColor);
+
                 d3.select(this).style("opacity", 0.7);
                 barTip.show(d); })
             .on("mouseout", function(d) {
@@ -137,9 +143,9 @@ function makeChart(chartSelectedSector) {
         barchartTextField = d3.select("#barchartTextDiv")
             .append("svg")
             .attr("height", 135 + chartMargin.bottom)
-            .attr("width", 100 + chartMargin.right)
+            .attr("width", 105 + chartMargin.right)
             g = barchartTextField.append("g")
-              .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
+              .attr("transform", "translate(" + "0" + "," + chartMargin.top + ")");
 
         // Create first legend instance
         addLegend(year);
@@ -208,6 +214,24 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
 
 }
 
+function updateBarTooltip(barColor) {
+
+    // Check if the color is grey (non-renewable energy) (rgb is all 204)
+    if (barColor.r == 204) {
+
+        barTip.html(function(d) {
+            return "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>" + " of the used energy in this sector" + "<br>" + "comes from non-renewable energy sources :(";
+        });
+
+    // It must be green (renewable energy)
+    } else {
+
+        barTip.html(function(d) {
+            return "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>" + " of the used energy in this sector" + "<br>" + "comes from renewable energy sources :)";
+        });
+    }
+}
+
 function addSlider() {
 
     var yearSlider = d3.sliderHorizontal()
@@ -259,7 +283,7 @@ function addLegend(year) {
 
     getSectorText();
 
-    let xPos = 100;
+    let xPos = 28;
     let yPos = 200;
 
     // Add a year
