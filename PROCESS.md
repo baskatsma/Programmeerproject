@@ -59,4 +59,13 @@ energy usage per capita instead of per whole country, because that could also be
 a lot of update code and that seemed to work out in the end. Every visualisation is finished
 as far as I know, so now I will work on the website and make that pretty.
 - Fixed a lot of mouseover/mouseout bugs in the line chart.
-- To do: add information about the visualisations,
+- To do: add information about the visualisations.
+
+## day 14 (Thu 21 Jun)
+- I wanted to do another visualisation, but it was neigh impossible to find and create a good JSON file for it, so I stopped that.
+- Updated a lot of code.
+
+## day 15 (Fri 22 Jun)
+- Decided to make the map more interactive! The slider from the barchart also influences the map now, so the map becomes more useful!
+- Added a radio button to define the sort on the X-axis for the barchart, which makes it easier to track countries or to track the percentage.
+- Re-wrote a lot of barchart code to minimize bugs and use a less CPU-intensive update mechanism.
