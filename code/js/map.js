@@ -68,7 +68,7 @@ function makeMap(mapSelectedYear) {
                 if (!isNumber(storeData[d.id])) {
                     mapTooltipText = "unknown";
                 }
-                
+
                 return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + mapTooltipText;
             });
 
@@ -185,7 +185,6 @@ function appendCountries() {
 
         // Add d3-tip functionality
         .on("mouseover", function(d) {
-            console.log(storeData[d.id], typeof storeData[d.id], d);
             d3.select(this)
               .style("stroke", "teal")
               .style("stroke-width", 0.25)
