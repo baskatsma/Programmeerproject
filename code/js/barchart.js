@@ -123,6 +123,7 @@ function makeChart(chartSelectedSector) {
 
                 d3.select(this).style("opacity", 0.7);
                 barTip.show(d); })
+
             .on("mouseout", function(d) {
                 d3.select(this).style("opacity", 1);
                 barTip.hide(d); });
