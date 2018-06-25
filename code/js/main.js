@@ -23,12 +23,9 @@ var defaultCountry = "NL";
 // Execute main code after loading the DOM
 document.addEventListener("DOMContentLoaded", function() {
 
-    // w = window.innerWidth;
-    // h = window.innerHeight - 50;
-
+    // Grab window dimensions
     w = document.documentElement.clientWidth;
-    h = document.documentElement.clientHeight - 50;
-    console.log("w", w, "h", h);
+    h = document.documentElement.clientHeight;
 
     // Load default chart
     makeChart(defaultSector);

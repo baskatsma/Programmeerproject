@@ -210,7 +210,7 @@ a:focus, a:hover {
 }
 
 #nextButton .btn-circle {
-    border: 2px solid teal !important;
+    border: 2px solid black !important;
     color: white;
     outline: none;
     background: rgba(255, 255, 255, 0.1);

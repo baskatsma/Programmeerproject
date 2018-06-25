@@ -59,7 +59,7 @@ function makeChart(chartSelectedSector) {
 
     // Update chart based on screen width/height
     chartWidth = w * 0.775;
-    chartHeight = h * 0.585;
+    chartHeight = (h * 0.85) - 220;
 
     // Update rangeRounds to X and Y
     chartX.rangeRound([0, chartWidth])

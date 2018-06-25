@@ -81,7 +81,7 @@ function makeLineGraph(chosenGEO) {
 
     // Update chart based on screen width/height
     lineWidth = w * 0.425;
-    lineHeight = h * 0.745;
+    lineHeight = h * 0.685;
 
     // Update range for X and Y
     lineX.range([0, lineWidth]);

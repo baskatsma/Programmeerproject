@@ -37,7 +37,7 @@ function makeMap(mapSelectedYear) {
 
     // Update chart based on screen width/height
     mapWidth = w * 0.475;
-    mapHeight = h * 0.745;
+    mapHeight = h * 0.685;
     mapScale = 0.785 * mapHeight;
 
     projection
