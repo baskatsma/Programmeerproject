@@ -47,7 +47,7 @@ function makeMap(mapSelectedYear) {
     path
       .projection(projection);
 
-    d3.json("../data/nrg_100a_Simplified_energy_balances_TJ.json", function(error, energyUsageData) {
+    d3.json("data/nrg_100a_Simplified_energy_balances_TJ.json", function(error, energyUsageData) {
 
         // Log any errors, and save results for usage outside of this function
         if (error) throw error;
@@ -61,7 +61,7 @@ function makeMap(mapSelectedYear) {
             storeData[d.GEO] = +d[mapYear];
         });
 
-        d3.json("../data/europe.json", function(error, europeData) {
+        d3.json("data/europe.json", function(error, europeData) {
 
             // Log any errors, and save file for usage outside of this function
             if (error) throw error;
