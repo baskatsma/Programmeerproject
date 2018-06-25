@@ -99,7 +99,7 @@ function makeMap(mapSelectedYear) {
 
             // Set-up color scale for legend
             colorScaleMap
-                .range(colorbrewer.PuBuGn[5])
+                .range(colorbrewer.PuBuGn[7])
                 .domain([0, 35]);
 
             var colorLegend = d3.legendColor()
@@ -107,7 +107,7 @@ function makeMap(mapSelectedYear) {
               .scale(colorScaleMap)
               .shapePadding(0)
               .shapeHeight(6)
-              .shapeWidth(105)
+              .shapeWidth(75)
               .orient("horizontal");
 
             // Position the legend and add it to the map
@@ -135,7 +135,7 @@ function updateMap(mapSelectedYear) {
     let newMapYear = mapSelectedYear;
     energyUsage.forEach(function(d) {
         d[newMapYear] = d[newMapYear].replace(",",".");
-        newMapData[d.GEO] = Number(d[newMapYear]);
+        newMapData[d.GEO] = Number(d[newMapYear])
     });
 
       console.log(newMapData);
@@ -143,7 +143,7 @@ function updateMap(mapSelectedYear) {
     // Update scale
     colorScaleMap
         .range(colorbrewer.PuBuGn[9])
-        .domain([0, 35]);
+        .domain([0, 350000]);
 
     // Update map tooltip using the new data
     mapTip.html(function(d) {
