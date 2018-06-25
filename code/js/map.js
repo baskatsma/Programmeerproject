@@ -47,7 +47,7 @@ function makeMap(mapSelectedYear) {
     path
       .projection(projection);
 
-    d3.json("data/nrg_100a_Simplified_energy_balances_TJ.json", function(error, energyUsageData) {
+    d3.json("data/nrg_100a_Simplified_energy_balances_KTOE.json", function(error, energyUsageData) {
 
         // Log any errors, and save results for usage outside of this function
         if (error) throw error;
@@ -58,7 +58,8 @@ function makeMap(mapSelectedYear) {
         storeData = {};
         mapYear = mapSelectedYear;
         energyUsage.forEach(function(d) {
-            storeData[d.GEO] = +d[mapYear];
+            d[mapYear] = d[mapYear].replace(",",".");
+            storeData[d.GEO] = Number(d[mapYear]);
         });
 
         d3.json("data/europe.json", function(error, europeData) {
@@ -69,14 +70,14 @@ function makeMap(mapSelectedYear) {
 
             // Update map tooltip
             mapTip.html(function(d) {
-                let mapTooltipText = formatThousand(storeData[d.id]);
+                let mapTooltipText = formatThousand(storeData[d.id]) + " KTOE";
 
                 // If the country has no valid values, report unknown
                 if (!isNumber(storeData[d.id])) {
                     mapTooltipText = "unknown";
                 }
 
-                return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + mapTooltipText;
+                return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage:</strong> " + mapTooltipText;
             });
 
             // Append measurements to the map
@@ -98,15 +99,15 @@ function makeMap(mapSelectedYear) {
 
             // Set-up color scale for legend
             colorScaleMap
-                .range(colorbrewer.PuBuGn[6])
-                .domain([0, 15]);
+                .range(colorbrewer.PuBuGn[5])
+                .domain([0, 35]);
 
             var colorLegend = d3.legendColor()
               .labelFormat(formatThousand)
               .scale(colorScaleMap)
               .shapePadding(0)
               .shapeHeight(6)
-              .shapeWidth(90)
+              .shapeWidth(105)
               .orient("horizontal");
 
             // Position the legend and add it to the map
@@ -118,11 +119,11 @@ function makeMap(mapSelectedYear) {
 
             // Add a description to the legend
             map.append("text")
-                .attr("x", xDistance - 75)
+                .attr("x", xDistance - 60)
                 .attr("y", yDistance + 7)
                 .attr("text-anchor", "left")
                 .attr("class", "legendText")
-                .text("In millions");
+                .text("x10.000");
         });
     });
 }
@@ -133,7 +134,8 @@ function updateMap(mapSelectedYear) {
     let newMapData = {};
     let newMapYear = mapSelectedYear;
     energyUsage.forEach(function(d) {
-        newMapData[d.GEO] = parseFloat(d[newMapYear]);
+        d[newMapYear] = d[newMapYear].replace(",",".");
+        newMapData[d.GEO] = Number(d[newMapYear]);
     });
 
       console.log(newMapData);
@@ -141,15 +143,18 @@ function updateMap(mapSelectedYear) {
     // Update scale
     colorScaleMap
         .range(colorbrewer.PuBuGn[9])
-        .domain([0, 15000000]);
+        .domain([0, 35]);
 
     // Update map tooltip using the new data
     mapTip.html(function(d) {
-        let mapTooltipText = formatThousand(newMapData[d.id]);
-        if (typeof newMapData[d.id] != "number") {
+        let mapTooltipText = formatThousand(newMapData[d.id]) + " KTOE";
+
+        // If the country has no valid values, report unknown
+        if (!isNumber(newMapData[d.id])) {
             mapTooltipText = "unknown";
         }
-        return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage (TJ):</strong> " + mapTooltipText;
+
+        return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage:</strong> " + mapTooltipText;
     });
 
     // Update map data and color
@@ -173,7 +178,7 @@ function appendCountries() {
     // Set-up color scale
     colorScaleMap
         .range(colorbrewer.PuBuGn[9])
-        .domain([0, 15000000]);
+        .domain([0, 350000]);
 
     // Append countries to the map using topoJSON
     countries = map.selectAll(".country")
