@@ -20,7 +20,7 @@ h5,
 h6 {
     font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
-    margin: 0 0 35px;
+    margin: 0 0 20px;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -28,7 +28,7 @@ h6 {
 p {
     font-size: 16px;
     line-height: 1.5;
-    margin: 0 0 25px;
+    margin: 0 0 20px;
 }
 
 #descriptionBarchartDiv {
@@ -204,17 +204,21 @@ a:focus, a:hover {
     padding-top: 50px !important;
     padding-bottom: 50px !important;
 }
-
+/*
 #animatedTextRow {
     font-family: 'Cabin', sans-serif;
     font-weight: 500;
     font-size: 30px;
+} */
+
+#projectDescriptionOne {
+    font-size: 23px;
 }
 
-.download-section {
+.about-section {
     color: white;
     /* background: url("../img/downloads-bg.jpg") no-repeat center center scroll; */
-    background-color: white;
+    background-color: black;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

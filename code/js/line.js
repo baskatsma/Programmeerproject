@@ -24,13 +24,13 @@ var currentGEOData;
 var currentGEOIndex;
 var maxProductions = [];
 
-var lineWidth = 560;
-var lineHeight = 570;
+// var lineWidth = 560;
+// var lineHeight = 570;
+var lineWidth;
+var lineHeight;
 var titleMargin = 90;
 var margin = {top: 15, right: 85, bottom: 60, left: 55};
 
-var xAxis;
-var yAxis;
 var gX;
 var gY;
 var zoomLevel = 1;
@@ -49,20 +49,16 @@ var circleRadiusHover = 6;
 var circleRadiusOthers = 1;
 
 // Initialize X and Y
-var x = d3.scaleTime()
-    .range([0, lineWidth]);
-var y = d3.scaleLinear()
-    .range([lineHeight, 0]);
+var lineX = d3.scaleTime();
+var lineY = d3.scaleLinear();
 
 var zoom = d3.zoom()
     .scaleExtent([1, 10])
-    .translateExtent([[0, 0], [lineWidth, lineHeight]])
-    .extent([[0, 0], [lineWidth, lineHeight]])
     .on("zoom", zoomed);
 
 // Initialize X and Y axii
-var xAxis = d3.axisBottom(x);
-var yAxis = d3.axisLeft(y).ticks(7);
+var xAxisLine;
+var yAxisLine;
 
 var svg;
 
@@ -83,6 +79,22 @@ var circleTip = d3.tip()
 
 function makeLineGraph(chosenGEO) {
 
+    // Update chart based on screen width/height
+    lineWidth = w * 0.425;
+    lineHeight = h * 0.745;
+
+    // Update range for X and Y
+    lineX.range([0, lineWidth]);
+    lineY.range([lineHeight, 0]);
+
+    zoom
+        .translateExtent([[0, 0], [lineWidth, lineHeight]])
+        .extent([[0, 0], [lineWidth, lineHeight]]);
+
+    // Initialize X and Y axii
+    xAxisLine = d3.axisBottom(lineX);
+    yAxisLine = d3.axisLeft(lineY).ticks(7);
+
     currentGEO = chosenGEO;
 
     d3.json(lineSelectedSector, function(error, data) {
@@ -95,7 +107,7 @@ function makeLineGraph(chosenGEO) {
         processData(data, currentGEO);
 
         // Update Y domain
-        y.domain([0, d3.max(maxProductions)]).nice();
+        lineY.domain([0, d3.max(maxProductions)]).nice();
 
         // Add SVG
         svg = d3.select("#lineDiv").append("svg")
@@ -115,8 +127,8 @@ function makeLineGraph(chosenGEO) {
 
         // Add line into SVG and use year/production for X/Y
         var line = d3.line()
-          .x(d => x(d.year))
-          .y(d => y(d.production));
+          .x(d => lineX(d.year))
+          .y(d => lineY(d.production));
 
         // Initialize lines
         var lines = svg.append("g")
@@ -198,8 +210,8 @@ function makeLineGraph(chosenGEO) {
           .append("g")
           .attr("class", "circle")
           .append("circle")
-          .attr("cx", d => x(d.year))
-          .attr("cy", d => y(d.production))
+          .attr("cx", d => lineX(d.year))
+          .attr("cy", d => lineY(d.production))
 
           // Style circle width and opacity based on the country we want
           .attr("r", function(d) {
@@ -245,17 +257,17 @@ function updateLines(lineSelectedSector, chosenGEO) {
         processData(data, currentGEO);
 
         // Update Y domain
-        y.domain([0, d3.max(maxProductions)]);
+        lineY.domain([0, d3.max(maxProductions)]);
 
         // Append and animate the Y-axis
         d3.select(".y")
             .transition()
             .duration(800)
-            .call(yAxis)
+            .call(yAxisLine)
 
         line = d3.line()
-          .x(d => x(d.year))
-          .y(d => y(d.production));
+          .x(d => lineX(d.year))
+          .y(d => lineY(d.production));
 
         lines2 = svg.selectAll(".line")
 
@@ -288,8 +300,8 @@ function updateLines(lineSelectedSector, chosenGEO) {
             .style("opacity", circleOpacity)
             .data(d => d.values)
             .transition().duration(800)
-            .attr("cx", d => x(d.year))
-            .attr("cy", d => y(d.production));
+            .attr("cx", d => lineX(d.year))
+            .attr("cy", d => lineY(d.production));
 
         // Update country title
         d3.selectAll(".title-text")
@@ -356,7 +368,7 @@ function processData(data, currentGEO) {
     }
 
     // Set the X domain based on the values of the chosen country
-    x.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
+    lineX.domain(d3.extent(data[currentGEOIndex].values, d => d.year));
 
 }
 
@@ -365,10 +377,10 @@ function appendgXY() {
     gX = svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + lineHeight + ")")
-        .call(xAxis);
+        .call(xAxisLine);
     gY = svg.append("g")
          .attr("class", "y axis")
-         .call(yAxis);
+         .call(yAxisLine);
 }
 
 function addYDescription() {
@@ -435,6 +447,6 @@ function zoomed() {
     d3.selectAll(".popup-text").style("font-size", 23/zoomLevel);
 
     // Rescale axii
-    gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
-    gY.call(yAxis.scale(d3.event.transform.rescaleY(y)));
+    gX.call(xAxisLine.scale(d3.event.transform.rescaleX(lineX)));
+    gY.call(yAxisLine.scale(d3.event.transform.rescaleY(lineY)));
 }

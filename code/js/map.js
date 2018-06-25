@@ -12,21 +12,16 @@
 var europe;
 var energyUsage;
 
-var mapWidth = 625;
-var mapHeight = 565;
-var mapCenter = [11, 71.4];
-var mapScale = 460;
+var mapCenter = [11, 71.2];
 var mapTitleMargin = 90;
+var mapMargin = {top: 0, right: 0, bottom: 0, left: 30};
 
 // Creates a projection
 var projection = d3.geoMercator()
-    .scale(mapScale)
-    .translate([mapWidth / 2.1, 0])
     .center(mapCenter);
 
 // Initializes the path generator
-var path = d3.geoPath()
-    .projection(projection);
+var path = d3.geoPath();
 
 var map;
 
@@ -39,6 +34,18 @@ var mapTip = d3.tip()
 var colorScaleMap = d3.scaleQuantize();
 
 function makeMap(mapSelectedYear) {
+
+    // Update chart based on screen width/height
+    mapWidth = w * 0.475;
+    mapHeight = h * 0.745;
+    mapScale = 0.785 * mapHeight;
+
+    projection
+      .scale(mapScale)
+      .translate([mapWidth / 2.1, 0]);
+
+    path
+      .projection(projection);
 
     d3.json("../data/nrg_100a_Simplified_energy_balances_TJ.json", function(error, energyUsageData) {
 
@@ -77,7 +84,8 @@ function makeMap(mapSelectedYear) {
                 .append("svg")
                 .attr("height", mapHeight)
                 .attr("width", mapWidth)
-                .append("g");
+                .append("g")
+                  .attr("transform", "translate(" + mapMargin.left + "," + mapMargin.top + ")");;
 
             // Call map tooltip
             map.call(mapTip);
@@ -102,15 +110,15 @@ function makeMap(mapSelectedYear) {
               .orient("horizontal");
 
             // Position the legend and add it to the map
-            var xDistance = 548;
+            let yDistance = mapHeight - 30;
             map.append("g")
-              .attr("transform", "translate(80," + (xDistance - 7) + ")")
+              .attr("transform", "translate(80," + yDistance + ")")
               .call(colorLegend);
 
             // Add a description to the legend
             map.append("text")
                 .attr("x", 0)
-                .attr("y", xDistance)
+                .attr("y", yDistance + 7)
                 .attr("text-anchor", "left")
                 .attr("class", "legendText")
                 .text("In millions");

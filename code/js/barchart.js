@@ -19,28 +19,25 @@ var chartSelectedYear = 2007;
 var chartSectorText;
 var sortSelectionValue = "percentage";
 
-var chartWidth = 1120;
-var chartHeight = 550;
+var chartWidth;
+var chartHeight;
 var chartTitleMargin = 85;
-var chartMargin = {top: 20, right: 300, bottom: 120, left: 75};
+var chartMargin = {top: 20, right: 300, bottom: 120, left: 73};
 
 // Define X axis properties
 var chartX = d3.scaleBand()
-    .rangeRound([0, chartWidth])
     .paddingInner(0.0175)
     .align(0.1);
 
 // Define Y axis properties
-var chartY = d3.scaleLinear()
-    .rangeRound([chartHeight, 0]);
-
-// Call X axis
-var xAxisBar = d3.axisBottom(chartX);
+var chartY = d3.scaleLinear();
 
 // Define Z axis (series)
 var chartZ = d3.scaleOrdinal()
     // .range(["#006666", "rgb(240,240,240)"]);
     .range(["#006600", "#cccccc"]);
+
+var xAxisBar;
 
 var stack = d3.stack()
     .order(d3.stackOrderNone)
@@ -60,6 +57,18 @@ var barTip = d3.tip()
 
 function makeChart(chartSelectedSector) {
 
+    // Update chart based on screen width/height
+    chartWidth = w * 0.775;
+    chartHeight = h * 0.585;
+
+    // Update rangeRounds to X and Y
+    chartX.rangeRound([0, chartWidth])
+    chartY.rangeRound([chartHeight, 0]);
+
+    // Call X axis
+    xAxisBar = d3.axisBottom(chartX);
+
+    // Add year slider
     addSlider();
 
     d3.json(chartSelectedSector, function(error, data) {
@@ -144,7 +153,7 @@ function makeChart(chartSelectedSector) {
         barchartTextField = d3.select("#barchartTextDiv")
             .append("svg")
             .attr("height", 135 + chartMargin.bottom)
-            .attr("width", 105 + chartMargin.right)
+            .attr("width", 115 + chartMargin.right)
             g = barchartTextField.append("g")
               .attr("transform", "translate(" + "0" + "," + chartMargin.top + ")");
 

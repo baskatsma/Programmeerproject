@@ -59,13 +59,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Part One</a>
+              <a class="nav-link js-scroll-trigger" href="#visOne">Part One</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Part Two</a>
+              <a class="nav-link js-scroll-trigger" href="#visTwo">Part Two</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">About</a>
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
             </li>
           </ul>
         </div>
@@ -79,15 +79,16 @@
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <h1 class="brand-heading">Europe: Life in #008000</h1>
-              <h1 class="intro-text" id="animatedTextRow">
+              <p class="project-description" id="projectDescriptionOne">A project about all energy usage and production of European countries using data visualizations in D3.</p>
+              <h3 class="intro-text" id="animatedTextRow">
                 <span
                    class="txt-rotate"
                    id="animatedText"
                    data-period="1650"
                    data-rotate='[ "The story.", "Proceed.", "Discover.", "Learn." ]'>
                 </span>
-              </h1>
-              <a href="#about" class="btn btn-circle js-scroll-trigger">
+              </h3>
+              <a href="#visOne" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
               </a>
             </div>
@@ -96,9 +97,14 @@
       </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="content-section text-center">
+    <!-- Visualization One Section -->
+    <section id="visOne" class="content-section text-center">
       <div class="container-fluid">
+        <div class="row" id="rowText">
+          <div class="col-lg-12 mx-auto">
+            <h1>(Non-)renewable energy usage per sector (%)</h1>
+          </div>
+        </div>
         <div class="row" id="row1">
           <div class="col-3"></div>
           <div class="col-1">
@@ -133,10 +139,6 @@
             </div>
             <div id="descriptionBarchartDiv">
               <h6><a tabindex="0" href="#" data-trigger="focus" data-toggle="popover" animation=true title="STACKED BARCHART" id="descriptionBarchart" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.">Description <i style="font-size:16px" class="fa">&#xf05a;</i></a></h6>
-
-              <!-- <h6>
-                <a tabindex="0" class="btn btn-sm btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
-              </h6> -->
             </div>
           </div>
             <!-- <a href="#download" class="btn btn-circle js-scroll-trigger">
@@ -144,9 +146,17 @@
       </div>
     </section>
 
-    <!-- Download Section -->
-    <section id="download" class="download-section content-section text-center">
+    <!-- Visualization Two Section -->
+    <section id="visTwo" class="content-section text-center">
       <div class="container-fluid">
+        <div class="row" id="rowText">
+          <div class="col-5 mx-auto text-right">
+            <h4>Total energy usage per country (TJ)</h4>
+          </div>
+          <div class="col-7 mx-auto text-right">
+            <h4>Renewable energy production per sector (KTOE)</h4>
+          </div>
+        </div>
         <div class="row" id="row1">
           <div class="col-md-10 text-right">
             <button class="btn btn-secondary btn-sm" type="submit">Total</button>
@@ -168,8 +178,8 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="content-section text-center">
+    <!-- About Section -->
+    <section id="about" class="about-section content-section text-center">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
@@ -181,11 +191,11 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <!-- <footer>
       <div class="container mx-auto">
         <p>Copyright &copy; me, bitch (2018)</p>
       </div>
-    </footer>
+    </footer> -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="bootstrap/vendor/jquery/jquery.min.js"></script>
