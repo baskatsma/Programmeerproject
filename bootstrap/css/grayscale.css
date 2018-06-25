@@ -20,7 +20,7 @@ h5,
 h6 {
     font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
-    margin: 0 0 20px;
+    margin: 0 0 24px;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -36,7 +36,7 @@ p {
     text-align: left;
 }
 
-#descriptionBarchart {
+#descriptionBarchart, #descriptionMap, #descriptionLine {
     color: black;
 }
 
@@ -200,10 +200,22 @@ a:focus, a:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.content-section {
+.content-section, #nextButton {
     padding-top: 50px !important;
     padding-bottom: 50px !important;
 }
+
+#informationIcon {
+    color: teal !important;
+}
+
+#nextButton .btn-circle {
+    border: 2px solid teal !important;
+    color: white;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+
 /*
 #animatedTextRow {
     font-family: 'Cabin', sans-serif;

@@ -110,14 +110,15 @@ function makeMap(mapSelectedYear) {
               .orient("horizontal");
 
             // Position the legend and add it to the map
+            let xDistance = mapWidth * 0.125;
             let yDistance = mapHeight - 30;
             map.append("g")
-              .attr("transform", "translate(80," + yDistance + ")")
+              .attr("transform", "translate(" + xDistance + "," + yDistance + ")")
               .call(colorLegend);
 
             // Add a description to the legend
             map.append("text")
-                .attr("x", 0)
+                .attr("x", xDistance - 75)
                 .attr("y", yDistance + 7)
                 .attr("text-anchor", "left")
                 .attr("class", "legendText")
