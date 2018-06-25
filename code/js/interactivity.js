@@ -8,11 +8,11 @@
 
 function interactivityListeners() {
 
-  $('[data-toggle="popover"]').on('click',function(event) {
+  $('[data-toggle="popover"]').on("click", function(event) {
       event.preventDefault();
       })
   .popover({
-      trigger: 'focus'
+      trigger: "focus"
   });
 
   // Add an event listener for the year selector button

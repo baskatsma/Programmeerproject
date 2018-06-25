@@ -69,3 +69,9 @@ as far as I know, so now I will work on the website and make that pretty.
 - Decided to make the map more interactive! The slider from the barchart also influences the map now, so the map becomes more useful!
 - Added a radio button to define the sort on the X-axis for the barchart, which makes it easier to track countries or to track the percentage.
 - Re-wrote a lot of barchart code to minimize bugs and use a less CPU-intensive update mechanism.
+
+## day 16 (Mon 25 Jun)
+- Added titles and description button
+- Allow visualisations to scale, which makes it better at different resolutions
+- Website CSS tweaks
+- Repository tweaks
