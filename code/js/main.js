@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // h = window.innerHeight - 50;
 
     w = document.documentElement.clientWidth;
-    h = document.documentElement.innerHeight - 50;
+    h = document.documentElement.clientHeight - 50;
     console.log("w", w, "h", h);
 
     // Load default chart
