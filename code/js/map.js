@@ -22,16 +22,16 @@ var mapMargin = {top: 0, right: 0, bottom: 0, left: 30};
 
 // Create a projection
 var projection = d3.geoMercator()
-      .center(mapCenter);
+    .center(mapCenter);
 
 // Initialize the path generator
 var path = d3.geoPath();
 
 // Initialize map tooltip
 var mapTip = d3.tip()
-      .attr("class", "d3-tip")
-      .attr("id", "mapTooltip")
-      .offset([-5, 0]);
+    .attr("class", "d3-tip")
+    .attr("id", "mapTooltip")
+    .offset([-5, 0]);
 
 // Initialize color scale
 var colorScaleMap = d3.scaleQuantize();
@@ -114,12 +114,12 @@ function makeMapCore(error, europeData, energyUsageData) {
 
     // Define legend settings
     var colorLegend = d3.legendColor()
-          .labelFormat(formatThousand)
-          .scale(colorScaleMap)
-          .shapePadding(0)
-          .shapeHeight(6)
-          .shapeWidth(75)
-          .orient("horizontal");
+        .labelFormat(formatThousand)
+        .scale(colorScaleMap)
+        .shapePadding(0)
+        .shapeHeight(6)
+        .shapeWidth(75)
+        .orient("horizontal");
 
     // Define legend positions
     let xDistance = mapWidth * 0.125;
@@ -211,14 +211,13 @@ function appendCountries() {
           d3.select(this)
             .style("stroke", "red")
             .style("stroke-width", 0.25)
-          mapTip.show(d);
-      })
+          mapTip.show(d); })
+
       .on("mouseout", function(d) {
           d3.select(this)
             .style("stroke", "lightgrey")
             .style("stroke-width", 0.25)
-          mapTip.hide(d);
-      })
+          mapTip.hide(d); })
 
       // Add update function on "click"
       .on("click", function(d) {
@@ -226,8 +225,7 @@ function appendCountries() {
 
           console.log("country selected from map", mapSelectedCountry, lineSelectedSector);
 
-          updateLines(lineSelectedSector, mapSelectedCountry);
-      });
+          updateLines(lineSelectedSector, mapSelectedCountry); });
 }
 
 function addTitle(year) {

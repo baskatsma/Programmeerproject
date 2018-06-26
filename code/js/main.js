@@ -12,13 +12,14 @@ var formatThousand = d3.format(",");
 var formatDecimal = d3.format(".1f");
 var formatThousandDecimal = d3.format(",.1f");
 
-var h;
-var w;
-
 // Set default values for visualisations
 var defaultSector = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
 var defaultYear = "2007";
 var defaultCountry = "NL";
+
+// Save browser window dimensions
+var h;
+var w;
 
 // Execute main code after loading the DOM
 document.addEventListener("DOMContentLoaded", function() {
