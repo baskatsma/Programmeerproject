@@ -1,5 +1,8 @@
 /*
+ *  Programmeerproject
  *  main.js
+ *
+ *  Loads barchart, map, and line chart.
  *
  *  Name: Bas Katsma
  *  Student 10787690

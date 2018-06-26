@@ -8,6 +8,7 @@
 
 function interactivityListeners() {
 
+  // Add an event listener for the popover description button
   $('[data-toggle="popover"]').on("click", function(event) {
       event.preventDefault();
       })
