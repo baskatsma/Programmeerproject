@@ -31,6 +31,11 @@ p {
     margin: 0 0 20px;
 }
 
+.popover {
+    text-align: left;
+    max-width: 27.5%;
+}
+
 #descriptionBarchartDiv {
     padding-top: 20px;
     text-align: left;

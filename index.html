@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Bas Katsma (10787690)">
 
-    <title>Europe: Life in #008000</title>
+    <title>Programmeerproject by Bas Katsma</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -102,15 +102,15 @@
       <div class="container-fluid">
         <div class="row" id="rowText">
           <div class="col-lg-12 mx-auto">
-            <!-- <h1><a tabindex="0" href="#" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="STACKED BARCHART" id="descriptionBarchart" class="description" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.">(Non-)renewable energy usage per sector (%) <i style="font-size:34px" class="fa">&#xf05a;</i></a></h1> -->
-            <h2><a tabindex="0" href="#" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="STACKED BARCHART" id="descriptionBarchart" class="description" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."><i style="font-size:30px" class="fa" id="informationIcon">&#xf05a;</i></a> (Non-)renewable energy usage per sector (%)</h2>
+            <h2><a tabindex="0" href="#" data-html="true" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="STACKED BARCHART" id="descriptionBarchart" class="description" data-content="In the figure below, a stacked bar chart in regard to the energy usage per sector is shown.<br /><br />The energy usage is divided into two stacks: energy that has been produced using renewable resources (green energy), and energy from non-renewable resources (grey — “normal” — energy).<br /><br />The dropdown menu allows you to change the sector, and the slider enables the user to change the energy usage for that year. To view the exact percentage, hover over the bars. Lastly, it is possible to change the sorting mechanism: either alphabetically, or based on the % green energy."><i style="font-size:30px" class="fa" id="informationIcon">&#xf05a;</i></a> (Non-)renewable energy usage per sector (%)
+            </h2>
           </div>
         </div>
         <div class="row" id="row1">
           <div class="col-3"></div>
           <div class="col-1">
             <div class="btn-group" id="interactiveButton">
-              <button type="button" class="btn btn-warning btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="btn btn-dark btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Sector
               </button>
               <div class="dropdown-menu">
@@ -139,7 +139,6 @@
               <label class="radio-label">Sort by: name</label>
             </div>
             <div id="nextButton">
-              <!-- <h6><a tabindex="0" href="#" data-trigger="focus" data-toggle="popover" animation=true title="STACKED BARCHART" id="descriptionBarchart" class="description" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.">Description <i style="font-size:16px" class="fa">&#xf05a;</i></a></h6> -->
               <a href="#visTwo" class="btn btn-success btn-circle js-scroll-trigger">
               <i class="fa fa-angle-double-down animated" style="color:#696969"></i></a>
             </div>
@@ -153,20 +152,20 @@
       <div class="container-fluid">
         <div class="row" id="rowText">
           <div class="col-5 mx-auto text-right">
-            <!-- <h4><a tabindex="0" href="#" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="MAP OF EUROPE" id="descriptionMap" class="description" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.">Total energy usage per country (KTOE) <i style="font-size:22px" class="fa">&#xf05a;</i></a></h4> -->
-            <h4><a tabindex="0" href="#" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="MAP OF EUROPE" id="descriptionMap" class="description" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."><i style="font-size:22px" class="fa" id="informationIcon">&#xf05a;</i></a> Total energy usage per country (KTOE)</h4>
+            <h4><a tabindex="0" href="#" data-html="true" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="MAP OF EUROPE" id="descriptionMap" class="description" data-content="In the map below, the total energy usage of European countries is visualized.<br /><br />The unit of this variable is kilotonne of oil equivalent (KTOE), which is the amount of energy that gets released when 1,000 tonnes of crude oil is burned.<br /><br />When you hover over a country, its name and usage is shown for that year. The year is linked with the slider from the first visualisation.<br /><br />Clicking on a country highlights its production of renewable energies in the visualisation on the right."><i style="font-size:22px" class="fa" id="informationIcon">&#xf05a;</i></a> Total energy usage per country (KTOE)
+            </h4>
           </div>
           <div class="col-7 mx-auto text-right">
-            <!-- <h4><a tabindex="0" href="#" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="MAP OF EUROPE" id="descriptionLine" class="description" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.">Renewable energy production per sector (KTOE) <i style="font-size:22px" class="fa">&#xf05a;</i></a></h4> -->
-            <h4><a tabindex="0" href="#" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="LINE GRAPH" id="descriptionLine" class="description" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."><i style="font-size:22px" class="fa" id="informationIcon">&#xf05a;</i></a> Renewable energy production per sector (KTOE)</h4>
+            <h4><a tabindex="0" href="#" data-html="true" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="MULTI-SERIES LINE CHART" id="descriptionLine" class="description" data-content="In the line chart below, the energy production (in KTOE) using various renewable resources throughout the years is displayed.<br /><br />By default, the total production statistics of The Netherlands is shown. Once you hover over a line, the associated country is displayed in the title. To see the production from that resource and year, hover over the circles.<br /><br />Clicking on a country in the map on the left highlights its production here. If the country has no data, the data of The Netherlands is shown.<br /><br />The four buttons on top of the line chart allows you to change the type of renewable resource that was used to generate the energy.<br /><br />It is also possible to zoom in, which makes it easier to distinguish lines when closely grouped."><i style="font-size:22px" class="fa" id="informationIcon">&#xf05a;</i></a> Renewable energy production per sector (KTOE)
+            </h4>
           </div>
         </div>
         <div class="row" id="row1">
           <div class="col-md-10 text-right">
-            <button class="btn btn-secondary btn-sm" type="submit">Total</button>
-            <button class="btn btn-light btn-sm" type="submit">Hydro</button>
-            <button class="btn btn-light btn-sm" type="submit">Wind</button>
-            <button class="btn btn-light btn-sm" type="submit">Solar</button>
+            <button id="totalProduction" class="btn btn-secondary btn-sm active" type="submit">Total</button>
+            <button id="hydroProduction" class="btn btn-light btn-sm" type="submit">Hydro</button>
+            <button id="windProduction" class="btn btn-light btn-sm" type="submit">Wind</button>
+            <button id="solarProduction" class="btn btn-light btn-sm" type="submit">Solar</button>
           </div>
         </div>
         <div class="row" id="row2">

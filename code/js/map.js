@@ -99,7 +99,7 @@ function makeMap(mapSelectedYear) {
 
             // Set-up color scale for legend
             colorScaleMap
-                .range(colorbrewer.PuBuGn[7])
+                .range(colorbrewer.YlOrRd[7])
                 .domain([0, 35]);
 
             var colorLegend = d3.legendColor()
@@ -113,6 +113,7 @@ function makeMap(mapSelectedYear) {
             // Position the legend and add it to the map
             let xDistance = mapWidth * 0.125;
             let yDistance = mapHeight - 30;
+
             map.append("g")
               .attr("transform", "translate(" + xDistance + "," + yDistance + ")")
               .call(colorLegend);
@@ -138,11 +139,9 @@ function updateMap(mapSelectedYear) {
         newMapData[d.GEO] = Number(d[newMapYear])
     });
 
-      console.log(newMapData);
-
     // Update scale
     colorScaleMap
-        .range(colorbrewer.PuBuGn[9])
+        .range(colorbrewer.YlOrRd[9])
         .domain([0, 350000]);
 
     // Update map tooltip using the new data
@@ -177,7 +176,7 @@ function appendCountries() {
 
     // Set-up color scale
     colorScaleMap
-        .range(colorbrewer.PuBuGn[9])
+        .range(colorbrewer.YlOrRd[9])
         .domain([0, 350000]);
 
     // Append countries to the map using topoJSON
@@ -200,7 +199,7 @@ function appendCountries() {
         // Add d3-tip functionality
         .on("mouseover", function(d) {
             d3.select(this)
-              .style("stroke", "teal")
+              .style("stroke", "red")
               .style("stroke-width", 0.25)
             mapTip.show(d);
         })
@@ -239,6 +238,6 @@ function updateTitle(year) {
 }
 
 var isNumber = function isNumber(value) {
-   return typeof value === 'number' &&
-   isFinite(value);
+    return typeof value === 'number' &&
+    isFinite(value);
 }

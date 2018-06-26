@@ -81,7 +81,6 @@ function interactivityListeners() {
       console.log("sector button pressed", energySelection, lineSelectedSector, currentGEO);
 
       updateLines(lineSelectedSector, currentGEO);
-
   });
 
 }
