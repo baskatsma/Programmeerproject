@@ -41,6 +41,10 @@ p.project-description {
     font-family: 'Arvo', serif;
 }
 
+p#footerText {
+    font-family: 'Arvo', serif;
+}
+
 .intro-text {
     font-family: 'Fira Sans Condensed', sans-serif;
     font-weight: 400;
