@@ -60,6 +60,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#intro">Intro</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#visOne">Part One</a>
             </li>
             <li class="nav-item">
@@ -89,7 +92,7 @@
                    data-rotate='[ "The story.", "Proceed.", "Discover.", "Learn." ]'>
                 </span>
               </h3>
-              <a href="#visOne" class="btn btn-circle js-scroll-trigger">
+              <a href="#intro" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
               </a>
             </div>
@@ -97,6 +100,25 @@
         </div>
       </div>
     </header>
+
+    <!-- Sources Section -->
+    <section id="intro" class="intro-section content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto" id="introDiv">
+            <h1 id="h1-introduction">Introduction</h1>
+            <p class="p-intro-text">We are nearing the time where coal-fired power plants are closing en masse in the Netherlands. Large amounts of wind farms are manifesting in the North Sea, with many on the planning. What's even better: starting from 2022, subsidy is not needed anymore for energy companies to build financially advantageous wind farms.
+            </p>
+            <p class="p-intro-text">But, what about these statistics at European scale when we scrutinize them? What is the (renewable) energy consumption and production? And over the years? Is our little "kikkerlandje" doing well?
+            </p>
+            <div class="next-button" id="nextButtonOne">
+              <a href="#visOne" class="btn btn-circle js-scroll-trigger">
+              <i class="fa fa-angle-double-down animated"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Visualization One Section -->
     <section id="visOne" class="content-section text-center">
@@ -134,17 +156,15 @@
               <input class="radio-input" type="radio" name="sortSelection" value="percentage" checked="checked"/>
               <label class="radio-label">Sort by: green energy %</label>
             </div>
-
             <div class="form-check text-left">
               <input class="radio-input" type="radio" name="sortSelection" value="name" />
               <label class="radio-label">Sort by: name</label>
             </div>
-            <div id="nextButton">
-              <a href="#visTwo" class="btn btn-success btn-circle js-scroll-trigger">
-              <i class="fa fa-angle-double-down animated" style="color:#696969"></i></a>
+            <div class="next-button" id="nextButtonTwo">
+              <a href="#visTwo" class="btn btn-circle js-scroll-trigger">
+              <i class="fa fa-angle-double-down animated"></i></a>
             </div>
           </div>
-
       </div>
     </section>
 
@@ -186,7 +206,7 @@
     <section id="sources" class="sources-section content-section text-center">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
+          <div class="col-lg-8 mx-auto" id="sourcesDiv">
             <h1>Sources</h1>
             <h6>Data source stacked bar chart visualisation</h6>
             <p><a href="http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=nrg_ind_335a&lang=en" target="_blank">EUROSTAT - Table nrg_ind_335a</a></p>

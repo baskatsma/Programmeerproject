@@ -28,6 +28,12 @@ h6 {
 h1.brand-heading {
     font-family: 'Dosis', Helvetica, Arial, sans-serif;
     font-weight: 700;
+    text-shadow: 0.1px 0.1px 105px #00ff99;
+    margin: 0 0 36px;
+}
+
+#h1-introduction {
+    padding-top: 100px !important;
 }
 
 p {
@@ -43,6 +49,12 @@ p.project-description {
 
 p#footerText {
     font-family: 'Arvo', serif;
+}
+
+p.p-intro-text {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
 }
 
 .intro-text {
@@ -203,6 +215,10 @@ a:focus, a:hover {
   }
 }
 
+#introDiv {
+    height: calc(80vh);
+}
+
 .btn-circle {
     font-size: 26px;
     width: 55px;
@@ -224,16 +240,20 @@ a:focus, a:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.content-section, #nextButton {
+.content-section, #nextButtonTwo {
     padding-top: 50px !important;
     padding-bottom: 50px !important;
+}
+
+#nextButtonOne {
+    padding-top: calc(15vh);
 }
 
 #informationIcon {
     color: teal !important;
 }
 
-#nextButton .btn-circle {
+.next-button .btn-circle {
     border: 2px solid #696969 !important;
     color: #696969;
     outline: none;
@@ -244,14 +264,17 @@ a:focus, a:hover {
     font-size: 23px;
 }
 
-.sources-section {
-    color: white;
-    background-color: black;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+/* .intro-section {
+    background: url("../img/biel-morro-235394-unsplash.jpg") no-repeat bottom center scroll;
+    /* -webkit-background-size: 300px 100px;
+    -moz-background-size: 300px 100px;
+    -o-background-size: 300px 100px;
+    background-size: 300px 100px; */
 }
+
+.intro-section img {
+    width: 100%;
+} */
 
 @media (min-width: 992px) {
   .content-section {
