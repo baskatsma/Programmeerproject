@@ -2,7 +2,7 @@
  *  Programmeerproject
  *  main.js
  *
- *  Loads barchart, map, and line chart, and registers button/slider changes.
+ *  Loads barchart, map, and line chart, and registers button changes.
  *
  *  Name: Bas Katsma
  *  Student 10787690
@@ -28,8 +28,8 @@ var w;
 document.addEventListener("DOMContentLoaded", function() {
 
     // Grab window dimensions
-    w = document.documentElement.clientWidth;
-    h = document.documentElement.clientHeight;
+    w = window.innerWidth;
+    h = window.innerHeight;
 
     // Load default chart
     makeChart(defaultSector);

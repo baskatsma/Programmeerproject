@@ -1,12 +1,15 @@
 /*
+ *  Programmeerproject
  *  textAnimation.js
+ *
+ *  Displays a nice "typing" animation at the frontpage.
  *
  *  Name: Bas Katsma
  *  Student 10787690
  *
+ *  Full credits to: https://speckyboy.com/css-javascript-text-animation-snippets/
+ *
  */
-
-// Inspired by: https://speckyboy.com/css-javascript-text-animation-snippets/
 
 var TxtRotate = function(element, toRotate, period) {
     this.toRotate = toRotate;
@@ -61,7 +64,7 @@ window.onload = function() {
         }
     }
 
-    // INJECT CSS
+    // Inject CSS
     var css = document.createElement("style");
     css.type = "text/css";
     css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";

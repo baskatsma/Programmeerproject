@@ -1,5 +1,8 @@
 /*
+ *  Programmeerproject
  *  interactivity.js
+ *
+ *  Listens to click events for the buttons, using JQuery.
  *
  *  Name: Bas Katsma
  *  Student 10787690
@@ -13,9 +16,11 @@ function interactivityListeners() {
 
       // Prevent skipping to top of page
       event.preventDefault();
-      
+
       })
   .popover({
+
+      // Allow the user to click anywhere to disable the pop-over
       trigger: "focus"
   });
 
@@ -80,5 +85,4 @@ function interactivityListeners() {
 
       updateLines(lineSelectedSector, currentGEO);
   });
-
 }

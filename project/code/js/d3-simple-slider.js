@@ -1,12 +1,17 @@
 /*
- *  flip.js
+ *  Programmeerproject
+ *  d3-simple-slider.js
+ *
+ *  Style-only tweaked version of John Walley's d3-simple-slider.
  *
  *  Name: Bas Katsma
  *  Student 10787690
  *
+ *  https://github.com/johnwalley/d3-simple-slider Version 0.2.1.
+ *  Copyright 2018 John Walley.
+ *
  */
 
- // https://github.com/johnwalley/d3-simple-slider Version 0.2.1. Copyright 2018 John Walley.
  (function (global, factory) {
  	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-array'), require('d3-axis'), require('d3-dispatch'), require('d3-drag'), require('d3-ease'), require('d3-scale'), require('d3-selection')) :
  	typeof define === 'function' && define.amd ? define(['exports', 'd3-array', 'd3-axis', 'd3-dispatch', 'd3-drag', 'd3-ease', 'd3-scale', 'd3-selection'], factory) :

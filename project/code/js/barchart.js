@@ -55,7 +55,8 @@ var barTip = d3.tip()
     .attr("id", "barTooltip")
     .offset([-10, 115])
     .html(function(d) {
-        return "Energy usage: " + "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>";
+        return "Energy usage: " + "<strong>" + formatDecimal((d[1]-d[0]) * 100) +
+        "%" + "</strong>";
     });
 
 function makeChart(chartSelectedSector) {
@@ -235,14 +236,18 @@ function updateBarTooltip(barColor) {
     if (barColor.r == 204) {
 
         barTip.html(function(d) {
-            return "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>" + " of the used energy in this sector" + "<br>" + "comes from non-renewable resources :(";
+            return "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" +
+            "</strong>" + " of the used energy in this sector" + "<br>" +
+            "comes from non-renewable resources :(";
         });
 
     // It must be green (renewable energy)
     } else {
 
         barTip.html(function(d) {
-            return "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" + "</strong>" + " of the used energy in this sector" + "<br>" + "comes from renewable resources :)";
+            return "<strong>" + formatDecimal((d[1]-d[0]) * 100) + "%" +
+            "</strong>" + " of the used energy in this sector" + "<br>" +
+            "comes from renewable resources :)";
         });
     }
 }

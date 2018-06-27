@@ -87,7 +87,8 @@ function makeMapCore(error, europeData, energyUsageData) {
             mapTooltipText = "unknown";
         }
 
-        return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage:</strong> " + mapTooltipText;
+        return "<strong>Country:</strong> " + d.properties.NAME + "<br>" +
+        "<strong>Energy usage:</strong> " + mapTooltipText;
     });
 
     // Apply dimensions to the SVG
@@ -164,7 +165,8 @@ function updateMap(mapSelectedYear) {
             mapTooltipText = "unknown";
         }
 
-        return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage:</strong> " + mapTooltipText;
+        return "<strong>Country:</strong> " + d.properties.NAME + "<br>" +
+        "<strong>Energy usage:</strong> " + mapTooltipText;
     });
 
     // Update map data and color
@@ -175,8 +177,8 @@ function updateMap(mapSelectedYear) {
               return "slategrey";
           } else {
               return colorScaleMap(newMapData[d.id])
-          };
-    })
+          }
+      });
 
     // Update title
     updateTitle(newMapYear);
@@ -203,7 +205,7 @@ function appendCountries() {
               return "slategrey";
           } else {
               return colorScaleMap(storeData[d.id])
-          };
+          }
       })
 
       // Add effects on mouseover/-out and add d3-tip functionality

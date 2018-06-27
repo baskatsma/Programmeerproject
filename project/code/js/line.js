@@ -78,8 +78,8 @@ var circleTip = d3.tip()
         let yearOnly = d.year.toISOString().substring(0, 4);
         let yearOnlyCorrected = String(Number(yearOnly) + 1);
 
-        return energySelection.bold() + " (" + yearOnlyCorrected.bold() + ")" +
-        ": " + formatThousandDecimal(d.production) + " KTOE";
+        return energySelection.bold() + " (" + yearOnlyCorrected.bold() +
+        ")" + ": " + formatThousandDecimal(d.production) + " KTOE";
     });
 
 function makeLineGraph(chosenGEO) {
@@ -331,11 +331,11 @@ function formatData(data, currentGEO) {
 
     // If the country is not in the data list file, use NL
     if (containsCountry(allCountries, currentGEO)) {
-        return currentGEO
+        return currentGEO;
 
     } else {
         currentGEO = "NL";
-        return currentGEO
+        return currentGEO;
     }
 }
 
