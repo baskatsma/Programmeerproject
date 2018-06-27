@@ -2,7 +2,7 @@
  *  Programmeerproject
  *  main.js
  *
- *  Loads barchart, map, and line chart.
+ *  Loads barchart, map, and line chart, and registers button/slider changes.
  *
  *  Name: Bas Katsma
  *  Student 10787690

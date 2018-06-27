@@ -10,7 +10,10 @@ function interactivityListeners() {
 
   // Add an event listener for the popover description button
   $('[data-toggle="popover"]').on("click", function(event) {
+
+      // Prevent skipping to top of page
       event.preventDefault();
+      
       })
   .popover({
       trigger: "focus"
@@ -19,7 +22,7 @@ function interactivityListeners() {
   // Add an event listener for the year selector button
   $(".dropdown-item").on("click", function(event) {
 
-      // Don't follow href
+      // Prevent skipping to top of page
       event.preventDefault();
 
       dropdownSelection = $(this).text();
@@ -40,25 +43,21 @@ function interactivityListeners() {
           chartSelectedSector = heatcoolJSON;
       }
 
-      console.log("sector dropdown used", dropdownSelection, chartSelectedSector, chartSelectedYear);
-
       updateChart(chartSelectedSector, chartSelectedYear);
   });
 
   // Add an event listener for the sort selection buttons
   $("input[name=sortSelection]").change(function() {
 
+      // Extract value of radio button and update chart
       sortSelectionValue = $(this).val();
-
-      console.log("radio button pressed", sortSelectionValue, chartSelectedYear, chartSelectedSector);
-
       updateChart(chartSelectedSector, chartSelectedYear);
   });
 
   // Add an event listener for the sector buttons
   $(".btn-sm").on("click", function(event) {
 
-      // Don't follow href
+      // Prevent skipping to top of page
       event.preventDefault();
 
       energySelection = $(this).text();
@@ -78,8 +77,6 @@ function interactivityListeners() {
       if (energySelection == "Solar") {
           lineSelectedSector = solarProductionJSON;
       }
-
-      console.log("sector button pressed", energySelection, lineSelectedSector, currentGEO);
 
       updateLines(lineSelectedSector, currentGEO);
   });

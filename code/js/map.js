@@ -90,7 +90,7 @@ function makeMapCore(error, europeData, energyUsageData) {
         return "<strong>Country:</strong> " + d.properties.NAME + "<br>" + "<strong>Energy usage:</strong> " + mapTooltipText;
     });
 
-    // Append measurements to the map
+    // Apply dimensions to the SVG
     map = d3.select(".map")
       .append("svg")
       .attr("height", mapHeight)
@@ -221,10 +221,9 @@ function appendCountries() {
 
       // Add update function on "click"
       .on("click", function(d) {
+
+          // Get name of country and update line chart to highlight it
           var mapSelectedCountry = d.id;
-
-          console.log("country selected from map", mapSelectedCountry, lineSelectedSector);
-
           updateLines(lineSelectedSector, mapSelectedCountry); });
 }
 

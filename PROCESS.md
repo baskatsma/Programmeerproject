@@ -75,3 +75,7 @@ as far as I know, so now I will work on the website and make that pretty.
 - Allow visualisations to scale, which makes it better at different resolutions
 - Website CSS tweaks
 - Repository tweaks
+
+## day 17 (Tue 26 Jun)
+- Added description text
+- Code clean-up (comments, style, more functions, etc.)

@@ -37,7 +37,6 @@ var chartY = d3.scaleLinear();
 
 // Define Z axis (series)
 var chartZ = d3.scaleOrdinal()
-    // .range(["#006666", "rgb(240,240,240)"]);
     .range(["#006600", "#cccccc"]);
 
 var xAxisBar;
@@ -77,16 +76,15 @@ function makeChart(chartSelectedSector) {
 
     d3.json(chartSelectedSector, function(error, data) {
 
-        // Log any errors
         if (error) throw error;
 
         // Append measurements to the chart and create SVG
         barchart = d3.select(".barchart")
-            .append("svg")
-            .attr("height", chartHeight + chartMargin.bottom)
-            .attr("width", chartWidth + chartMargin.right)
-            g = barchart.append("g")
-              .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
+          .append("svg")
+          .attr("height", chartHeight + chartMargin.bottom)
+          .attr("width", chartWidth + chartMargin.right)
+          g = barchart.append("g")
+            .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
 
         // Format and calculate data
         data.forEach(function(d) {
@@ -175,7 +173,6 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
     // Load new data
     d3.json(chartSelectedSector, function(error, data) {
 
-        // Log any errors
         if (error) throw error;
 
         // Update and calculate data
@@ -260,12 +257,8 @@ function addSlider() {
       .width(440)
       .tickFormat(d3.format(""))
       .on("onchange", val => {
-
           // Update map and barchart on slider change
           chartSelectedYear = val;
-
-          console.log("slider value changed", chartSelectedYear, chartSelectedSector);
-
           updateChart(chartSelectedSector, chartSelectedYear);
           updateMap(chartSelectedYear); });
 
@@ -310,7 +303,6 @@ function addLegend(year) {
 
     // Add a year
     barchartTextField.append("text")
-      .attr("x", xPos - 28)
       .attr("y", yPos - 70)
       .attr("text-anchor", "left")
       .attr("class", "titleText")
@@ -349,7 +341,7 @@ function updateLegend() {
 
     // Update sector text
     getSectorText();
-    
+
     barchartTextField.select(".titleText")
       .text(chartSelectedYear);
 

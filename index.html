@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="code/css/barchart.css">
     <link rel="stylesheet" type="text/css" href="code/css/line.css">
     <link rel="stylesheet" type="text/css" href="code/css/map.css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo|Dosis" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed|Oswald|Roboto+Condensed" rel="stylesheet">
     <script src="code/js/interactivity.js" type="text/javascript"></script>
@@ -65,7 +66,7 @@
               <a class="nav-link js-scroll-trigger" href="#visTwo">Part Two</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+              <a class="nav-link js-scroll-trigger" href="#sources">Sources</a>
             </li>
           </ul>
         </div>
@@ -102,7 +103,7 @@
       <div class="container-fluid">
         <div class="row" id="rowText">
           <div class="col-lg-12 mx-auto">
-            <h2><a tabindex="0" href="#" data-html="true" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="STACKED BARCHART" id="descriptionBarchart" class="description" data-content="In the figure below, a stacked bar chart in regard to the energy usage per sector is shown.<br /><br />The energy usage is divided into two stacks: energy that has been produced using renewable resources (green energy), and energy from non-renewable resources (grey — “normal” — energy).<br /><br />The dropdown menu allows you to change the sector, and the slider enables the user to change the energy usage for that year. To view the exact percentage, hover over the bars. Lastly, it is possible to change the sorting mechanism: either alphabetically, or based on the % green energy."><i style="font-size:30px" class="fa" id="informationIcon">&#xf05a;</i></a> (Non-)renewable energy usage per sector (%)
+            <h2><a tabindex="0" href="#" data-html="true" data-trigger="focus" data-toggle="popover" data-placement="bottom" animation=true title="STACKED BAR CHART" id="descriptionBarchart" class="description" data-content="In the figure below, a stacked bar chart in regard to the energy usage per sector is shown.<br /><br />The energy usage is divided into two stacks: energy that has been produced using renewable resources (green energy), and energy from non-renewable resources (grey — “normal” — energy).<br /><br />The dropdown menu allows you to change the sector, and the slider enables the user to change the energy usage for that year. To view the exact percentage, hover over the bars. Lastly, it is possible to change the sorting mechanism: either alphabetically, or based on the % green energy."><i style="font-size:30px" class="fa" id="informationIcon">&#xf05a;</i></a> (Non-)renewable energy usage per sector (%)
             </h2>
           </div>
         </div>
@@ -181,24 +182,30 @@
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section content-section text-center">
+    <!-- Sources Section -->
+    <section id="sources" class="sources-section content-section text-center">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Text</h2>
-            <p>More text</p>
+            <h1>Sources</h1>
+            <h6>Data source stacked bar chart visualisation</h6>
+            <p><a href="http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=nrg_ind_335a&lang=en" target="_blank">EUROSTAT - Table nrg_ind_335a</a></p>
+            <h6>Data sources map visualisation</h6>
+            <p><a href="http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=nrg_100a&lang=en" target="_blank">EUROSTAT - Table nrg_100a</a><br>
+              <a href="https://github.com/jesion/d3js-flight-connections-map/blob/master/src/europe.json" target="_blank">GitHub - europe.json</a></p>
+            <h6>Data source line chart visualisation</h6>
+            <p><a href="http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=ten00081&lang=en" target="_blank">EUROSTAT - Table ten00081</a></p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <!-- <footer>
+    <footer>
       <div class="container mx-auto">
-        <p>Copyright &copy; me, bitch (2018)</p>
+        <p>Bas Katsma, Programmeerproject (2018). Student #10787690.</p>
       </div>
-    </footer> -->
+    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="bootstrap/vendor/jquery/jquery.min.js"></script>
