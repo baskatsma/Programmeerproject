@@ -1,0 +1,34 @@
+/*
+ *  map.css
+ *
+ *  Name: Bas Katsma
+ *  Student 10787690
+ *
+ */
+
+#mapDiv {
+    margin-top: 2.5em;
+    text-align: right;
+}
+
+text.label, text.legendText {
+    font: 16px 'Roboto Condensed';
+}
+
+#mapDiv text.titleText {
+    font: 106px 'Oswald';
+}
+
+.country {
+    stroke: silver;
+    stroke-width: 0.25px;
+}
+
+#mapDiv path:hover {
+    fill-opacity: .5;
+}
+
+#mapTooltip {
+    width: 240px;
+    text-align: left;
+}

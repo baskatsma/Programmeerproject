@@ -1,0 +1,1382 @@
+[
+    {
+        "GEO": "BE",
+        "GEO_TIME": "Belgium",
+        "values": [
+            {
+                "year": "2007",
+                "production": "42.2"
+            },
+            {
+                "year": "2008",
+                "production": "54.8"
+            },
+            {
+                "year": "2009",
+                "production": "85.6"
+            },
+            {
+                "year": "2010",
+                "production": "111.1"
+            },
+            {
+                "year": "2011",
+                "production": "198.8"
+            },
+            {
+                "year": "2012",
+                "production": "236.5"
+            },
+            {
+                "year": "2013",
+                "production": "315.1"
+            },
+            {
+                "year": "2014",
+                "production": "396.8"
+            },
+            {
+                "year": "2015",
+                "production": "479.3"
+            },
+            {
+                "year": "2016",
+                "production": "467.4"
+            }
+        ]
+    },
+    {
+        "GEO": "BG",
+        "GEO_TIME": "Bulgaria",
+        "values": [
+            {
+                "year": "2007",
+                "production": "4"
+            },
+            {
+                "year": "2008",
+                "production": "10.5"
+            },
+            {
+                "year": "2009",
+                "production": "20.4"
+            },
+            {
+                "year": "2010",
+                "production": "58.6"
+            },
+            {
+                "year": "2011",
+                "production": "74"
+            },
+            {
+                "year": "2012",
+                "production": "105"
+            },
+            {
+                "year": "2013",
+                "production": "118.1"
+            },
+            {
+                "year": "2014",
+                "production": "114.4"
+            },
+            {
+                "year": "2015",
+                "production": "124.8"
+            },
+            {
+                "year": "2016",
+                "production": "122.5"
+            }
+        ]
+    },
+    {
+        "GEO": "CZ",
+        "GEO_TIME": "Czech Republic",
+        "values": [
+            {
+                "year": "2007",
+                "production": "10.7"
+            },
+            {
+                "year": "2008",
+                "production": "21.1"
+            },
+            {
+                "year": "2009",
+                "production": "24.8"
+            },
+            {
+                "year": "2010",
+                "production": "28.8"
+            },
+            {
+                "year": "2011",
+                "production": "34.1"
+            },
+            {
+                "year": "2012",
+                "production": "35.8"
+            },
+            {
+                "year": "2013",
+                "production": "41.4"
+            },
+            {
+                "year": "2014",
+                "production": "41"
+            },
+            {
+                "year": "2015",
+                "production": "49.3"
+            },
+            {
+                "year": "2016",
+                "production": "42.7"
+            }
+        ]
+    },
+    {
+        "GEO": "DK",
+        "GEO_TIME": "Denmark",
+        "values": [
+            {
+                "year": "2007",
+                "production": "616.6"
+            },
+            {
+                "year": "2008",
+                "production": "595.7"
+            },
+            {
+                "year": "2009",
+                "production": "577.9"
+            },
+            {
+                "year": "2010",
+                "production": "671.5"
+            },
+            {
+                "year": "2011",
+                "production": "840.4"
+            },
+            {
+                "year": "2012",
+                "production": "883.1"
+            },
+            {
+                "year": "2013",
+                "production": "956.4"
+            },
+            {
+                "year": "2014",
+                "production": "1124.6"
+            },
+            {
+                "year": "2015",
+                "production": "1215.2"
+            },
+            {
+                "year": "2016",
+                "production": "1099.1"
+            }
+        ]
+    },
+    {
+        "GEO": "DE",
+        "GEO_TIME": "Germany",
+        "values": [
+            {
+                "year": "2007",
+                "production": "3414.7"
+            },
+            {
+                "year": "2008",
+                "production": "3488.7"
+            },
+            {
+                "year": "2009",
+                "production": "3323"
+            },
+            {
+                "year": "2010",
+                "production": "3249.6"
+            },
+            {
+                "year": "2011",
+                "production": "4203.2"
+            },
+            {
+                "year": "2012",
+                "production": "4356.8"
+            },
+            {
+                "year": "2013",
+                "production": "4446.1"
+            },
+            {
+                "year": "2014",
+                "production": "4931.8"
+            },
+            {
+                "year": "2015",
+                "production": "6810.5"
+            },
+            {
+                "year": "2016",
+                "production": "6758.2"
+            }
+        ]
+    },
+    {
+        "GEO": "EE",
+        "GEO_TIME": "Estonia",
+        "values": [
+            {
+                "year": "2007",
+                "production": "7.8"
+            },
+            {
+                "year": "2008",
+                "production": "11.4"
+            },
+            {
+                "year": "2009",
+                "production": "16.8"
+            },
+            {
+                "year": "2010",
+                "production": "23.8"
+            },
+            {
+                "year": "2011",
+                "production": "31.6"
+            },
+            {
+                "year": "2012",
+                "production": "37.3"
+            },
+            {
+                "year": "2013",
+                "production": "45.5"
+            },
+            {
+                "year": "2014",
+                "production": "51.9"
+            },
+            {
+                "year": "2015",
+                "production": "61.5"
+            },
+            {
+                "year": "2016",
+                "production": "51.1"
+            }
+        ]
+    },
+    {
+        "GEO": "IE",
+        "GEO_TIME": "Ireland",
+        "values": [
+            {
+                "year": "2007",
+                "production": "168.4"
+            },
+            {
+                "year": "2008",
+                "production": "207.2"
+            },
+            {
+                "year": "2009",
+                "production": "254.1"
+            },
+            {
+                "year": "2010",
+                "production": "242"
+            },
+            {
+                "year": "2011",
+                "production": "376.6"
+            },
+            {
+                "year": "2012",
+                "production": "344.8"
+            },
+            {
+                "year": "2013",
+                "production": "390.5"
+            },
+            {
+                "year": "2014",
+                "production": "442"
+            },
+            {
+                "year": "2015",
+                "production": "565.2"
+            },
+            {
+                "year": "2016",
+                "production": "528.7"
+            }
+        ]
+    },
+    {
+        "GEO": "EL",
+        "GEO_TIME": "Greece",
+        "values": [
+            {
+                "year": "2007",
+                "production": "156.3"
+            },
+            {
+                "year": "2008",
+                "production": "192.8"
+            },
+            {
+                "year": "2009",
+                "production": "218.7"
+            },
+            {
+                "year": "2010",
+                "production": "233.4"
+            },
+            {
+                "year": "2011",
+                "production": "285"
+            },
+            {
+                "year": "2012",
+                "production": "331"
+            },
+            {
+                "year": "2013",
+                "production": "355.9"
+            },
+            {
+                "year": "2014",
+                "production": "317.2"
+            },
+            {
+                "year": "2015",
+                "production": "397.3"
+            },
+            {
+                "year": "2016",
+                "production": "442.5"
+            }
+        ]
+    },
+    {
+        "GEO": "ES",
+        "GEO_TIME": "Spain",
+        "values": [
+            {
+                "year": "2007",
+                "production": "2370.4"
+            },
+            {
+                "year": "2008",
+                "production": "2832.8"
+            },
+            {
+                "year": "2009",
+                "production": "3277.5"
+            },
+            {
+                "year": "2010",
+                "production": "3806.6"
+            },
+            {
+                "year": "2011",
+                "production": "3690.3"
+            },
+            {
+                "year": "2012",
+                "production": "4253.8"
+            },
+            {
+                "year": "2013",
+                "production": "4784.7"
+            },
+            {
+                "year": "2014",
+                "production": "4472.3"
+            },
+            {
+                "year": "2015",
+                "production": "4241.2"
+            },
+            {
+                "year": "2016",
+                "production": "4205.2"
+            }
+        ]
+    },
+    {
+        "GEO": "FR",
+        "GEO_TIME": "France",
+        "values": [
+            {
+                "year": "2007",
+                "production": "350"
+            },
+            {
+                "year": "2008",
+                "production": "489.6"
+            },
+            {
+                "year": "2009",
+                "production": "680.3"
+            },
+            {
+                "year": "2010",
+                "production": "855.1"
+            },
+            {
+                "year": "2011",
+                "production": "1036.3"
+            },
+            {
+                "year": "2012",
+                "production": "1282.3"
+            },
+            {
+                "year": "2013",
+                "production": "1378.6"
+            },
+            {
+                "year": "2014",
+                "production": "1483.1"
+            },
+            {
+                "year": "2015",
+                "production": "1827.1"
+            },
+            {
+                "year": "2016",
+                "production": "1840.1"
+            }
+        ]
+    },
+    {
+        "GEO": "HR",
+        "GEO_TIME": "Croatia",
+        "values": [
+            {
+                "year": "2007",
+                "production": "3"
+            },
+            {
+                "year": "2008",
+                "production": "3.4"
+            },
+            {
+                "year": "2009",
+                "production": "4.6"
+            },
+            {
+                "year": "2010",
+                "production": "12"
+            },
+            {
+                "year": "2011",
+                "production": "17.3"
+            },
+            {
+                "year": "2012",
+                "production": "28.3"
+            },
+            {
+                "year": "2013",
+                "production": "44.5"
+            },
+            {
+                "year": "2014",
+                "production": "62.8"
+            },
+            {
+                "year": "2015",
+                "production": "68.4"
+            },
+            {
+                "year": "2016",
+                "production": "87.2"
+            }
+        ]
+    },
+    {
+        "GEO": "IT",
+        "GEO_TIME": "Italy",
+        "values": [
+            {
+                "year": "2007",
+                "production": "346.9"
+            },
+            {
+                "year": "2008",
+                "production": "418"
+            },
+            {
+                "year": "2009",
+                "production": "562.6"
+            },
+            {
+                "year": "2010",
+                "production": "784.7"
+            },
+            {
+                "year": "2011",
+                "production": "847.5"
+            },
+            {
+                "year": "2012",
+                "production": "1152.8"
+            },
+            {
+                "year": "2013",
+                "production": "1280.9"
+            },
+            {
+                "year": "2014",
+                "production": "1305.1"
+            },
+            {
+                "year": "2015",
+                "production": "1276.4"
+            },
+            {
+                "year": "2016",
+                "production": "1521"
+            }
+        ]
+    },
+    {
+        "GEO": "CY",
+        "GEO_TIME": "Cyprus",
+        "values": [
+            {
+                "year": "2007",
+                "production": "0"
+            },
+            {
+                "year": "2008",
+                "production": "0"
+            },
+            {
+                "year": "2009",
+                "production": "0"
+            },
+            {
+                "year": "2010",
+                "production": "2.7"
+            },
+            {
+                "year": "2011",
+                "production": "9.8"
+            },
+            {
+                "year": "2012",
+                "production": "15.9"
+            },
+            {
+                "year": "2013",
+                "production": "19.9"
+            },
+            {
+                "year": "2014",
+                "production": "15.6"
+            },
+            {
+                "year": "2015",
+                "production": "19"
+            },
+            {
+                "year": "2016",
+                "production": "19.4"
+            }
+        ]
+    },
+    {
+        "GEO": "LV",
+        "GEO_TIME": "Latvia",
+        "values": [
+            {
+                "year": "2007",
+                "production": "4.6"
+            },
+            {
+                "year": "2008",
+                "production": "5.1"
+            },
+            {
+                "year": "2009",
+                "production": "4.3"
+            },
+            {
+                "year": "2010",
+                "production": "4.2"
+            },
+            {
+                "year": "2011",
+                "production": "6.1"
+            },
+            {
+                "year": "2012",
+                "production": "9.8"
+            },
+            {
+                "year": "2013",
+                "production": "10.3"
+            },
+            {
+                "year": "2014",
+                "production": "12.1"
+            },
+            {
+                "year": "2015",
+                "production": "12.6"
+            },
+            {
+                "year": "2016",
+                "production": "11"
+            }
+        ]
+    },
+    {
+        "GEO": "LT",
+        "GEO_TIME": "Lithuania",
+        "values": [
+            {
+                "year": "2007",
+                "production": "9.1"
+            },
+            {
+                "year": "2008",
+                "production": "11.3"
+            },
+            {
+                "year": "2009",
+                "production": "13.6"
+            },
+            {
+                "year": "2010",
+                "production": "19.3"
+            },
+            {
+                "year": "2011",
+                "production": "40.8"
+            },
+            {
+                "year": "2012",
+                "production": "46.4"
+            },
+            {
+                "year": "2013",
+                "production": "51.8"
+            },
+            {
+                "year": "2014",
+                "production": "54.9"
+            },
+            {
+                "year": "2015",
+                "production": "69.6"
+            },
+            {
+                "year": "2016",
+                "production": "97.7"
+            }
+        ]
+    },
+    {
+        "GEO": "LU",
+        "GEO_TIME": "Luxembourg",
+        "values": [
+            {
+                "year": "2007",
+                "production": "5.5"
+            },
+            {
+                "year": "2008",
+                "production": "5.2"
+            },
+            {
+                "year": "2009",
+                "production": "5.4"
+            },
+            {
+                "year": "2010",
+                "production": "4.7"
+            },
+            {
+                "year": "2011",
+                "production": "5.5"
+            },
+            {
+                "year": "2012",
+                "production": "6.6"
+            },
+            {
+                "year": "2013",
+                "production": "7.1"
+            },
+            {
+                "year": "2014",
+                "production": "6.9"
+            },
+            {
+                "year": "2015",
+                "production": "8.8"
+            },
+            {
+                "year": "2016",
+                "production": "8.7"
+            }
+        ]
+    },
+    {
+        "GEO": "HU",
+        "GEO_TIME": "Hungary",
+        "values": [
+            {
+                "year": "2007",
+                "production": "9.5"
+            },
+            {
+                "year": "2008",
+                "production": "17.6"
+            },
+            {
+                "year": "2009",
+                "production": "28.5"
+            },
+            {
+                "year": "2010",
+                "production": "45.9"
+            },
+            {
+                "year": "2011",
+                "production": "53.8"
+            },
+            {
+                "year": "2012",
+                "production": "66.2"
+            },
+            {
+                "year": "2013",
+                "production": "61.7"
+            },
+            {
+                "year": "2014",
+                "production": "56.5"
+            },
+            {
+                "year": "2015",
+                "production": "59.6"
+            },
+            {
+                "year": "2016",
+                "production": "58.8"
+            }
+        ]
+    },
+    {
+        "GEO": "MT",
+        "GEO_TIME": "Malta",
+        "values": [
+            {
+                "year": "2007",
+                "production": "0"
+            },
+            {
+                "year": "2008",
+                "production": "0"
+            },
+            {
+                "year": "2009",
+                "production": "0"
+            },
+            {
+                "year": "2010",
+                "production": "0"
+            },
+            {
+                "year": "2011",
+                "production": "0"
+            },
+            {
+                "year": "2012",
+                "production": "0"
+            },
+            {
+                "year": "2013",
+                "production": "0"
+            },
+            {
+                "year": "2014",
+                "production": "0"
+            },
+            {
+                "year": "2015",
+                "production": "0"
+            },
+            {
+                "year": "2016",
+                "production": "0"
+            }
+        ]
+    },
+    {
+        "GEO": "NL",
+        "GEO_TIME": "Netherlands",
+        "values": [
+            {
+                "year": "2007",
+                "production": "295.6"
+            },
+            {
+                "year": "2008",
+                "production": "366.3"
+            },
+            {
+                "year": "2009",
+                "production": "393.9"
+            },
+            {
+                "year": "2010",
+                "production": "343.4"
+            },
+            {
+                "year": "2011",
+                "production": "438.6"
+            },
+            {
+                "year": "2012",
+                "production": "428.3"
+            },
+            {
+                "year": "2013",
+                "production": "483.8"
+            },
+            {
+                "year": "2014",
+                "production": "498.5"
+            },
+            {
+                "year": "2015",
+                "production": "649.2"
+            },
+            {
+                "year": "2016",
+                "production": "702.5"
+            }
+        ]
+    },
+    {
+        "GEO": "AT",
+        "GEO_TIME": "Austria",
+        "values": [
+            {
+                "year": "2007",
+                "production": "175.2"
+            },
+            {
+                "year": "2008",
+                "production": "172.9"
+            },
+            {
+                "year": "2009",
+                "production": "168"
+            },
+            {
+                "year": "2010",
+                "production": "177.5"
+            },
+            {
+                "year": "2011",
+                "production": "166.5"
+            },
+            {
+                "year": "2012",
+                "production": "211.7"
+            },
+            {
+                "year": "2013",
+                "production": "271.1"
+            },
+            {
+                "year": "2014",
+                "production": "330.7"
+            },
+            {
+                "year": "2015",
+                "production": "416.2"
+            },
+            {
+                "year": "2016",
+                "production": "450.1"
+            }
+        ]
+    },
+    {
+        "GEO": "PL",
+        "GEO_TIME": "Poland",
+        "values": [
+            {
+                "year": "2007",
+                "production": "44.9"
+            },
+            {
+                "year": "2008",
+                "production": "72"
+            },
+            {
+                "year": "2009",
+                "production": "92.6"
+            },
+            {
+                "year": "2010",
+                "production": "143.1"
+            },
+            {
+                "year": "2011",
+                "production": "275.6"
+            },
+            {
+                "year": "2012",
+                "production": "408.2"
+            },
+            {
+                "year": "2013",
+                "production": "516.3"
+            },
+            {
+                "year": "2014",
+                "production": "660"
+            },
+            {
+                "year": "2015",
+                "production": "933.6"
+            },
+            {
+                "year": "2016",
+                "production": "1082.4"
+            }
+        ]
+    },
+    {
+        "GEO": "PT",
+        "GEO_TIME": "Portugal",
+        "values": [
+            {
+                "year": "2007",
+                "production": "347.1"
+            },
+            {
+                "year": "2008",
+                "production": "495"
+            },
+            {
+                "year": "2009",
+                "production": "651.5"
+            },
+            {
+                "year": "2010",
+                "production": "789.5"
+            },
+            {
+                "year": "2011",
+                "production": "787.7"
+            },
+            {
+                "year": "2012",
+                "production": "882.1"
+            },
+            {
+                "year": "2013",
+                "production": "1033"
+            },
+            {
+                "year": "2014",
+                "production": "1041.4"
+            },
+            {
+                "year": "2015",
+                "production": "998"
+            },
+            {
+                "year": "2016",
+                "production": "1072.6"
+            }
+        ]
+    },
+    {
+        "GEO": "RO",
+        "GEO_TIME": "Romania",
+        "values": [
+            {
+                "year": "2007",
+                "production": "0.3"
+            },
+            {
+                "year": "2008",
+                "production": "0.4"
+            },
+            {
+                "year": "2009",
+                "production": "0.8"
+            },
+            {
+                "year": "2010",
+                "production": "26.3"
+            },
+            {
+                "year": "2011",
+                "production": "119.3"
+            },
+            {
+                "year": "2012",
+                "production": "227"
+            },
+            {
+                "year": "2013",
+                "production": "388.7"
+            },
+            {
+                "year": "2014",
+                "production": "533.2"
+            },
+            {
+                "year": "2015",
+                "production": "607.3"
+            },
+            {
+                "year": "2016",
+                "production": "566.6"
+            }
+        ]
+    },
+    {
+        "GEO": "SI",
+        "GEO_TIME": "Slovenia",
+        "values": [
+            {
+                "year": "2007",
+                "production": "0"
+            },
+            {
+                "year": "2008",
+                "production": "0"
+            },
+            {
+                "year": "2009",
+                "production": "0"
+            },
+            {
+                "year": "2010",
+                "production": "0"
+            },
+            {
+                "year": "2011",
+                "production": "0"
+            },
+            {
+                "year": "2012",
+                "production": "0"
+            },
+            {
+                "year": "2013",
+                "production": "0.3"
+            },
+            {
+                "year": "2014",
+                "production": "0.3"
+            },
+            {
+                "year": "2015",
+                "production": "0.5"
+            },
+            {
+                "year": "2016",
+                "production": "0.5"
+            }
+        ]
+    },
+    {
+        "GEO": "SK",
+        "GEO_TIME": "Slovakia",
+        "values": [
+            {
+                "year": "2007",
+                "production": "0.7"
+            },
+            {
+                "year": "2008",
+                "production": "0.6"
+            },
+            {
+                "year": "2009",
+                "production": "0.5"
+            },
+            {
+                "year": "2010",
+                "production": "0.5"
+            },
+            {
+                "year": "2011",
+                "production": "0.4"
+            },
+            {
+                "year": "2012",
+                "production": "0.5"
+            },
+            {
+                "year": "2013",
+                "production": "0.5"
+            },
+            {
+                "year": "2014",
+                "production": "0.5"
+            },
+            {
+                "year": "2015",
+                "production": "0.5"
+            },
+            {
+                "year": "2016",
+                "production": "0.5"
+            }
+        ]
+    },
+    {
+        "GEO": "FI",
+        "GEO_TIME": "Finland",
+        "values": [
+            {
+                "year": "2007",
+                "production": "16.2"
+            },
+            {
+                "year": "2008",
+                "production": "22.4"
+            },
+            {
+                "year": "2009",
+                "production": "23.8"
+            },
+            {
+                "year": "2010",
+                "production": "25.3"
+            },
+            {
+                "year": "2011",
+                "production": "41.4"
+            },
+            {
+                "year": "2012",
+                "production": "42.5"
+            },
+            {
+                "year": "2013",
+                "production": "66.6"
+            },
+            {
+                "year": "2014",
+                "production": "95.2"
+            },
+            {
+                "year": "2015",
+                "production": "200.1"
+            },
+            {
+                "year": "2016",
+                "production": "263.8"
+            }
+        ]
+    },
+    {
+        "GEO": "SE",
+        "GEO_TIME": "Sweden",
+        "values": [
+            {
+                "year": "2007",
+                "production": "123"
+            },
+            {
+                "year": "2008",
+                "production": "171.6"
+            },
+            {
+                "year": "2009",
+                "production": "213.7"
+            },
+            {
+                "year": "2010",
+                "production": "301.1"
+            },
+            {
+                "year": "2011",
+                "production": "522.6"
+            },
+            {
+                "year": "2012",
+                "production": "616.1"
+            },
+            {
+                "year": "2013",
+                "production": "846.3"
+            },
+            {
+                "year": "2014",
+                "production": "966"
+            },
+            {
+                "year": "2015",
+                "production": "1398.8"
+            },
+            {
+                "year": "2016",
+                "production": "1331"
+            }
+        ]
+    },
+    {
+        "GEO": "UK",
+        "GEO_TIME": "United Kingdom",
+        "values": [
+            {
+                "year": "2007",
+                "production": "453.5"
+            },
+            {
+                "year": "2008",
+                "production": "612.6"
+            },
+            {
+                "year": "2009",
+                "production": "798.2"
+            },
+            {
+                "year": "2010",
+                "production": "884.4"
+            },
+            {
+                "year": "2011",
+                "production": "1372.6"
+            },
+            {
+                "year": "2012",
+                "production": "1706.5"
+            },
+            {
+                "year": "2013",
+                "production": "2441.7"
+            },
+            {
+                "year": "2014",
+                "production": "2748"
+            },
+            {
+                "year": "2015",
+                "production": "3466.6"
+            },
+            {
+                "year": "2016",
+                "production": "3213"
+            }
+        ]
+    },
+    {
+        "GEO": "MK",
+        "GEO_TIME": "Macedonia",
+        "values": [
+            {
+                "year": "2007",
+                "production": "0"
+            },
+            {
+                "year": "2008",
+                "production": "0"
+            },
+            {
+                "year": "2009",
+                "production": "0"
+            },
+            {
+                "year": "2010",
+                "production": "0"
+            },
+            {
+                "year": "2011",
+                "production": "0"
+            },
+            {
+                "year": "2012",
+                "production": "0"
+            },
+            {
+                "year": "2013",
+                "production": "0"
+            },
+            {
+                "year": "2014",
+                "production": "6.1"
+            },
+            {
+                "year": "2015",
+                "production": "10.4"
+            },
+            {
+                "year": "2016",
+                "production": "9.4"
+            }
+        ]
+    },
+    {
+        "GEO": "TR",
+        "GEO_TIME": "Turkey",
+        "values": [
+            {
+                "year": "2007",
+                "production": "30.5"
+            },
+            {
+                "year": "2008",
+                "production": "72.8"
+            },
+            {
+                "year": "2009",
+                "production": "128.5"
+            },
+            {
+                "year": "2010",
+                "production": "250.7"
+            },
+            {
+                "year": "2011",
+                "production": "406.1"
+            },
+            {
+                "year": "2012",
+                "production": "503.9"
+            },
+            {
+                "year": "2013",
+                "production": "649.8"
+            },
+            {
+                "year": "2014",
+                "production": "732.6"
+            },
+            {
+                "year": "2015",
+                "production": "1001.9"
+            },
+            {
+                "year": "2016",
+                "production": "1334.2"
+            }
+        ]
+    }
+]
