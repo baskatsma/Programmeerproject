@@ -16,7 +16,6 @@ function interactivityListeners() {
 
       // Prevent skipping to top of page
       event.preventDefault();
-
       })
   .popover({
 

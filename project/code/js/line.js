@@ -17,7 +17,6 @@ var hydroProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_
 var windProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_WIND.json";
 var solarProductionJSON = "data/ten00081_Primary_production_of_renewable_energy_SOLAR_PHOTOVOLTAIC.json";
 var energySelection = "Total";
-
 var lineSelectedSector = "data/ten00081_Primary_production_of_renewable_energy_TOTAL.json";
 var sectorText;
 
@@ -25,17 +24,19 @@ var currentGEO;
 var currentGEOColor;
 var currentGEOData;
 var currentGEOIndex;
-var maxProductions = [];
 
 var lineWidth;
 var lineHeight;
 var titleMargin = 90;
 var margin = {top: 15, right: 85, bottom: 60, left: 55};
+var maxProductions = [];
 
+var svg;
 var gX;
 var gY;
 var zoomLevel = 1;
 
+// Style variables
 var lineOpacity = 0.3;
 var lineOpacityHover = 1;
 var lineOpacityOthers = 0.1;
@@ -61,8 +62,6 @@ var zoom = d3.zoom()
 // Initialize X and Y axii
 var xAxisLine;
 var yAxisLine;
-
-var svg;
 
 // Define color scale
 var lineColor = d3.scaleOrdinal(d3.schemeCategory20);

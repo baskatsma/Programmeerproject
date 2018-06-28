@@ -116,7 +116,7 @@ a:focus, a:hover {
 
 #introContainer {
     height: calc(85vh);
-    padding-top: calc(15vh);
+    padding-top: calc(20vh);
 }
 
 #introDiv {

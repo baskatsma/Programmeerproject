@@ -24,8 +24,11 @@ var chartMargin = {top: 20, right: 300, bottom: 120, left: 73};
 var chartSelectedSector = "data/nrg_ind_335a_Share_of_energy_from_renewable_sources_GROSS_FINAL.json";
 var chartSelectedYear = 2007;
 var chartSectorText;
-
 var sortSelectionValue = "percentage";
+
+var barchart;
+var barchartTextField;
+var xAxisBar;
 
 // Define X axis properties
 var chartX = d3.scaleBand()
@@ -39,15 +42,10 @@ var chartY = d3.scaleLinear();
 var chartZ = d3.scaleOrdinal()
     .range(["#006600", "#cccccc"]);
 
-var xAxisBar;
-
 // Initialize stack
 var stack = d3.stack()
     .order(d3.stackOrderNone)
     .offset(d3.stackOffsetExpand);
-
-var barchart;
-var barchartTextField;
 
 // Initialize barchart tooltip
 var barTip = d3.tip()
@@ -165,8 +163,7 @@ function makeChart(chartSelectedSector) {
 
         // Create first legend instance
         addLegend(chartSelectedYear);
-
-        });
+    });
 }
 
 function updateChart(chartSelectedSector, chartSelectedYear) {
@@ -225,9 +222,7 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
 
         // Update legend text
         updateLegend();
-
-        });
-
+    });
 }
 
 function updateBarTooltip(barColor) {
@@ -262,6 +257,7 @@ function addSlider() {
       .width(440)
       .tickFormat(d3.format(""))
       .on("onchange", val => {
+
           // Update map and barchart on slider change
           chartSelectedYear = val;
           updateChart(chartSelectedSector, chartSelectedYear);
@@ -352,5 +348,4 @@ function updateLegend() {
 
     barchartTextField.select(".chartSectorText")
       .text(chartSectorText);
-
 }

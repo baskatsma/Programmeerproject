@@ -31,13 +31,9 @@ document.addEventListener("DOMContentLoaded", function() {
     w = window.innerWidth;
     h = window.innerHeight;
 
-    // Load default chart
+    // Load default visualisations
     makeChart(defaultSector);
-
-    // Load map of Europe
     makeMap(defaultYear);
-
-    // Load default line chart
     makeLineGraph(defaultCountry);
 
     // Listen to button changes
