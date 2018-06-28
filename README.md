@@ -46,3 +46,51 @@ In deze line chart wordt de **productie van energie middels hernieuwbare energie
 
 ![map_line](docs/map_line.png)
 
+#### Sources
+Onderaan de website worden de bronnen van de gebruikte datasets vermeld. Deze verwijzen je direct door naar de specifieke tabellen en gebruikte files.
+
+![sources](docs/sources.png)
+
+## Externe code
+- startbootstrap-grayscale (MIT License)
+- d3 v4 (BSD 3-Clause "New" or "Revised" License)
+- queue v1
+- topojson v1
+- colorbrewer v1 (Apache License 2.0)
+- d3-legend 2.25.6
+- d3-tip 0.7.1 (Apache License 2.0)
+- d3-simple-slider 0.2.1 (BSD 3-Clause "New" or "Revised" License)
+
+## Copyright
+#### startbootstrap-grayscale
+The MIT License (MIT)
+
+Copyright (c) 2013-2018 Blackrock Digital LLC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+#### d3
+Copyright 2010-2017 Mike Bostock
+All rights reserved.
+
+#### d3-tip 0.7.1
+Copyright (c) 2013 Justin Palmer
+
+#### d3-simple-slider 0.2.1
+Copyright 2017 John Walley
