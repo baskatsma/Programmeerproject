@@ -62,7 +62,7 @@ var barTip = d3.tip()
  * creates the bar chart and legend, selects the default sort option,
  * and enables d3-tip functionality.
  */
-function makeChart(chartSelectedSector) {
+function makeChart(defaultSector) {
 
     // Update chart based on screen width/height
     chartWidth = w * 0.775;
@@ -78,7 +78,7 @@ function makeChart(chartSelectedSector) {
     // Add year slider
     addSlider();
 
-    d3.json(chartSelectedSector, function(error, data) {
+    d3.json(defaultSector, function(error, data) {
 
         if (error) throw error;
 

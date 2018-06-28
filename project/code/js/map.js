@@ -37,13 +37,13 @@ var mapTip = d3.tip()
 var colorScaleMap = d3.scaleQuantize();
 
 /*
- * makeMap initializes the projection and the path,
+ * makeMap uses the default year, initializes the projection and the path,
  * and loads the necessary files.
  */
-function makeMap(year) {
+function makeMap(defaultYear) {
 
     // Update global variable
-    mapSelectedYear = year;
+    mapSelectedYear = defaultYear;
 
     // Update chart based on screen width/height
     mapWidth = w * 0.475;

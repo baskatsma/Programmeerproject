@@ -81,7 +81,11 @@ var circleTip = d3.tip()
         ")" + ": " + formatThousandDecimal(d.production) + " KTOE";
     });
 
-function makeLineGraph(chosenGEO) {
+/*
+ * makeLineGraph loads a default category json (total), uses the default country
+ * to process the data, creates the line chart, and enables d3-tip functionality.
+ */
+function makeLineGraph(defaultCountry) {
 
     // Update chart based on screen width/height
     lineWidth = w * 0.425;
@@ -101,7 +105,7 @@ function makeLineGraph(chosenGEO) {
     yAxisLine = d3.axisLeft(lineY).ticks(7);
 
     // Save country we're interested in
-    currentGEO = chosenGEO;
+    currentGEO = defaultCountry;
 
     d3.json(lineSelectedSector, function(error, data) {
 
@@ -247,6 +251,11 @@ function makeLineGraph(chosenGEO) {
     });
 }
 
+/*
+ * updateLines receives the category from the button, receives the chosenGEO from
+ * the "on click" in the map, loads the selected category file, updates the
+ * line data & title.
+ */
 function updateLines(lineSelectedSector, chosenGEO) {
 
     // Save country we want to visualize
@@ -315,6 +324,12 @@ function updateLines(lineSelectedSector, chosenGEO) {
 
 }
 
+/*
+ * formatLineData receives a specific category data file, receives the chosenGEO,
+ * formats all values correctly, and checks whether the selected country exists
+ * in the data file (non-EU countries are usually absent).
+ * If not, choose NL as country.
+ */
 function formatLineData(data, currentGEO) {
 
     let allCountries = [];
@@ -324,7 +339,7 @@ function formatLineData(data, currentGEO) {
         allCountries.push(d.GEO);
         d.values.forEach(function(d) {
             d.year = parseDate(d.year);
-            d.production = +d.production;
+            d.production = Number(d.production);
         });
     });
 
@@ -338,6 +353,12 @@ function formatLineData(data, currentGEO) {
     }
 }
 
+/*
+ * processLineData receives a specific category data file, receives the chosenGEO,
+ * calculates the max values of each country and sets the domain of the X-axis
+ * based on the data from the chosen country (unnecessary, because all countries
+ * share the same year range).
+ */
 function processLineData(data, currentGEO) {
 
     // Save the data of the country we're interested in
@@ -413,13 +434,20 @@ function addCountryTitle(durationTime) {
       .attr("x", 60);
 }
 
-// Look through a list and return True if the item we're interested in is present
-function containsCountry(list, currentGEO) {
+/*
+ * containsCountry receives a list and an item (country). It looks through the
+ * list and returns True if the country we're interested in is present.
+ */
+function containsCountry(list, item) {
     return list.some(function (el) {
-        return el === currentGEO;
+        return el === item;
     });
 }
 
+/*
+ * zoomed allows the lines and circles to scale, and rescales both axii when
+ * a zoom action is performed.
+ */
 function zoomed() {
 
     // Save the current zoom level to correctly scale items
