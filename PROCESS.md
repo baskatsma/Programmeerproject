@@ -84,3 +84,10 @@ as far as I know, so now I will work on the website and make that pretty.
 - Website tweaks (new background, CSS updates)
 - Code clean-up (comments, style)
 - Took screenshots
+
+## day 19 (Thu 28 Jun)
+- Code got reviewed and received good feedback! Implemented all of that
+- Added REVIEW.md
+- Added new README.md
+- Added REPORT.md
+- Minor code clean-up (agaaaain)
