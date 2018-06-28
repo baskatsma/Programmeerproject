@@ -57,6 +57,11 @@ var barTip = d3.tip()
         "%" + "</strong>";
     });
 
+/*
+ * makeChart adds the slider, loads the default sector data file, processes it,
+ * creates the bar chart and legend, selects the default sort option,
+ * and enables d3-tip functionality.
+ */
 function makeChart(chartSelectedSector) {
 
     // Update chart based on screen width/height
@@ -156,6 +161,11 @@ function makeChart(chartSelectedSector) {
     });
 }
 
+/*
+ * updateChart loads the selected sector data file, processes it for the
+ * selected year, selects the chosen sort option, and updates the
+ * bar data and legend.
+ */
 function updateChart(chartSelectedSector, chartSelectedYear) {
 
     // Load new data
@@ -205,6 +215,10 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
     });
 }
 
+/*
+ * processChartData receives a dataset and year, selects a specific part
+ * from the data based on the year, formats it and calculates new variable.
+ */
 function processChartData(data, year) {
 
     // Format and calculate data
@@ -221,6 +235,10 @@ function processChartData(data, year) {
     });
 }
 
+/*
+ * updateBarTooltip updates the d3-tip text based on the color of the rect.
+ * This is the only way it can see the difference between grey and green bars.
+ */
 function updateBarTooltip(barColor) {
 
     // Check if the color is grey (non-renewable energy) (rgb is all 204)
@@ -243,6 +261,11 @@ function updateBarTooltip(barColor) {
     }
 }
 
+/*
+ * addSlider creates a year slider based on d3-simple-slider.js. It updates the
+ * global accessible chartSelectedYear variable, and then updates the bar chart
+ * and the map.
+ */
 function addSlider() {
 
     // Define slider settings
