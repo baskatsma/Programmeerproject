@@ -36,6 +36,10 @@ var mapTip = d3.tip()
 // Initialize color scale
 var colorScaleMap = d3.scaleQuantize();
 
+/*
+ * makeMap initializes the projection and the path,
+ * and loads the necessary files.
+ */
 function makeMap(year) {
 
     // Update global variable
@@ -62,6 +66,10 @@ function makeMap(year) {
       .await(makeMapCore);
 }
 
+/*
+ * makeMapCore receives the data from the d3.queue(), processes it and
+ * creates the map and legend.
+ */
 function makeMapCore(error, europeData, energyUsageData) {
 
     // Log any errors, and save results for usage outside of this function
@@ -137,6 +145,10 @@ function makeMapCore(error, europeData, energyUsageData) {
       .text("x10.000");
 }
 
+/*
+ * updateMap receives the new year from the slider button, selects new part
+ * from the already-existing data and updates the map values & title.
+ */
 function updateMap(mapSelectedYear) {
 
     // Process the year of the EUROSTAT data we now want
@@ -178,6 +190,10 @@ function updateMap(mapSelectedYear) {
     updateTitle(newMapYear);
 }
 
+/*
+ * processMapData receives an array and year, selects a specific part
+ * from the already-existing data, formats it and updates the array.
+ */
 function processMapData(dataArray, year) {
 
     // Convert a specific column (year) and link it to data array (dictionary)
@@ -187,6 +203,10 @@ function processMapData(dataArray, year) {
     });
 }
 
+/*
+ * appendCountries adds countries to the SVG using topoJSON, color-codes it,
+ * and enables d3-tip and click functionality.
+ */
 function appendCountries() {
 
     // Set-up color scale
