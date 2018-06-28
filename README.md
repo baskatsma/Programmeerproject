@@ -19,13 +19,13 @@ Boven in de navigatiebalk is het mogelijk om naar de verschillende secties (bijv
 ![frontpage](docs/frontpage.png)
 
 #### Introduction
-Dit gedeelte geeft een kleine anecdote, beschrijft de onderzoeksvragen, en leidt vervolgens naar de visualisaties van deze site door gewoon verder te scrollen ofwel op de knop te klikken. 
+Dit gedeelte geeft een kleine anecdote, beschrijft de onderzoeksvragen, en leidt vervolgens naar de visualisaties van deze site door gewoon verder te scrollen ofwel op de knop te klikken.
 
 ![introduction](docs/introduction.png)
 
 
 #### Eerste visualisatie: stacked bar chart
-Hier wordt een interactieve stacked bar chart weergegeven. 
+Hier wordt een interactieve stacked bar chart weergegeven.
 - Op de X-as staan alle Europese landen
 - Op de Y-as wordt het gebruikte energiesoort weergegeven in percentages
 
@@ -56,11 +56,13 @@ Onderaan de website worden de bronnen van de gebruikte datasets vermeld. Deze ve
 - d3 v4 (BSD 3-Clause "New" or "Revised" License)
 - queue v1
 - topojson v1
+- [europe.json](https://github.com/jesion/d3js-flight-connections-map/blob/master/src/europe.json)
 - colorbrewer v1 (Apache License 2.0)
 - d3-legend 2.25.6
 - d3-tip 0.7.1 (Apache License 2.0)
 - d3-simple-slider 0.2.1 (BSD 3-Clause "New" or "Revised" License) in project/code/js/d3-simple-slider.js
 - Photo by [Biel Morro](https://unsplash.com/@bielmb) on [Unsplash](https://unsplash.com/photos/HCha-UHkIg8) in project/bootstrap/img/biel-morro-235394-unsplash.jpg
+- Data by [EUROSTAT](http://ec.europa.eu/eurostat/web/energy/data/database) in project/data
 
 ## Copyright notices
 #### Europe: Life in \#008000
