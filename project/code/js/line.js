@@ -109,8 +109,8 @@ function makeLineGraph(chosenGEO) {
         if (error) throw error;
 
         // Correctly parse the imported data and use it
-        formatData(data, currentGEO);
-        processData(data, currentGEO);
+        formatLineData(data, currentGEO);
+        processLineData(data, currentGEO);
 
         // Update Y domain
         lineY.domain([0, d3.max(maxProductions)]).nice();
@@ -258,8 +258,8 @@ function updateLines(lineSelectedSector, chosenGEO) {
         if (error) throw error;
 
         // Correctly parse the imported data and use it
-        currentGEO = formatData(data, currentGEO);
-        processData(data, currentGEO);
+        currentGEO = formatLineData(data, currentGEO);
+        processLineData(data, currentGEO);
 
         // Update Y domain
         lineY.domain([0, d3.max(maxProductions)]);
@@ -315,7 +315,7 @@ function updateLines(lineSelectedSector, chosenGEO) {
 
 }
 
-function formatData(data, currentGEO) {
+function formatLineData(data, currentGEO) {
 
     let allCountries = [];
 
@@ -338,7 +338,7 @@ function formatData(data, currentGEO) {
     }
 }
 
-function processData(data, currentGEO) {
+function processLineData(data, currentGEO) {
 
     // Save the data of the country we're interested in
     maxProductions = [];

@@ -79,3 +79,8 @@ as far as I know, so now I will work on the website and make that pretty.
 ## day 17 (Tue 26 Jun)
 - Added description text
 - Code clean-up (comments, style, more functions, etc.)
+
+## day 18 (Wed 27 Jun)
+- Website tweaks (new background, CSS updates)
+- Code clean-up (comments, style)
+- Took screenshots

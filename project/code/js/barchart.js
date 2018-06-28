@@ -86,17 +86,7 @@ function makeChart(chartSelectedSector) {
             .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
 
         // Format and calculate data
-        data.forEach(function(d) {
-            d.totalEnergyPercentage = 100;
-            d.greenEnergyPercentage = Number(d[chartSelectedYear]);
-
-            // Limit green energy to 100% to avoid problems
-            if (d.greenEnergyPercentage > 100) {
-                d.greenEnergyPercentage = 100;
-            }
-
-            d.greyEnergyPercentage = d.totalEnergyPercentage - d.greenEnergyPercentage;
-        });
+        processChartData(data, chartSelectedYear);
 
         // Sort from highest green energy to lowest
         data.sort((a, b) => b.greenEnergyPercentage-a.greenEnergyPercentage);
@@ -175,17 +165,7 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
 
         // Update and calculate data
         let newYear = chartSelectedYear;
-        data.forEach(function(d) {
-            d.totalEnergyPercentage = 100;
-            d.greenEnergyPercentage = Number(d[newYear]);
-
-            // Limit green energy to 100% to avoid problems
-            if (d.greenEnergyPercentage >= 100) {
-                d.greenEnergyPercentage = 100;
-            }
-
-            d.greyEnergyPercentage = d.totalEnergyPercentage - d.greenEnergyPercentage;
-        });
+        processChartData(data, newYear);
 
         // Define sort
         if (sortSelectionValue == "percentage") {
@@ -222,6 +202,22 @@ function updateChart(chartSelectedSector, chartSelectedYear) {
 
         // Update legend text
         updateLegend();
+    });
+}
+
+function processChartData(data, year) {
+
+    // Format and calculate data
+    data.forEach(function(d) {
+        d.totalEnergyPercentage = 100;
+        d.greenEnergyPercentage = Number(d[year]);
+
+        // Limit green energy to 100% to avoid problems
+        if (d.greenEnergyPercentage > 100) {
+            d.greenEnergyPercentage = 100;
+        }
+
+        d.greyEnergyPercentage = d.totalEnergyPercentage - d.greenEnergyPercentage;
     });
 }
 

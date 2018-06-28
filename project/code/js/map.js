@@ -72,10 +72,7 @@ function makeMapCore(error, europeData, energyUsageData) {
     // Extract the EUROSTAT data
     storeData = {};
     mapYear = mapSelectedYear;
-    energyUsage.forEach(function(d) {
-        d[mapYear] = d[mapYear].replace(",",".");
-        storeData[d.GEO] = Number(d[mapYear]);
-    });
+    processMapData(storeData, mapYear);
 
     // Update map tooltip
     mapTip.html(function(d) {
@@ -142,13 +139,10 @@ function makeMapCore(error, europeData, energyUsageData) {
 
 function updateMap(mapSelectedYear) {
 
-    // Select new parts of the EUROSTAT data
+    // Process the year of the EUROSTAT data we now want
     let newMapData = {};
     let newMapYear = mapSelectedYear;
-    energyUsage.forEach(function(d) {
-        d[newMapYear] = d[newMapYear].replace(",",".");
-        newMapData[d.GEO] = Number(d[newMapYear])
-    });
+    processMapData(newMapData, newMapYear);
 
     // Update scale
     colorScaleMap
@@ -182,6 +176,15 @@ function updateMap(mapSelectedYear) {
 
     // Update title
     updateTitle(newMapYear);
+}
+
+function processMapData(dataArray, year) {
+
+    // Convert a specific column (year) and link it to data array (dictionary)
+    energyUsage.forEach(function(d) {
+        d[year] = d[year].replace(",",".");
+        dataArray[d.GEO] = Number(d[year]);
+    });
 }
 
 function appendCountries() {
