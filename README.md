@@ -51,7 +51,7 @@ Onderaan de website worden de bronnen van de gebruikte datasets vermeld. Deze ve
 
 ![sources](docs/sources.png)
 
-## Externe code
+## Externe bronnen/code
 - startbootstrap-grayscale (MIT License) in project/bootstrap/
 - d3 v4 (BSD 3-Clause "New" or "Revised" License)
 - queue v1
